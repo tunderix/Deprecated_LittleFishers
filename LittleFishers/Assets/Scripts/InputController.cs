@@ -169,7 +169,7 @@ public class InputController : MonoBehaviour
 
     void RightClick(GameObject clickedGO, Vector3 hitpoint)
     {
-        GameObject.Find("Player").GetComponent<Player>().MoveTo(hitpoint);
+        GameObject.FindGameObjectWithTag("PlayerSelf").GetComponent<Player>().MoveTo(hitpoint);
     }
 
     public bool DidUserClickMouse(Vector3 hitPoint)
