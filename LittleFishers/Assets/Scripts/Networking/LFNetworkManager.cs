@@ -12,7 +12,6 @@ public class LFNetworkManager : NetworkManager
         GameObject go = Instantiate(playerPrefab);
         Player player = go.GetComponent<Player>();
         player.playerId = clientIndex;
-        go.tag = "PlayerSelf";
         clientIndex++;
 
         NetworkServer.AddPlayerForConnection(conn, go);

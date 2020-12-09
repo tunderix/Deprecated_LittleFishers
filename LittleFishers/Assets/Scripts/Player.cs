@@ -5,10 +5,17 @@ using Mirror;
 
 public class Player : NetworkBehaviour
 {
-    public int playerId = -1;
+    public int playerId;
 
     public void MoveTo(Vector3 newPosition)
     {
-        this.GetComponentInChildren<ClickToMovement>().MoveTo(newPosition);
+        if (isLocalPlayer)
+            this.GetComponentInChildren<ClickToMovement>().MoveTo(newPosition);
+    }
+
+    public override void OnStartLocalPlayer()
+    {
+        base.OnStartLocalPlayer();
+        this.tag = "PlayerSelf";
     }
 }
