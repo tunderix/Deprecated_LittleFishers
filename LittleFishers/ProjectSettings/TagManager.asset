@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerSelf
   - PlayerOther
+  - Water
   layers:
   - Default
   - TransparentFX

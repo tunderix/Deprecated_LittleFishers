@@ -17,7 +17,8 @@ public class InputController : MonoBehaviour
     public GUIStyle mouseDragSkin;
     private bool userIsDragging;
     private static Vector3 mouseDragStart;
-
+    [SerializeField]
+    private FishingController fishingController;
     //GUI
     private float boxWidth;
     private float boxHeight;
@@ -169,7 +170,15 @@ public class InputController : MonoBehaviour
 
     void RightClick(GameObject clickedGO, Vector3 hitpoint)
     {
-        GameObject.FindGameObjectWithTag("PlayerSelf").GetComponent<Player>().MoveTo(hitpoint);
+        GameObject player = GameObject.FindGameObjectWithTag("PlayerSelf");
+        if (FishingHelper.canStartFishing(player.transform.position, hitpoint, clickedGO))
+        {
+            fishingController.StartFishing(hitpoint);
+        }
+        else
+        {
+            player.GetComponent<Player>().MoveTo(hitpoint);
+        }
     }
 
     public bool DidUserClickMouse(Vector3 hitPoint)
