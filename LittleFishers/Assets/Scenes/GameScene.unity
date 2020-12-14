@@ -1514,6 +1514,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f21f2db843a37054eba0ed568b3c9bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryItem: {fileID: 11400000, guid: 6d9bfb7fe6c06194b914088b72692ece, type: 2}
+  playerInventory: {fileID: 11400000, guid: c6824b49ba7e2284cb5217e4b1ac05cd, type: 2}
+  inventoryItemCount: 4
 --- !u!65 &612002156
 BoxCollider:
   m_ObjectHideFlags: 0

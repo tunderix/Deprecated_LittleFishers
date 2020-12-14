@@ -17,12 +17,12 @@ public class Backpack : MonoBehaviour
 
     void Start()
     {
-        ClearBackpack();
         UpdateBackpack();
     }
 
     public void UpdateBackpack()
     {
+        ClearBackpack();
         for (int i = 0; i < playerInv.GetInventorySize(); i++)
         {
             GameObject newBackpackSlot = AddBackpackSlot(i);
@@ -34,6 +34,7 @@ public class Backpack : MonoBehaviour
         foreach (Transform child in gridLayoutGroup.transform)
         {
             GameObject.Destroy(child.gameObject);
+            // TODO -> Update UI. Maybe callback from playerInventory to Backpack
         }
     }
 
