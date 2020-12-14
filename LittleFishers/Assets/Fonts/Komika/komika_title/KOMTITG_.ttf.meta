@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: fd25fe925d8a6ba4caed633c766cdd29
+timeCreated: 1510763387
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Komika Title - Ghost
+  fontNames:
+  - Komika Title - Ghost
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

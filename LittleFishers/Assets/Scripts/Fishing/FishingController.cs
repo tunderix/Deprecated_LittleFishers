@@ -9,7 +9,7 @@ public class FishingController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        this.GetComponent<LimitedValue>().SetValue(-15);
     }
 
     public void StartFishing(Vector3 position)

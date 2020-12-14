@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: b52ee5fc40b833a4e86b98c7f542eba5
+timeCreated: 1510763387
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Komika Text Kaps
+  fontNames:
+  - Komika Text Kaps
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 0069d351d6e94be48a19e05db76db20b, type: 3}
+  - {fileID: 12800000, guid: 0cea3a0bd89132948ad9d82c28a2d4ca, type: 3}
+  - {fileID: 12800000, guid: 0022fcbfeb0c16c488c229c3b9321e25, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

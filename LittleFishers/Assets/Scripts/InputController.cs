@@ -34,6 +34,10 @@ public class InputController : MonoBehaviour
     void Start()
     {
         god = this.gameObject;
+        if (!this.fishingController)
+        {
+            this.fishingController = gameObject.AddComponent<FishingController>();
+        }
     }
 
     // Update is called once per frame
@@ -196,7 +200,7 @@ public class InputController : MonoBehaviour
 
     private bool HasSelectionChild(GameObject GO)
     {
-        for (int i = 0; i < GO.transform.GetChildCount(); i++)
+        for (int i = 0; i < GO.transform.childCount; i++)
         {
             Transform transform = GO.transform.GetChild(i);
             if (transform.name == "Selectable")
