@@ -7,6 +7,9 @@ public class Player : NetworkBehaviour
 {
     public int playerId;
 
+    [SerializeField]
+    private Inventory playerInventory;
+
     public void MoveTo(Vector3 newPosition)
     {
         if (isLocalPlayer)

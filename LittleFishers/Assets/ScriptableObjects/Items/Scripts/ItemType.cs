@@ -5,5 +5,6 @@ public enum ItemType
 {
     Food,
     Equipment,
+    Bait,
     Default
 }
