@@ -6,5 +6,6 @@ public enum ItemType
     Food,
     Equipment,
     Bait,
+    Fish,
     Default
 }

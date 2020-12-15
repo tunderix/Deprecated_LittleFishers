@@ -1038,11 +1038,11 @@ namespace Mkey
                 EShader.SetBool("fpUseO", fOptions.pBlendMode == FaceOptions.PBlendMode.Overlay);
                 EShader.SetBool("fpUseD", fOptions.pBlendMode == FaceOptions.PBlendMode.Darken);
                 EShader.SetTexture(kernelHandle, "gInputK", fOptions.patternText);
-                EShader.SetFloat("fpOptionsOp",(float)fOptions.pOpacity / 100.0f);
+                EShader.SetFloat("fpOptionsOp", (float)fOptions.pOpacity / 100.0f);
                 EShader.SetVector("fpOptions", new Vector4(
                                         tSizeM1.x,
                                         tSizeM1MS.x,
-                                        tSizeM1MS.y, 
+                                        tSizeM1MS.y,
                                         tSizeM1.y));
             }
             else
@@ -1851,7 +1851,7 @@ namespace Mkey
         {
             TextSize.SetSize(inputText.width, inputText.height);
             float tg25 = 0.00466308f;
-            int pRow = 16;
+            //int pRow = 16;
 
             cutBuffer = new ComputeBuffer(TextSize.WxH, 4);//  Mkey.PrintData.BufTostring(dtBuffer, inputText.width, inputText.height, pRow, -1, false);
             cosineBuffer = new ComputeBuffer(TextSize.WxH, 4);
@@ -1915,7 +1915,7 @@ namespace Mkey
 
         public void GPURenderBevelOutside_R8(Texture inputText, ComputeBuffer dtBuffer, ref RenderTexture outTextLight, ref RenderTexture outTextShadow, BevelOptions bevelOptions)
         {
-            int pRow = 16;
+            //int pRow = 16;
             float tg25 = 0.00466308f;
             TextSize.SetSize(inputText.width, inputText.height);
             ReCreateRenderTexture(ref outTextLight, RenderTextureFormat.R8, TextSize.Width, TextSize.Height);
@@ -1998,7 +1998,7 @@ namespace Mkey
             TextSize.SetSize(textureWidth, textureHeight);
             ReCreateRenderTexture(ref outText, RenderTextureFormat.R8, TextSize.Width, TextSize.Height);
 
-            kernelHandle =(cutNegative)? EShader.FindKernel("NormalizeFCN") : EShader.FindKernel("NormalizeF");
+            kernelHandle = (cutNegative) ? EShader.FindKernel("NormalizeFCN") : EShader.FindKernel("NormalizeF");
             EShader.SetInt("width", textureWidth);
             EShader.SetInt("height", textureHeight);
             EShader.SetBuffer(kernelHandle, "fBInputA", inputBuff);
@@ -2078,7 +2078,7 @@ namespace Mkey
             kernelHandle = EShader.FindKernel("NormalizeF");
             EShader.SetInt("width", textureWidth);
             EShader.SetBuffer(kernelHandle, "fBInputA", inputBuff);
-			EShader.SetBuffer(kernelHandle, "fBOutA", N);
+            EShader.SetBuffer(kernelHandle, "fBOutA", N);
             EShader.Dispatch(kernelHandle, 1, textureHeight, 1);
 
             kernelHandle = EShader.FindKernel("NormalizeF1");
@@ -2231,6 +2231,20 @@ namespace Mkey
         public int ChessLength
         {
             get { return (Mathf.Abs(X) + Mathf.Abs(Y)); }
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+            return base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 

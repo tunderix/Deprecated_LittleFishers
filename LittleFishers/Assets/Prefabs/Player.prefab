@@ -270,6 +270,11 @@ MonoBehaviour:
   syncInterval: 0.1
   playerId: 0
   playerInventory: {fileID: 11400000, guid: c6824b49ba7e2284cb5217e4b1ac05cd, type: 2}
+  playerStats:
+    strength: 1
+    experience: 1
+  defaultPlayerStrength: 1
+  defaultPlayerExperience: 1
 --- !u!54 &6625081019186392746
 Rigidbody:
   m_ObjectHideFlags: 0

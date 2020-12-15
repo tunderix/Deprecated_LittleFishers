@@ -175,9 +175,11 @@ public class InputController : MonoBehaviour
     void RightClick(GameObject clickedGO, Vector3 hitpoint)
     {
         GameObject player = GameObject.FindGameObjectWithTag("PlayerSelf");
-        if (FishingHelper.canStartFishing(player.transform.position, hitpoint, clickedGO))
+        FishPool fishPool = clickedGO.GetComponent<FishPool>();
+        if (FishingHelper.canStartFishing(player.transform.position, hitpoint, clickedGO) && fishPool)
         {
-            fishingController.StartFishing(hitpoint);
+            // TODO - Fix This
+            fishingController.StartFishing(hitpoint, fishPool, player.GetComponent<Player>());
         }
         else
         {

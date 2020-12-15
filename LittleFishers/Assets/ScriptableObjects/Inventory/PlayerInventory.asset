@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerInventory
   m_EditorClassIdentifier: 
   inventoryName: Players Inventory
-  inventorySize: 18
+  inventorySize: 16
   inventorySlots:
   - inventoryObject: {fileID: 11400000, guid: 7609729808b113340bff87d8354ea86e, type: 2}
     amount: 4
@@ -21,3 +21,9 @@ MonoBehaviour:
     amount: 1
   - inventoryObject: {fileID: 11400000, guid: 7e358ebd84d637e469777830d1538ce0, type: 2}
     amount: 6
+  - inventoryObject: {fileID: 11400000, guid: 6d9bfb7fe6c06194b914088b72692ece, type: 2}
+    amount: 4
+  - inventoryObject: {fileID: 11400000, guid: 6d9bfb7fe6c06194b914088b72692ece, type: 2}
+    amount: 4
+  - inventoryObject: {fileID: 11400000, guid: 6d9bfb7fe6c06194b914088b72692ece, type: 2}
+    amount: 4

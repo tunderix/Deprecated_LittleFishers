@@ -9,6 +9,20 @@ public class Player : NetworkBehaviour
 
     [SerializeField]
     private Inventory playerInventory;
+    [SerializeField]
+    private PlayerStats playerStats;
+
+    [Header("Player Default Stats")]
+    [SerializeField]
+    private int defaultPlayerStrength;
+    [SerializeField]
+    private int defaultPlayerExperience;
+
+
+    void Awake()
+    {
+        playerStats = new PlayerStats(defaultPlayerExperience, defaultPlayerStrength);
+    }
 
     public void MoveTo(Vector3 newPosition)
     {
@@ -20,5 +34,15 @@ public class Player : NetworkBehaviour
     {
         base.OnStartLocalPlayer();
         this.tag = "PlayerSelf";
+    }
+
+    public Inventory GetPlayerInventory()
+    {
+        return playerInventory;
+    }
+
+    public PlayerStats GetPlayerStats()
+    {
+        return playerStats;
     }
 }
