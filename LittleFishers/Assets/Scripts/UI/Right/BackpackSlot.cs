@@ -2,16 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class BackpackSlot : MonoBehaviour
 {
     [SerializeField]
-    private ItemObject itemObject;
+    private TextMeshProUGUI countLabel;
+    [SerializeField]
+    private Image imageComponent;
 
-    public void SetItem(ItemObject _itemObject)
+    public void SetItem(ItemObject _itemObject, int amount)
     {
-        this.itemObject = _itemObject;
-        this.GetComponentInChildren<Image>().enabled = true;
-        this.GetComponentInChildren<Image>().sprite = itemObject.backpackIcon;
+        if (_itemObject)
+        {
+            countLabel.SetText(amount.ToString());
+            imageComponent.enabled = true;
+            imageComponent.sprite = _itemObject.backpackIcon;
+        }
+
     }
 }

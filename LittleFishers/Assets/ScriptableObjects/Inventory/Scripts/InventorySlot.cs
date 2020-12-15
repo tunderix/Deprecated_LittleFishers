@@ -20,4 +20,9 @@ public class InventorySlot
     {
         return this.inventoryObject;
     }
+
+    public int GetAmount()
+    {
+        return this.amount;
+    }
 }

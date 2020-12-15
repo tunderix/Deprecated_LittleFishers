@@ -12,6 +12,8 @@ public class Inventory : ScriptableObject
     [SerializeField]
     private int inventorySize;
 
+    private LittleFishersUI littleFishersUI;
+
     public List<InventorySlot> inventorySlots;
 
     public int GetInventorySize()
@@ -21,9 +23,13 @@ public class Inventory : ScriptableObject
 
     public bool AddItem(ItemObject item, int count)
     {
+        if (!littleFishersUI)
+            littleFishersUI = GameObject.Find("LittleFishersUI").GetComponent<LittleFishersUI>();
+
         if (CanAddItem(item, count))
         {
             inventorySlots.Add(new InventorySlot(item, count));
+            littleFishersUI.UpdateUI();
             return true;
         }
         return false;

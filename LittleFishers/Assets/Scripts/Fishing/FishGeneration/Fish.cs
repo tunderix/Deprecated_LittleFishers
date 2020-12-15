@@ -28,6 +28,11 @@ public class Fish
         return this.description;
     }
 
+    public FishSize GetFishSize()
+    {
+        return fishSize;
+    }
+
     public int GetFishStrength()
     {
         switch (fishSize)

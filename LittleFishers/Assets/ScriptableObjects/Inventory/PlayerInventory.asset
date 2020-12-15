@@ -15,15 +15,33 @@ MonoBehaviour:
   inventoryName: Players Inventory
   inventorySize: 16
   inventorySlots:
-  - inventoryObject: {fileID: 11400000, guid: 7609729808b113340bff87d8354ea86e, type: 2}
-    amount: 4
-  - inventoryObject: {fileID: 11400000, guid: 8c18c94b1c3145f4c9c7dbac4566fd66, type: 2}
+  - inventoryObject: {fileID: 0}
     amount: 1
-  - inventoryObject: {fileID: 11400000, guid: 7e358ebd84d637e469777830d1538ce0, type: 2}
-    amount: 6
+  - inventoryObject: {fileID: 0}
+    amount: 1
+  - inventoryObject: {fileID: 0}
+    amount: 1
+  - inventoryObject: {fileID: 0}
+    amount: 1
+  - inventoryObject: {fileID: 0}
+    amount: 1
+  - inventoryObject: {fileID: 0}
+    amount: 1
+  - inventoryObject: {fileID: 0}
+    amount: 1
+  - inventoryObject: {fileID: 0}
+    amount: 1
+  - inventoryObject: {fileID: 0}
+    amount: 1
+  - inventoryObject: {fileID: 0}
+    amount: 1
   - inventoryObject: {fileID: 11400000, guid: 6d9bfb7fe6c06194b914088b72692ece, type: 2}
     amount: 4
   - inventoryObject: {fileID: 11400000, guid: 6d9bfb7fe6c06194b914088b72692ece, type: 2}
     amount: 4
-  - inventoryObject: {fileID: 11400000, guid: 6d9bfb7fe6c06194b914088b72692ece, type: 2}
-    amount: 4
+  - inventoryObject: {fileID: 0}
+    amount: 1
+  - inventoryObject: {fileID: 0}
+    amount: 1
+  - inventoryObject: {fileID: 0}
+    amount: 1

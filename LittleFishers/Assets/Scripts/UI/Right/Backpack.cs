@@ -47,7 +47,7 @@ public class Backpack : MonoBehaviour
         if (i < playerInv.inventorySlots.Count())
         {
             ItemObject itemObject = playerInv.inventorySlots.ElementAt(i).GetInventoryItem();
-            newBackpackSlot.GetComponent<BackpackSlot>().SetItem(itemObject);
+            newBackpackSlot.GetComponent<BackpackSlot>().SetItem(itemObject, playerInv.inventorySlots.ElementAt(i).GetAmount());
         }
 
         return newBackpackSlot;
