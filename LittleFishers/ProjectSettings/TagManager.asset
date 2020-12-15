@@ -8,6 +8,7 @@ TagManager:
   - PlayerOther
   - Water
   - FishingController
+  - PlayerListPanel
   layers:
   - Default
   - TransparentFX

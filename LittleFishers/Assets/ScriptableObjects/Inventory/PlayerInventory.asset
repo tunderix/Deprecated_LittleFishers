@@ -14,34 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryName: Players Inventory
   inventorySize: 16
-  inventorySlots:
-  - inventoryObject: {fileID: 0}
-    amount: 1
-  - inventoryObject: {fileID: 0}
-    amount: 1
-  - inventoryObject: {fileID: 0}
-    amount: 1
-  - inventoryObject: {fileID: 0}
-    amount: 1
-  - inventoryObject: {fileID: 0}
-    amount: 1
-  - inventoryObject: {fileID: 0}
-    amount: 1
-  - inventoryObject: {fileID: 0}
-    amount: 1
-  - inventoryObject: {fileID: 0}
-    amount: 1
-  - inventoryObject: {fileID: 0}
-    amount: 1
-  - inventoryObject: {fileID: 0}
-    amount: 1
-  - inventoryObject: {fileID: 11400000, guid: 6d9bfb7fe6c06194b914088b72692ece, type: 2}
-    amount: 4
-  - inventoryObject: {fileID: 11400000, guid: 6d9bfb7fe6c06194b914088b72692ece, type: 2}
-    amount: 4
-  - inventoryObject: {fileID: 0}
-    amount: 1
-  - inventoryObject: {fileID: 0}
-    amount: 1
-  - inventoryObject: {fileID: 0}
-    amount: 1
+  inventorySlots: []

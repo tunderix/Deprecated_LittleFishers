@@ -7,7 +7,8 @@ public class InputController : MonoBehaviour
 {
     private MouseControls mouseControls;
     private FishingController fishingController;
-
+    [SerializeField]
+    private LittleFishersUI littleFishersUI;
     void Awake()
     {
         this.mouseControls = this.gameObject.GetComponent<MouseControls>();
@@ -17,6 +18,18 @@ public class InputController : MonoBehaviour
     {
         this.mouseControls.onMouseLeftButtonClick = LeftMouseClick;
         this.mouseControls.onMouseRightButtonClick = RightMouseClick;
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Q))
+        {
+            littleFishersUI.TogglePlayerList();
+        }
+        if (Input.GetKeyUp(KeyCode.B))
+        {
+            littleFishersUI.ToggleBackpack();
+        }
     }
 
     private void LeftMouseClick(GameObject clickedGO)
