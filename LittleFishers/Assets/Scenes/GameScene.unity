@@ -1113,6 +1113,8 @@ MonoBehaviour:
   backpackSlotPrefab: {fileID: 7015288893444428970, guid: 332a3c599fca26f47b5d01e57bf875b0,
     type: 3}
   playerInv: {fileID: 11400000, guid: c6824b49ba7e2284cb5217e4b1ac05cd, type: 2}
+  goldLabel: {fileID: 1667857425}
+  slotCountLabel: {fileID: 387974755}
 --- !u!1 &218987476
 GameObject:
   m_ObjectHideFlags: 0
