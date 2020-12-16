@@ -9,6 +9,8 @@ public class LittleFishersUI : NetworkBehaviour
     private Backpack backpack;
     [SerializeField]
     private PlayerStatisticsPanel playerList;
+    [SerializeField]
+    private MainMenu mainMenu;
 
     private List<PlayerGameState> playerStatusList;
 
@@ -18,6 +20,8 @@ public class LittleFishersUI : NetworkBehaviour
     private bool playerListHidden;
     [SerializeField]
     private bool backpackHidden;
+    [SerializeField]
+    private bool mainMenuHidden;
 
     void Awake()
     {
@@ -36,6 +40,12 @@ public class LittleFishersUI : NetworkBehaviour
     {
         backpackHidden = !backpackHidden;
         backpack.gameObject.SetActive(backpackHidden);
+    }
+
+    public void ToggleMainMenu()
+    {
+        mainMenuHidden = !mainMenuHidden;
+        mainMenu.gameObject.SetActive(mainMenuHidden);
     }
 
     public void UpdateUI()

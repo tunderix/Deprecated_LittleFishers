@@ -30,6 +30,10 @@ public class InputController : MonoBehaviour
         {
             littleFishersUI.ToggleBackpack();
         }
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            littleFishersUI.ToggleMainMenu();
+        }
     }
 
     private void LeftMouseClick(GameObject clickedGO)
