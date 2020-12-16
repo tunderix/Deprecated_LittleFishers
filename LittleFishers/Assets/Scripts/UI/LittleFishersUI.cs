@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 
-public class LittleFishersUI : NetworkBehaviour
+public class LittleFishersUI : MonoBehaviour
 {
     [SerializeField]
     private Backpack backpack;
@@ -11,10 +11,8 @@ public class LittleFishersUI : NetworkBehaviour
     private PlayerStatisticsPanel playerList;
     [SerializeField]
     private MainMenu mainMenu;
-
-    private List<PlayerGameState> playerStatusList;
-
-    private PlayerList playerListComponent;
+    [SerializeField]
+    private KeybindLayout keybindLayout;
 
     [SerializeField]
     private bool playerListHidden;
@@ -23,47 +21,45 @@ public class LittleFishersUI : NetworkBehaviour
     [SerializeField]
     private bool mainMenuHidden;
 
-    void Awake()
+    void Start()
     {
-        this.playerStatusList = new List<PlayerGameState>();
-        this.playerListComponent = GameObject.FindGameObjectWithTag("PlayerListPanel").GetComponent<PlayerList>();
+        HideInitialUIComponents();
+    }
+
+    private void HideInitialUIComponents()
+    {
+        playerList.gameObject.SetActive(!playerListHidden);
+        backpack.gameObject.SetActive(!backpackHidden);
+        mainMenu.gameObject.SetActive(!mainMenuHidden);
+        HideKeybindLayout();
     }
 
     public void TogglePlayerList()
     {
         playerListHidden = !playerListHidden;
-        playerList.gameObject.SetActive(playerListHidden);
-        if (!playerListHidden) UpdatePlayerListComponent();
+        playerList.gameObject.SetActive(!playerListHidden);
+        //if (!playerListHidden) UpdatePlayerListComponent();
     }
 
     public void ToggleBackpack()
     {
         backpackHidden = !backpackHidden;
-        backpack.gameObject.SetActive(backpackHidden);
+        backpack.gameObject.SetActive(!backpackHidden);
     }
 
     public void ToggleMainMenu()
     {
         mainMenuHidden = !mainMenuHidden;
-        mainMenu.gameObject.SetActive(mainMenuHidden);
+        mainMenu.gameObject.SetActive(!mainMenuHidden);
+    }
+
+    public void HideKeybindLayout()
+    {
+        keybindLayout.gameObject.SetActive(false);
     }
 
     public void UpdateUI()
     {
         backpack.UpdateBackpack();
-    }
-
-    public override void OnStartClient()
-    {
-        base.OnStartClient();
-
-        playerStatusList.Add(new PlayerGameState("Player", Color.red, 0));
-
-        UpdatePlayerListComponent();
-    }
-
-    private void UpdatePlayerListComponent()
-    {
-        if (playerListComponent) playerListComponent.UpdatePlayerList(playerStatusList);
     }
 }

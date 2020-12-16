@@ -33,6 +33,7 @@ public class InputController : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             littleFishersUI.ToggleMainMenu();
+            littleFishersUI.HideKeybindLayout();
         }
     }
 

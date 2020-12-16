@@ -11,4 +11,9 @@ public class LittleFishersHelpers
             GameObject.Destroy(child.gameObject);
         }
     }
+
+    public static Color PlayerColor(bool isLocalPlayer)
+    {
+        return isLocalPlayer ? Color.green : Color.red;
+    }
 }

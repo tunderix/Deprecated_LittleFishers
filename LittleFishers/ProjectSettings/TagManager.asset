@@ -9,6 +9,7 @@ TagManager:
   - Water
   - FishingController
   - PlayerListPanel
+  - KrakenTheGod
   layers:
   - Default
   - TransparentFX
