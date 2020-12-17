@@ -9,9 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f985b84b2eb352d4597579d4c2d06ba3, type: 3}
-  m_Name: PlayerInventory
+  m_Script: {fileID: 11500000, guid: 5343738cea97b424dae09d272b1ad453, type: 3}
+  m_Name: HutInventoryTemplate
   m_EditorClassIdentifier: 
-  inventoryName: Players Inventory
-  inventorySize: 16
-  inventorySlots: []
+  inventoryName: Hut
+  inventorySize: 10
+  backpackItems: []
+  startGold: 10

@@ -23,7 +23,7 @@ public class Fish
         return this.fishName;
     }
 
-    public string GetDescriptionName()
+    public string GetDescription()
     {
         return this.description;
     }
@@ -47,6 +47,23 @@ public class Fish
                 return 7;
             default:
                 return 1;
+        }
+    }
+
+    public Sprite GetFishIcon()
+    {
+        switch (fishSize)
+        {
+            default:
+                return null;
+        }
+    }
+
+    public Sprite FishIcon
+    {
+        get
+        {
+            return GetFishIcon();
         }
     }
 }

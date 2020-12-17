@@ -8,17 +8,14 @@ public class BackpackSlot : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI countLabel;
-    [SerializeField]
-    private Image imageComponent;
-
-    public void SetItem(ItemObject _itemObject, int amount)
+    private BackpackInventoryItem _backpackInventoryItem;
+    public void SetBackpackInventoryItem(BackpackInventoryItem backpackInventoryItem)
     {
-        if (_itemObject)
-        {
-            countLabel.SetText(amount.ToString());
-            imageComponent.enabled = true;
-            imageComponent.sprite = _itemObject.backpackIcon;
-        }
+        _backpackInventoryItem = backpackInventoryItem;
+    }
 
+    public void UpdateInventoryItemPosition()
+    {
+        _backpackInventoryItem.transform.position = this.transform.position;
     }
 }

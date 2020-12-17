@@ -14,7 +14,7 @@ public class Backpack : MonoBehaviour
     private GameObject backpackSlotPrefab;
 
     [SerializeField]
-    private Inventory playerInv;
+    private Inventory localPlayerInventory;
 
     [SerializeField]
     private TextMeshProUGUI goldLabel;
@@ -22,30 +22,32 @@ public class Backpack : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI slotCountLabel;
 
-    private int _slotsReserved;
-
     void Start()
     {
-        _slotsReserved = 0;
         UpdateBackpack();
-        UpdateGoldAmount(0);
+    }
+
+    public void SetLocalPlayerInventory(Inventory inventory)
+    {
+        this.localPlayerInventory = inventory;
     }
 
     public void UpdateBackpack()
     {
+        if (localPlayerInventory == null) return;
+
         ClearBackpack();
 
-        for (int i = 0; i < playerInv.GetInventorySize(); i++)
+        foreach (InventorySlot slot in localPlayerInventory.inventorySlots)
         {
-            GameObject newBackpackSlot = AddBackpackSlot(i);
+            BackpackSlot newBackpackSlot = AddBackpackSlot(slot);
         }
 
-        UpdateSlotCount(playerInv.GetInventorySize());
+        UpdateSlotCount();
     }
 
     private void ClearBackpack()
     {
-        _slotsReserved = 0;
         foreach (Transform child in gridLayoutGroup.transform)
         {
             GameObject.Destroy(child.gameObject);
@@ -53,32 +55,17 @@ public class Backpack : MonoBehaviour
         }
     }
 
-    private GameObject AddBackpackSlot(int i)
+    private BackpackSlot AddBackpackSlot(InventorySlot slot)
     {
 
         GameObject newBackpackSlot = GameObject.Instantiate(backpackSlotPrefab);
         newBackpackSlot.transform.SetParent(this.gridLayoutGroup.transform);
-
-        if (i < playerInv.inventorySlots.Count())
-        {
-            ItemObject itemObject = playerInv.inventorySlots.ElementAt(i).GetInventoryItem();
-            if (itemObject)
-            {
-                _slotsReserved += 1;
-                newBackpackSlot.GetComponent<BackpackSlot>().SetItem(itemObject, playerInv.inventorySlots.ElementAt(i).GetAmount());
-            }
-        }
-
-        return newBackpackSlot;
+        BackpackSlot backpackSlot = newBackpackSlot.GetComponent<BackpackSlot>();
+        return backpackSlot;
     }
 
-    public void UpdateGoldAmount(int goldAmount)
+    public void UpdateSlotCount()
     {
-        goldLabel.SetText(goldAmount.ToString());
-    }
-
-    public void UpdateSlotCount(int slotCount)
-    {
-        slotCountLabel.SetText(_slotsReserved.ToString() + "/" + slotCount.ToString());
+        slotCountLabel.SetText(localPlayerInventory.GetReservedSlots().ToString() + "/" + localPlayerInventory.SlotCount.ToString());
     }
 }

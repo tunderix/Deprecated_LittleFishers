@@ -7,6 +7,11 @@ public class LFNetworkManager : NetworkManager
 {
     int clientIndex;
 
+    [SerializeField]
+    private Hut hut;
+    [SerializeField]
+    private InventorySystem inventorySystem;
+
     public override void OnServerAddPlayer(NetworkConnection conn)
     {
         GameObject go = Instantiate(playerPrefab);
@@ -15,5 +20,11 @@ public class LFNetworkManager : NetworkManager
         clientIndex++;
 
         NetworkServer.AddPlayerForConnection(conn, go);
+    }
+
+    public override void OnStartHost()
+    {
+        base.OnStartHost();
+        //hut.SetHutInventory(inventorySystem.CreateHutInventory());
     }
 }

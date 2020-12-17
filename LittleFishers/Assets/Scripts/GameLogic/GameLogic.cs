@@ -7,7 +7,15 @@ public class GameLogic : MonoBehaviour
     private List<PlayerGameState> playerStatusList;
 
     [SerializeField]
+    private InventorySystem inventorySystem;
+    [SerializeField]
+    private InventoryTemplate defaultPlayerInventoryTemplate;
+
+    [Header("UI Bindings")]
+    [SerializeField]
     private PlayerList playerListComponent;
+    [SerializeField]
+    private Backpack UIBackPackComponent;
 
     private void Awake()
     {
@@ -29,6 +37,13 @@ public class GameLogic : MonoBehaviour
     private void UpdatePlayerListComponent()
     {
         if (playerListComponent) playerListComponent.UpdatePlayerList(playerStatusList);
+    }
+
+    public Inventory CreatePlayerInventory()
+    {
+        Inventory newInventory = InventorySystem.CreateNewInventoryBasedOn(defaultPlayerInventoryTemplate);
+        UIBackPackComponent.SetLocalPlayerInventory(newInventory);
+        return newInventory;
     }
 
     public static PlayerGameState CreatePlayerGameState(int playerId, string name, Color color, int startGold)

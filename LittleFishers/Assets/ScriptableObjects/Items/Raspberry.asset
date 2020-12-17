@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0292f29c4e0cdc47bde0e52da863eaa, type: 3}
   m_Name: Raspberry
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  onWorldPrefab: {fileID: 0}
   backpackIcon: {fileID: 21300000, guid: 7a9eaf5aab040e64587ff6a1d648f659, type: 3}
   itemType: 0
-  itemName: 
+  itemName: Raspberry
   description: 
-  goldValue: 0
+  minGoldValue: 0
+  maxGoldValue: 0

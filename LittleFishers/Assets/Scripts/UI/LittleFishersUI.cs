@@ -45,6 +45,7 @@ public class LittleFishersUI : MonoBehaviour
     {
         backpackHidden = !backpackHidden;
         backpack.gameObject.SetActive(!backpackHidden);
+        if (!backpackHidden) backpack.UpdateBackpack();
     }
 
     public void ToggleMainMenu()

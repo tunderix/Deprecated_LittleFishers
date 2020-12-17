@@ -25,24 +25,19 @@ public class FishingController : MonoBehaviour
 
         bool canPlayerCatchFish = CanPlayerCatchFish(fish, stats);
 
-        Debug.Log("Start Fishing :: Fish is " + fish.GetFishName() + ", CaughtFish: " + canPlayerCatchFish + "::: " + fish.GetFishStrength() + "vs" + player.GetPlayerStats().GetPlayerStrength());
+        Debug.Log("Start Fishing :: FishName: " + fish.GetFishName() + ", CaughtFish: " + canPlayerCatchFish);
 
         if (canPlayerCatchFish)
         {
             stats.AddExperience(2);
-            inventory.AddItem(tinyFishObject, 1);
+            InventoryObject fishInventoryObject = new InventoryObject(fish.GetFishName(), fish.GetDescription(), 2, 1, fish.FishIcon);
+            bool collectedCollectable = inventory.AddItem(fishInventoryObject);
+            Debug.Log(collectedCollectable ? "Success for inventoryplacement" : "Failure for inventoryplacement");
         }
     }
 
     private bool CanPlayerCatchFish(Fish fish, PlayerStats playerStats)
     {
-        bool catchFish = false;
-
-        if (fish.GetFishStrength() <= playerStats.GetPlayerStrength())
-        {
-            catchFish = true;
-        }
-
-        return catchFish;
+        return fish.GetFishStrength() <= playerStats.GetPlayerStrength();
     }
 }

@@ -6,16 +6,36 @@ public class Hut : MonoBehaviour
     [SerializeField]
     private ItemObject itemToGivePlayer;
 
+    [SerializeField]
+    private Inventory HutInventory;
+
+    [SerializeField]
+    private GameObject ShopLayout;
+
     void Update()
     {
-        if (localplayer)
-            localplayer.GetPlayerInventory().AddItem(itemToGivePlayer, 1);
+
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Player>())
-            localplayer = other.GetComponent<Player>();
         Debug.Log("Player Approached Hut");
+        ShopLayout.SetActive(true);
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        Debug.Log("Player Left Hut");
+        ShopLayout.SetActive(false);
+    }
+
+    public void SetHutInventory(Inventory inventory)
+    {
+        this.HutInventory = inventory;
     }
 }
