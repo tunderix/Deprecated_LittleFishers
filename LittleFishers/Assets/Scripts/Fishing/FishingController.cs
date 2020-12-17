@@ -9,9 +9,6 @@ public class FishingController : MonoBehaviour
 
     private FishFactory fishFactory;
 
-    [SerializeField]
-    private ItemObject tinyFishObject;
-
     void Awake()
     {
         fishFactory = new FishFactory();
@@ -25,7 +22,7 @@ public class FishingController : MonoBehaviour
 
         bool canPlayerCatchFish = CanPlayerCatchFish(fish, stats);
 
-        Debug.Log("Start Fishing :: FishName: " + fish.GetFishName() + ", CaughtFish: " + canPlayerCatchFish);
+        Debug.Log("Start Fishing :: FishName: " + fish.GetFishSize() + ", CaughtFish: " + canPlayerCatchFish);
 
         if (canPlayerCatchFish)
         {

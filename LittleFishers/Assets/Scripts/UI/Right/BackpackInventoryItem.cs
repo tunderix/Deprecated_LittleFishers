@@ -8,13 +8,20 @@ using UnityEditor;
 [System.Serializable]
 public class BackpackInventoryItem : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler
 {
+    public static GameObject item;
+
     private RectTransform rectTransform;
+    private Vector3 startPosition;
 
     private Image imageComponent;
     private Sprite defaultIcon;
+    private CanvasGroup canvasGroup;
+
+    Transform startParent;
 
     void Awake()
     {
+        canvasGroup = GetComponent<CanvasGroup>();
         rectTransform = GetComponent<RectTransform>();
         imageComponent = GetComponent<Image>();
         string defaultIconPrefabPath = "Assets/Graphics/Textures/wooden_box.png";
@@ -24,7 +31,8 @@ public class BackpackInventoryItem : MonoBehaviour, IPointerDownHandler, IBeginD
 
     void Start()
     {
-        imageComponent.sprite = defaultIcon;
+        if (!imageComponent.sprite)
+            imageComponent.sprite = defaultIcon;
     }
 
     public void SetImage(Sprite icon)
@@ -34,12 +42,18 @@ public class BackpackInventoryItem : MonoBehaviour, IPointerDownHandler, IBeginD
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        canvasGroup.alpha = 0.5f;
+        canvasGroup.blocksRaycasts = false;
+        startPosition = transform.position;
+        item = gameObject;
+        startParent = transform.parent;
 
+        transform.SetParent(transform.root);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        rectTransform.anchoredPosition += eventData.delta;
+        transform.position = Input.mousePosition;
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -49,11 +63,31 @@ public class BackpackInventoryItem : MonoBehaviour, IPointerDownHandler, IBeginD
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        canvasGroup.alpha = 1f;
+        canvasGroup.blocksRaycasts = true;
+        item = null;
 
+        if (transform.parent != startParent || transform.parent == transform.root)
+        {
+            transform.position = startPosition;
+            transform.SetParent(startParent);
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
 
+    }
+
+    public void SetPositionTo(BackpackSlot slot)
+    {
+        transform.SetParent(slot.gameObject.transform);
+        this.rectTransform.position = new Vector2(0, 0);
+        this.imageComponent.sprite = slot.item.inventoryIcon;
+        /*RectTransform slotPosition = slot.GetComponent<RectTransform>();
+        Debug.Log("Slot Position: " + slotPosition.localPosition);
+        //Vector2 position = LittleFishersHelpers.RectTransformToScreenSpace(slot.GetComponent<RectTransform>()).position;
+        //this.rectTransform.anchorMin = 
+        this.rectTransform.position = new Vector2(-slotPosition.localPosition.x, -slotPosition.localPosition.y);*/
     }
 }

@@ -2260,6 +2260,9 @@ MonoBehaviour:
   gridLayoutGroup: {fileID: 2107650302}
   backpackSlotPrefab: {fileID: 7015288893444428970, guid: 332a3c599fca26f47b5d01e57bf875b0,
     type: 3}
+  draggableAreaPrefab: {fileID: 1725078066}
+  backpackInventoryItemPrefab: {fileID: 7551226803952727211, guid: 67ca63c1936e98b438e21b1a8024f268,
+    type: 3}
   localPlayerInventory:
     inventoryName: Default Inventory
     inventorySize: 16

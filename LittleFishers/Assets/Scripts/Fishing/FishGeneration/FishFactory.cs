@@ -48,28 +48,14 @@ public class FishFactory
 
     public Fish CreateFish(FishPool fishPool)
     {
-        Sprite fishIcon = Resources.Load<Sprite>(FishIcon(FishSize.Tiny));
-
         Array fishSizeArray = Enum.GetValues(typeof(FishSize));
         FishSize randomFishSize = (FishSize)UnityEngine.Random.Range(0, fishSizeArray.Length);
-
-        Fish fish = new Fish(randomFishSize, GetRandomFishName(), "", fishIcon);
+        Fish fish = new Fish(randomFishSize, GetRandomFishName(), "");
         return fish;
     }
 
     private string GetRandomFishName()
     {
         return names[UnityEngine.Random.Range(0, names.Length - 1)];
-    }
-
-    private string FishIcon(FishSize fishSize)
-    {
-        switch (fishSize)
-        {
-            case FishSize.Tiny:
-                return "Sprites/Fishing/fisu";
-            default:
-                return "Sprites/Fishing/fisu";
-        }
     }
 }

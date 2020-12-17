@@ -14,6 +14,12 @@ public class Backpack : MonoBehaviour
     private GameObject backpackSlotPrefab;
 
     [SerializeField]
+    private GameObject draggableArea;
+
+    [SerializeField]
+    private GameObject backpackInventoryItemPrefab;
+
+    [SerializeField]
     private Inventory localPlayerInventory;
 
     [SerializeField]
@@ -41,18 +47,30 @@ public class Backpack : MonoBehaviour
         foreach (InventorySlot slot in localPlayerInventory.inventorySlots)
         {
             BackpackSlot newBackpackSlot = AddBackpackSlot(slot);
+            newBackpackSlot.item = slot.GetInventoryObject();
+            if (!slot.IsEmpty)
+            {
+                BackpackInventoryItem newItem = InstantiateBackpackInventoryItem(slot.GetInventoryObject());
+                newItem.SetPositionTo(newBackpackSlot);
+            }
         }
 
         UpdateSlotCount();
     }
 
-    private void ClearBackpack()
+    private BackpackInventoryItem InstantiateBackpackInventoryItem(InventoryObject inventoryObject)
     {
-        foreach (Transform child in gridLayoutGroup.transform)
-        {
-            GameObject.Destroy(child.gameObject);
-            // TODO -> Update UI. Maybe callback from playerInventory to Backpack
-        }
+        GameObject newItem = GameObject.Instantiate(backpackInventoryItemPrefab);
+        BackpackInventoryItem bii = newItem.GetComponent<BackpackInventoryItem>();
+        bii.transform.SetParent(draggableArea.transform);
+        bii.SetImage(inventoryObject.inventoryIcon);
+        return bii;
+    }
+
+    public void ClearBackpack()
+    {
+        LittleFishersHelpers.DestroyAllChilds(gridLayoutGroup.transform);
+        LittleFishersHelpers.DestroyAllChilds(draggableArea.transform);
     }
 
     private BackpackSlot AddBackpackSlot(InventorySlot slot)

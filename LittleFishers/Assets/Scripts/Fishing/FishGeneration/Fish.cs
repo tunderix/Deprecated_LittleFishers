@@ -8,14 +8,12 @@ public class Fish
     private string fishName;
     [TextArea(15, 20)]
     private string description;
-    private Sprite backpackIcon;
 
-    public Fish(FishSize _fishSize, string _fishName, string _description, Sprite _backpackIcon)
+    public Fish(FishSize _fishSize, string _fishName, string _description)
     {
         fishName = _fishName;
         fishSize = _fishSize;
         description = _description;
-        backpackIcon = _backpackIcon;
     }
 
     public string GetFishName()
@@ -50,13 +48,28 @@ public class Fish
         }
     }
 
-    public Sprite GetFishIcon()
+    private Sprite GetFishIcon()
     {
-        switch (fishSize)
+        string fishIconName = "FishTiny";
+        switch (this.fishSize)
         {
+            case FishSize.Tiny:
+                fishIconName = "FishTiny";
+                break;
+            case FishSize.Small:
+                fishIconName = "FishSmall";
+                break;
+            case FishSize.Medium:
+                fishIconName = "FishMedium";
+                break;
+            case FishSize.Large:
+                fishIconName = "FishLarge";
+                break;
             default:
-                return null;
+                fishIconName = "FishTiny";
+                break;
         }
+        return (Sprite)Resources.Load<Sprite>("Sprites/Fishing/" + fishIconName);
     }
 
     public Sprite FishIcon

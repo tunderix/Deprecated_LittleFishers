@@ -45,6 +45,7 @@ public class LittleFishersUI : MonoBehaviour
     {
         backpackHidden = !backpackHidden;
         backpack.gameObject.SetActive(!backpackHidden);
+        backpack.ClearBackpack();
         if (!backpackHidden) backpack.UpdateBackpack();
     }
 

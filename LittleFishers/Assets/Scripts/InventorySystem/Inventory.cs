@@ -56,6 +56,7 @@ public class Inventory
             firstEmptySlot.SetInventoryObject(inventoryObject);
             return true;
         }
+
         return false;
     }
 
