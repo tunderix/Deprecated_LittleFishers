@@ -32,7 +32,7 @@ public class Backpack : MonoBehaviour
 
     private void BackpackItemDroppedOn(BackpackSlot from, BackpackSlot to)
     {
-        localPlayerInventory.MoveItem(from.backpackSlotId, to.backpackSlotId + 1);
+        localPlayerInventory.MoveItem(from.backpackSlotId, to.backpackSlotId + 1, false);
         UpdateBackpack();
     }
 

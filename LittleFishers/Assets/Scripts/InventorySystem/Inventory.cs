@@ -76,6 +76,22 @@ public class Inventory
         Debug.Log("Moved item from " + from + ", to " + to);
     }
 
+    public void MoveItem(int from, int to, bool overrideDestinationItem)
+    {
+        to--;
+        InventoryObject fromObject = this.inventorySlots[from].InventoryItem;
+        InventoryObject destinationObject = overrideDestinationItem ? null : this.inventorySlots[to].InventoryItem;
+        this.inventorySlots[from].InventoryItem = destinationObject;
+        this.inventorySlots[to].InventoryItem = fromObject;
+
+        Debug.Log("Switched items from " + from + ", to " + to);
+    }
+
+    public void RemoveItemAt(int from)
+    {
+        this.inventorySlots[from].InventoryItem = null;
+    }
+
     public int GetReservedSlots()
     {
         int counter = 0;

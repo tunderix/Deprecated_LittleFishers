@@ -11,7 +11,7 @@ public class DropSlot : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
     public void OnDrop(PointerEventData eventData)
     {
         Draggable d = eventData.pointerDrag.GetComponent<Draggable>();
-        if (d != null)
+        if (d != null && OnBackpackItemDroppedOn != null)
         {
             OnBackpackItemDroppedOn(d.startParent.GetComponent<BackpackSlot>(), GetComponent<BackpackSlot>());
             d.startParent = this.transform;
