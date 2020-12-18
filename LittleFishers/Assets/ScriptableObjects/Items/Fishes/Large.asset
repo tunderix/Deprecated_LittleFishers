@@ -7,15 +7,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f647f595c8cd8474a838a88862b514b1, type: 3}
-  m_Name: Tiny
+  m_Name: Large
   m_EditorClassIdentifier: 
   onWorldPrefab: {fileID: 0}
-  backpackIcon: {fileID: 21300000, guid: 82df2cc1ef53e7948806be407ede22e6, type: 3}
+  backpackIcon: {fileID: 21300000, guid: 59ee676d9132ff54e83fbcbd32f821a8, type: 3}
   itemType: 3
-  itemName: Tiny Little Fish
-  description: 'This tiny fish is only found from starting areas and small ponds. '
-  minGoldValue: 1
-  maxGoldValue: 4
+  itemName: Large Fish
+  description: This fish can be found from lakes and sea
+  minGoldValue: 14
+  maxGoldValue: 26

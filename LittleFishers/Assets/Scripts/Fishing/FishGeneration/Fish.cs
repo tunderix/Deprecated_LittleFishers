@@ -4,79 +4,66 @@ using UnityEngine;
 
 public class Fish
 {
-    private FishSize fishSize;
-    private string fishName;
-    [TextArea(15, 20)]
-    private string description;
+    private FishSize _fishSize;
+    private string _fishName;
+    private string _fishSizeName;
+    private string _description;
+    private Sprite _icon;
+    private int _minGoldValue;
+    private int _maxGoldValue;
 
-    public Fish(FishSize _fishSize, string _fishName, string _description)
+    public Fish(FishSize fishSize, CaughtFish caughtFish)
     {
-        fishName = _fishName;
-        fishSize = _fishSize;
-        description = _description;
+        this._fishSize = fishSize;
+        this._fishName = FishingHelper.RandomFishName;
+        this._fishSizeName = caughtFish.name;
+        this._description = caughtFish.description;
+        this._icon = caughtFish.backpackIcon;
+        this._maxGoldValue = caughtFish.maxGoldValue;
+        this._minGoldValue = caughtFish.minGoldValue;
     }
+
 
     public string GetFishName()
     {
-        return this.fishName;
+        return this._fishName;
     }
 
     public string GetDescription()
     {
-        return this.description;
+        return this._description;
     }
 
     public FishSize GetFishSize()
     {
-        return fishSize;
+        return _fishSize;
     }
 
-    public int GetFishStrength()
+    public int Strength
     {
-        switch (fishSize)
+        get
         {
-            case FishSize.Tiny:
-                return 1;
-            case FishSize.Small:
-                return 3;
-            case FishSize.Medium:
-                return 5;
-            case FishSize.Large:
-                return 7;
-            default:
-                return 1;
+            switch (_fishSize)
+            {
+                case FishSize.Tiny:
+                    return 1;
+                case FishSize.Small:
+                    return 3;
+                case FishSize.Medium:
+                    return 5;
+                case FishSize.Large:
+                    return 7;
+                default:
+                    return 1;
+            }
         }
-    }
-
-    private Sprite GetFishIcon()
-    {
-        string fishIconName = "FishTiny";
-        switch (this.fishSize)
-        {
-            case FishSize.Tiny:
-                fishIconName = "FishTiny";
-                break;
-            case FishSize.Small:
-                fishIconName = "FishSmall";
-                break;
-            case FishSize.Medium:
-                fishIconName = "FishMedium";
-                break;
-            case FishSize.Large:
-                fishIconName = "FishLarge";
-                break;
-            default:
-                fishIconName = "FishTiny";
-                break;
-        }
-        return (Sprite)Resources.Load<Sprite>("Sprites/Fishing/" + fishIconName);
     }
 
     public Sprite FishIcon
     {
         get
         {
-            return GetFishIcon();
+            return _icon;
         }
     }
 }

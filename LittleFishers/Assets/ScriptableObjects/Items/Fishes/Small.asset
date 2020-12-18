@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f647f595c8cd8474a838a88862b514b1, type: 3}
   m_Name: Small
   m_EditorClassIdentifier: 
-  prefab: {fileID: 139386, guid: c2849fd453abd0445a702a035f04ac60, type: 3}
+  onWorldPrefab: {fileID: 0}
   backpackIcon: {fileID: 21300000, guid: d2643c2f04d9deb41b626586bcb7e713, type: 3}
   itemType: 3
   itemName: Small Fish
   description: These are usually found from small ponds and streams.
-  goldValue: 0
+  minGoldValue: 2
+  maxGoldValue: 6

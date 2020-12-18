@@ -18,4 +18,47 @@ public class FishingHelper
                 return (CaughtFish)ScriptableObject.CreateInstance(typeof(CaughtFish));
         }
     }
+
+    public static string RandomFishName
+    {
+        get
+        {
+            string[] names = new string[] {
+            "Angelfish",
+            "JellyFish",
+            "Anthias",
+            "Bassandgroupers",
+            "Bassletsandassessors",
+            "Batfish",
+            "Blennies",
+            "Boxfishandblowfish",
+            "Butterflyfish",
+            "Cardinalfish",
+            "Chromis",
+            "Clownfish",
+            "Damsels",
+            "Dartfish",
+            "Dragonets",
+            "Eels",
+            "Filefish",
+            "Foxface",
+            "Flatfish",
+            "Frogfish",
+            "Goatfish",
+            "Gobies",
+            "Grunts",
+            "Hamlet",
+            "Hawkfish",
+            "Scorpionfish",
+            "Seahorse",
+            "Squirrelfish",
+            "Sharks",
+            "Snappers",
+            "Tangs",
+            "Tilefish",
+            "Triggerfish",
+            "Wrasse" };
+            return names[UnityEngine.Random.Range(0, names.Length - 1)];
+        }
+    }
 }

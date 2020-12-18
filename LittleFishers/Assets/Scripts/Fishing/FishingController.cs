@@ -35,6 +35,6 @@ public class FishingController : MonoBehaviour
 
     private bool CanPlayerCatchFish(Fish fish, PlayerStats playerStats)
     {
-        return fish.GetFishStrength() <= playerStats.GetPlayerStrength();
+        return fish.Strength <= playerStats.GetPlayerStrength();
     }
 }
