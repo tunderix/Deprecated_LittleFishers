@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEditor;
 
 [System.Serializable]
-public class BackpackInventoryItem : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler
+public class BackpackInventoryItem : MonoBehaviour
 {
     public static GameObject item;
 
@@ -38,45 +38,6 @@ public class BackpackInventoryItem : MonoBehaviour, IPointerDownHandler, IBeginD
     public void SetImage(Sprite icon)
     {
         imageComponent.sprite = icon;
-    }
-
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        canvasGroup.alpha = 0.5f;
-        canvasGroup.blocksRaycasts = false;
-        startPosition = transform.position;
-        item = gameObject;
-        startParent = transform.parent;
-
-        transform.SetParent(transform.root);
-    }
-
-    public void OnDrag(PointerEventData eventData)
-    {
-        transform.position = Input.mousePosition;
-    }
-
-    public void OnDrop(PointerEventData eventData)
-    {
-
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        canvasGroup.alpha = 1f;
-        canvasGroup.blocksRaycasts = true;
-        item = null;
-
-        if (transform.parent != startParent || transform.parent == transform.root)
-        {
-            transform.position = startPosition;
-            transform.SetParent(startParent);
-        }
-    }
-
-    public void OnPointerDown(PointerEventData eventData)
-    {
-
     }
 
     public void SetPositionTo(BackpackSlot slot)

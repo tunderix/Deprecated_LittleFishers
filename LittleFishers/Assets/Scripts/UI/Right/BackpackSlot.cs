@@ -9,6 +9,8 @@ public class BackpackSlot : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI countLabel;
 
+    public int backpackSlotId;
+
     [SerializeField]
     public InventoryObject item;
 }

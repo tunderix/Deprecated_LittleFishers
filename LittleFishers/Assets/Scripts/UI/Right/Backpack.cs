@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using System.Linq;
 using TMPro;
 
+public delegate void BackpackItemDroppedDelegate(BackpackSlot from, BackpackSlot to);
+
 public class Backpack : MonoBehaviour
 {
     [SerializeField]
@@ -28,6 +30,12 @@ public class Backpack : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI slotCountLabel;
 
+    private void BackpackItemDroppedOn(BackpackSlot from, BackpackSlot to)
+    {
+        localPlayerInventory.MoveItem(from.backpackSlotId, to.backpackSlotId);
+        UpdateBackpack();
+    }
+
     void Start()
     {
         UpdateBackpack();
@@ -44,9 +52,14 @@ public class Backpack : MonoBehaviour
 
         ClearBackpack();
 
+        int backpackSlotIndexCounter = 0;
         foreach (InventorySlot slot in localPlayerInventory.inventorySlots)
         {
             BackpackSlot newBackpackSlot = AddBackpackSlot(slot);
+
+            newBackpackSlot.backpackSlotId = backpackSlotIndexCounter;
+            backpackSlotIndexCounter++;
+
             newBackpackSlot.item = slot.InventoryItem;
             if (!slot.IsEmpty)
             {
@@ -79,6 +92,14 @@ public class Backpack : MonoBehaviour
 
         GameObject newBackpackSlot = GameObject.Instantiate(backpackSlotPrefab);
         newBackpackSlot.transform.SetParent(this.gridLayoutGroup.transform);
+
+        // Hook listener for backpackitem drops
+        DropSlot dropSlot = newBackpackSlot.GetComponent<DropSlot>();
+        if (dropSlot != null)
+        {
+            dropSlot.OnBackpackItemDroppedOn += BackpackItemDroppedOn;
+        }
+
         BackpackSlot backpackSlot = newBackpackSlot.GetComponent<BackpackSlot>();
         return backpackSlot;
     }

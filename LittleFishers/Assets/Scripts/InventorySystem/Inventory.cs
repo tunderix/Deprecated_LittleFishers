@@ -66,6 +66,14 @@ public class Inventory
         return false;
     }
 
+    public void MoveItem(int from, int to)
+    {
+        InventorySlot invSlotToMove = this.inventorySlots[from];
+        this.inventorySlots.Insert(to, invSlotToMove);
+        this.inventorySlots.RemoveAt(from);
+        Debug.Log("Moved item from " + from + ", to " + to);
+    }
+
     public int GetReservedSlots()
     {
         int counter = 0;
