@@ -27,4 +27,9 @@ public class InventoryTemplate : ScriptableObject
     {
         return this.inventorySize;
     }
+
+    public int GetGold()
+    {
+        return this.startGold;
+    }
 }

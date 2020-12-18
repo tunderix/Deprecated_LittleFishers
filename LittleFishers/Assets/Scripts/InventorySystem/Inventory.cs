@@ -15,29 +15,35 @@ public class Inventory
     [SerializeField]
     public List<InventorySlot> inventorySlots;
 
+    [SerializeField]
+    private int gold;
+
     public Inventory()
     {
-        InitializeInventory("Default Inventory", 16);
+        InitializeInventory("Default Inventory", 16, 0, null);
     }
 
-    public Inventory(InventoryTemplate inventoryTemplate)
+    public Inventory(InventoryTemplate inventoryTemplate, OnVariableChangeDelegate onInventoryItemChanged)
     {
-        InitializeInventory(inventoryTemplate.GetInventoryName(), inventoryTemplate.GetInventorySize());
+        InitializeInventory(inventoryTemplate.GetInventoryName(), inventoryTemplate.GetInventorySize(), inventoryTemplate.GetGold(), onInventoryItemChanged);
     }
 
-    private void InitializeInventory(string _inventoryName, int _inventorySize)
+    private void InitializeInventory(string _inventoryName, int _inventorySize, int _startGoldAmount, OnVariableChangeDelegate onInventoryItemChanged)
     {
         this.inventoryName = _inventoryName;
         this.inventorySize = _inventorySize;
-        initializeInventorySlots(_inventorySize);
+        this.gold = _startGoldAmount;
+        initializeInventorySlots(_inventorySize, onInventoryItemChanged);
     }
 
-    private void initializeInventorySlots(int _inventorySize)
+    private void initializeInventorySlots(int _inventorySize, OnVariableChangeDelegate onInventoryItemChanged)
     {
         inventorySlots = new List<InventorySlot>();
         for (int i = 0; i < _inventorySize; i++)
         {
-            inventorySlots.Add(new InventorySlot());
+            InventorySlot inventorySlot = new InventorySlot();
+            inventorySlot.OnInventoryItemChanged += onInventoryItemChanged;
+            inventorySlots.Add(inventorySlot);
         }
     }
 
@@ -53,7 +59,7 @@ public class Inventory
 
         if (firstEmptySlot != null)
         {
-            firstEmptySlot.SetInventoryObject(inventoryObject);
+            firstEmptySlot.InventoryItem = inventoryObject;
             return true;
         }
 
@@ -74,16 +80,7 @@ public class Inventory
     {
         get { return inventorySlots.Count; }
     }
-    /*
-        private BackpackInventoryItem InstantiateBackpackInventoryItem(InventorySlot allocatedSlot, InventoryObject inventoryObject)
-        {
-            GameObject backpackItem = GameObject.Instantiate(_backpackInventoryItemPrefab);
-            backpackItem.transform.SetParent(GameObject.FindGameObjectWithTag("InventoryItemDragArea").transform);
-            BackpackInventoryItem newBackpackInventoryItem = backpackItem.GetComponent<BackpackInventoryItem>();
-            backpackItems.Add(newBackpackInventoryItem);
-            return newBackpackInventoryItem;
-        }
-    */
+
     private bool CanAdd(InventoryObject item)
     {
         if (inventorySlots.Count < inventorySize) return true;
@@ -94,5 +91,13 @@ public class Inventory
     public void SetInventoryName(string _inventoryName)
     {
         this.inventoryName = _inventoryName;
+    }
+
+    public int GoldCount
+    {
+        get
+        {
+            return this.gold;
+        }
     }
 }

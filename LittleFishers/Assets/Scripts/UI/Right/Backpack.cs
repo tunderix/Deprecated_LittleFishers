@@ -47,14 +47,15 @@ public class Backpack : MonoBehaviour
         foreach (InventorySlot slot in localPlayerInventory.inventorySlots)
         {
             BackpackSlot newBackpackSlot = AddBackpackSlot(slot);
-            newBackpackSlot.item = slot.GetInventoryObject();
+            newBackpackSlot.item = slot.InventoryItem;
             if (!slot.IsEmpty)
             {
-                BackpackInventoryItem newItem = InstantiateBackpackInventoryItem(slot.GetInventoryObject());
+                BackpackInventoryItem newItem = InstantiateBackpackInventoryItem(slot.InventoryItem);
                 newItem.SetPositionTo(newBackpackSlot);
             }
         }
 
+        UpdateGoldAmount();
         UpdateSlotCount();
     }
 
@@ -85,5 +86,10 @@ public class Backpack : MonoBehaviour
     public void UpdateSlotCount()
     {
         slotCountLabel.SetText(localPlayerInventory.GetReservedSlots().ToString() + "/" + localPlayerInventory.SlotCount.ToString());
+    }
+
+    public void UpdateGoldAmount()
+    {
+        goldLabel.SetText(localPlayerInventory.GoldCount.ToString());
     }
 }

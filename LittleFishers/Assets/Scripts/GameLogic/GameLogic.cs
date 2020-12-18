@@ -41,9 +41,14 @@ public class GameLogic : MonoBehaviour
 
     public Inventory CreatePlayerInventory()
     {
-        Inventory newInventory = InventorySystem.CreateNewInventoryBasedOn(defaultPlayerInventoryTemplate);
+        Inventory newInventory = InventorySystem.CreateNewInventoryBasedOn(defaultPlayerInventoryTemplate, InventoryItemWasChanged);
         UIBackPackComponent.SetLocalPlayerInventory(newInventory);
         return newInventory;
+    }
+
+    private void InventoryItemWasChanged()
+    {
+        UIBackPackComponent.UpdateBackpack();
     }
 
     public static PlayerGameState CreatePlayerGameState(int playerId, string name, Color color, int startGold)

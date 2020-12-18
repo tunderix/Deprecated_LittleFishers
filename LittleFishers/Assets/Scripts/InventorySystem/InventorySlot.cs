@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public delegate void OnVariableChangeDelegate();
 [System.Serializable]
 public class InventorySlot
 {
+
+    public event OnVariableChangeDelegate OnInventoryItemChanged;
+
     [SerializeField]
     private InventoryObject _inventoryObject;
 
@@ -23,14 +28,15 @@ public class InventorySlot
         return _inventoryObject.amount;
     }
 
-    public void SetInventoryObject(InventoryObject inventoryItem)
+    public InventoryObject InventoryItem
     {
-        this._inventoryObject = inventoryItem;
-    }
-
-    public InventoryObject GetInventoryObject()
-    {
-        return this._inventoryObject;
+        get { return _inventoryObject; }
+        set
+        {
+            _inventoryObject = value;
+            Debug.Log("Setting InventoryItem");
+            if (OnInventoryItemChanged != null) OnInventoryItemChanged();
+        }
     }
 
     public bool IsEmpty
