@@ -68,9 +68,11 @@ public class Inventory
 
     public void MoveItem(int from, int to)
     {
-        InventorySlot invSlotToMove = this.inventorySlots[from];
-        this.inventorySlots.Insert(to, invSlotToMove);
-        this.inventorySlots.RemoveAt(from);
+        InventoryObject invObjectToMove = this.inventorySlots[from].InventoryItem;
+        this.inventorySlots[from].InventoryItem = null;
+        to--;
+        this.inventorySlots[to].InventoryItem = invObjectToMove;
+
         Debug.Log("Moved item from " + from + ", to " + to);
     }
 
