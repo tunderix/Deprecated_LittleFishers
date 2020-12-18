@@ -20,6 +20,15 @@ public class InventoryObject
         this.inventoryIcon = inventoryIcon;
     }
 
+    public InventoryObject(Fish fish)
+    {
+        this.itemName = fish.FishName;
+        this.description = fish.Description;
+        this.goldValue = fish.GoldValue;
+        this.amount = 1;
+        this.inventoryIcon = fish.FishIcon;
+    }
+
     public InventoryObject(ItemObject itemObject)
     {
         this.itemName = itemObject.itemName;

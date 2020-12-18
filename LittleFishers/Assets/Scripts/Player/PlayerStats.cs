@@ -17,14 +17,17 @@ public class PlayerStats
         defaultLevel = 1;
     }
 
-    public int GetPlayerLevel()
+    public int PlayerLevel
     {
-        int level = defaultLevel;
+        get
+        {
+            int level = defaultLevel;
 
-        level = experience % 4;
-        if (experience < 4) level = 1;
+            level = experience % 4;
+            if (experience < 4) level = 1;
 
-        return level;
+            return level;
+        }
     }
 
     private int GetPlayerLevel(int newExperienceAmount)
@@ -41,7 +44,7 @@ public class PlayerStats
     {
         int newAmount = this.experience + amount;
 
-        if (GetPlayerLevel() < GetPlayerLevel(newAmount))
+        if (PlayerLevel < GetPlayerLevel(newAmount))
         {
             Debug.Log("Ahop!");
             LevelUp();

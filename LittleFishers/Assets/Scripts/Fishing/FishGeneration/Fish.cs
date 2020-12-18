@@ -9,8 +9,7 @@ public class Fish
     private string _fishSizeName;
     private string _description;
     private Sprite _icon;
-    private int _minGoldValue;
-    private int _maxGoldValue;
+    private int _goldValue;
 
     public Fish(FishSize fishSize, CaughtFish caughtFish)
     {
@@ -19,24 +18,53 @@ public class Fish
         this._fishSizeName = caughtFish.name;
         this._description = caughtFish.description;
         this._icon = caughtFish.backpackIcon;
-        this._maxGoldValue = caughtFish.maxGoldValue;
-        this._minGoldValue = caughtFish.minGoldValue;
+        this._goldValue = decideGoldValue(caughtFish.minGoldValue, caughtFish.maxGoldValue);
+    }
+
+    private int decideGoldValue(int min, int max)
+    {
+        return UnityEngine.Random.Range(min, max);
     }
 
 
-    public string GetFishName()
+    public string FishName
     {
-        return this._fishName;
+        get
+        {
+            return this._fishName;
+        }
     }
 
-    public string GetDescription()
+    public string Description
     {
-        return this._description;
+        get
+        {
+            return this._description;
+        }
     }
 
-    public FishSize GetFishSize()
+    public FishSize Size
     {
-        return _fishSize;
+        get
+        {
+            return this._fishSize;
+        }
+    }
+
+    public string Value
+    {
+        get
+        {
+            return this._fishName;
+        }
+    }
+
+    public int GoldValue
+    {
+        get
+        {
+            return this._goldValue;
+        }
     }
 
     public int Strength
@@ -53,6 +81,10 @@ public class Fish
                     return 5;
                 case FishSize.Large:
                     return 7;
+                case FishSize.Huge:
+                    return 9;
+                case FishSize.Gigantous:
+                    return 11;
                 default:
                     return 1;
             }
@@ -64,6 +96,30 @@ public class Fish
         get
         {
             return _icon;
+        }
+    }
+
+    public int ExperienceBySize
+    {
+        get
+        {
+            switch (_fishSize)
+            {
+                case FishSize.Tiny:
+                    return 1;
+                case FishSize.Small:
+                    return 2;
+                case FishSize.Medium:
+                    return 3;
+                case FishSize.Large:
+                    return 4;
+                case FishSize.Huge:
+                    return 5;
+                case FishSize.Gigantous:
+                    return 6;
+                default:
+                    return 1;
+            }
         }
     }
 }

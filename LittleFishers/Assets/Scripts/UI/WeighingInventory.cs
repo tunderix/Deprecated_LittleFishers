@@ -5,9 +5,6 @@ using UnityEngine;
 public class WeighingInventory : MonoBehaviour
 {
     [SerializeField]
-    private int weighingSlots = 14;
-
-    [SerializeField]
     private GameObject weighingSlotPrefab;
 
     private Inventory _inventory;

@@ -4,6 +4,18 @@ using UnityEditor;
 
 public class FishingHelper
 {
+    public static int calculateFishExperience(FishPool pool, Fish fish, PlayerStats stats)
+    {
+        int experienceGained = 0;
+        experienceGained += fish.ExperienceBySize;
+
+        experienceGained -= pool.ExperiencePenaltyModifier(stats.PlayerLevel);
+
+        if (experienceGained < 1) experienceGained = 1;
+
+        return experienceGained;
+    }
+
     public static bool canStartFishing(float throwRange, Vector3 playerPosition, Vector3 targetFishingPosition, GameObject clickedGO)
     {
         float throwDistance = Vector3.Distance(playerPosition, targetFishingPosition);
