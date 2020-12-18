@@ -33,6 +33,12 @@ public class InventorySystem : MonoBehaviour
         return inventoryObjectFactory.CreateNewInventoryObject(itemObject);
     }
 
+    public static Inventory CreateNewInventoryBasedOn(InventoryTemplate inventoryTemplate)
+    {
+        Inventory newInventory = new Inventory(inventoryTemplate);
+        return newInventory;
+    }
+
     public static Inventory CreateNewInventoryBasedOn(InventoryTemplate inventoryTemplate, OnVariableChangeDelegate onInventoryItemChanged)
     {
         Inventory newInventory = new Inventory(inventoryTemplate, onInventoryItemChanged);

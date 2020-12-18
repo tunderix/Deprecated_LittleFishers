@@ -23,6 +23,11 @@ public class Inventory
         InitializeInventory("Default Inventory", 16, 0, null);
     }
 
+    public Inventory(InventoryTemplate inventoryTemplate)
+    {
+        InitializeInventory(inventoryTemplate.GetInventoryName(), inventoryTemplate.GetInventorySize(), inventoryTemplate.GetGold(), null);
+    }
+
     public Inventory(InventoryTemplate inventoryTemplate, OnVariableChangeDelegate onInventoryItemChanged)
     {
         InitializeInventory(inventoryTemplate.GetInventoryName(), inventoryTemplate.GetInventorySize(), inventoryTemplate.GetGold(), onInventoryItemChanged);
@@ -42,7 +47,10 @@ public class Inventory
         for (int i = 0; i < _inventorySize; i++)
         {
             InventorySlot inventorySlot = new InventorySlot();
-            inventorySlot.OnInventoryItemChanged += onInventoryItemChanged;
+            if (onInventoryItemChanged != null)
+            {
+                inventorySlot.OnInventoryItemChanged += onInventoryItemChanged;
+            }
             inventorySlots.Add(inventorySlot);
         }
     }
@@ -117,6 +125,11 @@ public class Inventory
     public void SetInventoryName(string _inventoryName)
     {
         this.inventoryName = _inventoryName;
+    }
+
+    public void GiveGold(int amount)
+    {
+        this.gold += amount;
     }
 
     public int GoldCount

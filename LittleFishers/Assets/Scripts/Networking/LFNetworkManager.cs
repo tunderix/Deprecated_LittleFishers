@@ -25,6 +25,6 @@ public class LFNetworkManager : NetworkManager
     public override void OnStartHost()
     {
         base.OnStartHost();
-        //hut.SetHutInventory(inventorySystem.CreateHutInventory());
+        hut.InitializeHut(this.inventorySystem);
     }
 }

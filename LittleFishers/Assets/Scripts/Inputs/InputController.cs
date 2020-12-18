@@ -34,6 +34,7 @@ public class InputController : MonoBehaviour
         {
             littleFishersUI.ToggleMainMenu();
             littleFishersUI.HideKeybindLayout();
+            littleFishersUI.HideShopLayout();
         }
     }
 

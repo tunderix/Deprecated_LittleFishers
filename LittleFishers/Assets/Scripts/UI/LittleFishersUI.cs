@@ -13,6 +13,8 @@ public class LittleFishersUI : MonoBehaviour
     private MainMenu mainMenu;
     [SerializeField]
     private KeybindLayout keybindLayout;
+    [SerializeField]
+    private GameObject shopLayout;
 
     [SerializeField]
     private bool playerListHidden;
@@ -58,6 +60,11 @@ public class LittleFishersUI : MonoBehaviour
     public void HideKeybindLayout()
     {
         keybindLayout.gameObject.SetActive(false);
+    }
+
+    public void HideShopLayout()
+    {
+        shopLayout.gameObject.SetActive(false);
     }
 
     public void UpdateUI()
