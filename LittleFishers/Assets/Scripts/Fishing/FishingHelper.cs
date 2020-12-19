@@ -9,7 +9,8 @@ public class FishingHelper
         int experienceGained = 0;
         experienceGained += fish.ExperienceBySize;
 
-        experienceGained -= pool.ExperiencePenaltyModifier(stats.PlayerLevel);
+        // TODO Limit exprience by pool modifiers
+        //experienceGained -= pool.ExperiencePenaltyModifier(stats.Experience.PlayerLevel);
 
         if (experienceGained < 1) experienceGained = 1;
 

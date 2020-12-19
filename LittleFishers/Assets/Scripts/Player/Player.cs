@@ -18,10 +18,15 @@ public class Player : NetworkBehaviour
     [SerializeField]
     private int defaultPlayerExperience;
 
+    private ExperienceTrack experienceTrack;
+    private LevelTrack levelTracker;
+
     private GameLogic gameLogic;
 
     void Awake()
     {
+        experienceTrack = GameObject.Find("ExperienceTrack").GetComponent<ExperienceTrack>();
+        levelTracker = GameObject.Find("LevelIndicator").GetComponent<LevelTrack>();
         playerStats = new PlayerStats(defaultPlayerExperience, defaultPlayerStrength);
         gameLogic = (GameLogic)GameObject.FindGameObjectWithTag("KrakenTheGod").GetComponent<GameLogic>();
     }
@@ -36,6 +41,9 @@ public class Player : NetworkBehaviour
     {
         base.OnStartLocalPlayer();
         this.tag = "PlayerSelf";
+        playerStats.Experience.SubscribeToExperienceChange(experienceTrack.playerExperienceAmountChanged);
+        playerStats.Experience.SubscribeToLevelChange(levelTracker.OnLevelChanged);
+
     }
 
     public override void OnStartClient()

@@ -8,49 +8,27 @@ public class PlayerStats
     [SerializeField]
     private int strength;
     [SerializeField]
-    private int experience;
-    int defaultLevel;
+    private PlayerExperience experience;
+
     public PlayerStats(int defaultExperience, int defaultStrength)
     {
         strength = defaultStrength;
-        experience = defaultExperience;
-        defaultLevel = 1;
+        experience = new PlayerExperience(defaultExperience);
     }
 
-    public int PlayerLevel
+    public PlayerExperience Experience
     {
         get
         {
-            int level = defaultLevel;
-
-            level = experience % 4;
-            if (experience < 4) level = 1;
-
-            return level;
+            return experience;
         }
     }
 
-    private int GetPlayerLevel(int newExperienceAmount)
+    public bool AddExperience(int amount)
     {
-        int level = defaultLevel;
-
-        level = newExperienceAmount % 4;
-        if (newExperienceAmount < 4) level = 1;
-
-        return level;
-    }
-
-    public void AddExperience(int amount)
-    {
-        int newAmount = this.experience + amount;
-
-        if (PlayerLevel < GetPlayerLevel(newAmount))
-        {
-            Debug.Log("Ahop!");
-            LevelUp();
-        }
-
-        this.experience = newAmount;
+        bool levelUp = experience.Add(amount);
+        if (levelUp) this.LevelUp();
+        return levelUp;
     }
 
     public void AddStrength()

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Huge
   m_EditorClassIdentifier: 
   onWorldPrefab: {fileID: 0}
-  backpackIcon: {fileID: 0}
+  backpackIcon: {fileID: 21300000, guid: e1368d500c60ff942b42f4932b804634, type: 3}
   itemType: 3
-  itemName: 
-  description: 
-  minGoldValue: 0
-  maxGoldValue: 0
+  itemName: Huge Fish
+  description: This fish can be found from only sea
+  minGoldValue: 50
+  maxGoldValue: 100

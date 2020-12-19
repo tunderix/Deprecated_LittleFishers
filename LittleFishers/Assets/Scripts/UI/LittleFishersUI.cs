@@ -15,6 +15,8 @@ public class LittleFishersUI : MonoBehaviour
     private KeybindLayout keybindLayout;
     [SerializeField]
     private GameObject shopLayout;
+    [SerializeField]
+    private ExperienceTrack experienceTrack;
 
     [SerializeField]
     private bool playerListHidden;
