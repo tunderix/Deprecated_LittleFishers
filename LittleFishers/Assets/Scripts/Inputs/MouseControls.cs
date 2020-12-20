@@ -1,131 +1,78 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MouseControls : MonoBehaviour
+public class MouseControls : MonoBehaviour, IMouseControls
 {
-    private InputController inputController;
+    public InputController inputController { get; set; }
 
     // Overall Mouse Properties
     private RaycastHit hit;
-    private static Vector3 MouseDownPoint;
-    private static Vector3 MouseUpPoint;
-    private static Vector3 CurrentMousePoint;
-    private static GameObject rayCastedObject;
+    private Ray ray;
+
+    /// <value>Position where mouse left click was pressed initially</value>
+    public Vector3 MouseDownPoint { get; set; }
+    /// <value>Position where mouse left click was released</value>
+    public Vector3 MouseUpPoint { get; set; }
+    /// <value>Position of raycast from mouse to world</value>
+    public Vector3 CurrentMousePoint { get; set; }
+
+    /// <value>A box used for check overlapping colliders</value>
+    [SerializeField] private SelectionBox box;
 
     // Dragging
-    private bool userIsDragging;
+    public bool _userIsDragging;
     private static Vector3 mouseDragStart;
-
-    //GUI Properties for highlighting
-    private float boxWidth;
-    private float boxHeight;
-    private float boxTop;
-    private float boxLeft;
-    private Vector2 boxStart;
-    private Vector2 boxFinish;
-    public GUIStyle skin;
-
-    public delegate void OnMouseLeftButtonClick(GameObject go);
-    public delegate void OnMouseRightButtonClick(GameObject go, Vector3 hitpoint);
-    public OnMouseLeftButtonClick onMouseLeftButtonClick;
-    public OnMouseRightButtonClick onMouseRightButtonClick;
-
-
-    void Awake()
-    {
-        this.inputController = this.gameObject.GetComponent<InputController>();
-    }
 
     void Update()
     {
         DetectClicksAndUpdateMousePoints();
-        //DetectDragging();
     }
 
     private void DetectClicksAndUpdateMousePoints()
     {
-        //filter UI CLICKs
-        if (!EventSystem.current.IsPointerOverGameObject())
+        // Might need to filter UI CLICKs in future
+        // if (!EventSystem.current.IsPointerOverGameObject())
+        if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
         {
-            //Shoot Raycasts to read material and colliders
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
-            {
-                CurrentMousePoint = hit.point;
-                //Store raycast CLICKS
-                if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
-                {
-                    MouseDownPoint = hit.point;
-                    rayCastedObject = hit.collider.gameObject;
-                    mouseDragStart = Input.mousePosition;
-                }
-                else if (Input.GetMouseButton(0))
-                    userIsDragging = true;
-                else if (Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1))
-                {
-                    userIsDragging = false;
-                    MouseUpPoint = hit.point;
-                }
+            RaycastHit hit;
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Physics.Raycast(ray, out hit, 100f);
 
-                //Check what Object raycast HIT
-                if (rayCastedObject != null && InputHelpers.DidUserClickMouse(MouseDownPoint, MouseUpPoint))
-                {
-                    if (Input.GetMouseButtonUp(0)) LeftClick(hit.collider.gameObject);
-                    if (Input.GetMouseButtonUp(1)) RightClick(hit.collider.gameObject, hit.point);
-                }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                MouseDownPoint = hit.point;
+                _userIsDragging = true;
+                mouseDragStart = MouseDownPoint;
+                box.baseMin = mouseDragStart;
+                leftClick(hit.collider.gameObject);
             }
+            if (Input.GetMouseButtonDown(1))
+            {
+                rightClick(hit);
+            }
+            CurrentMousePoint = hit.point;
+            box.baseMax = CurrentMousePoint;
+            dragging();
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            _userIsDragging = false;
         }
     }
 
-    private void DetectDragging()
+    private void dragging()
     {
-        if (userIsDragging)
-        {
-            boxWidth = Camera.main.WorldToScreenPoint(MouseDownPoint).x - Camera.main.WorldToScreenPoint(CurrentMousePoint).x;
-            boxHeight = Camera.main.WorldToScreenPoint(MouseDownPoint).y - Camera.main.WorldToScreenPoint(CurrentMousePoint).y;
-
-            boxLeft = Input.mousePosition.x;
-            boxTop = (Screen.height - Input.mousePosition.y) - boxHeight;
-
-            if (InputHelpers.FloatToBool(boxWidth))
-            {
-                if (InputHelpers.FloatToBool(boxHeight))
-                {
-                    boxStart = new Vector2(Input.mousePosition.x, Input.mousePosition.y + boxHeight);
-                }
-                else
-                {
-                    boxStart = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-                }
-            }
-            else
-            {
-                if (!InputHelpers.FloatToBool(boxWidth))
-                {
-                    if (InputHelpers.FloatToBool(boxHeight))
-                    {
-                        boxStart = new Vector2(Input.mousePosition.x + boxWidth, Input.mousePosition.y + boxHeight);
-                    }
-                    else
-                    {
-                        boxStart = new Vector2(Input.mousePosition.x + boxWidth, Input.mousePosition.y);
-                    }
-                }
-            }
-        }
-
-        boxFinish = new Vector2(boxStart.x + InputHelpers.Unsigned(boxWidth), (boxStart.y - InputHelpers.Unsigned(boxHeight)));
+        InputController.MouseDrag(box);
     }
 
-    private void LeftClick(GameObject clickedGO)
+    private void leftClick(GameObject clickedGO)
     {
-        onMouseLeftButtonClick(clickedGO); //InputController delegate
+        InputController.MouseLeftButtonClick(clickedGO);
     }
 
-    private void RightClick(GameObject clickedGO, Vector3 hitpoint)
+    private void rightClick(RaycastHit hit)
     {
-        onMouseRightButtonClick(clickedGO, hitpoint); //InputController delegate
+        InputController.MouseRightButtonClick(hit.collider.gameObject, hit.point);
     }
 }

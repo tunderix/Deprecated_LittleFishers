@@ -3,87 +3,137 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-
+// UnitSelection
+/// <summary>
+/// MonoBehaviour that handles selection of units and projection of selection box 
+/// Input should be coming from InputController.
+/// </summary>
 public class UnitSelection : MonoBehaviour
 {
-    [SerializeField] Collider[] unitSelections;
+    /// <value>A list of selectable units</value>
+    [SerializeField] List<Selectable> unitSelections;
 
-    [SerializeField]
-    private bool userIsDragging;
+    /// <value>Is user dragging the mouse</value>
+    [SerializeField] private bool userIsDragging;
 
-    [SerializeField]
-    private RectTransform UnitSelectionBox;
-
-    private Vector2 MouseDownPoint;
-
-    [SerializeField]
-    private SelectionBox box;
-
-    private Ray ray;
-    private Vector3 dragStartPosition;
-    private Vector3 dragCurrentPosition;
-
+    /// <value>Projector for showing which units are selected</value>
     [SerializeField] Projector selectionProjector;
 
     void Update()
     {
+        // TODO - Get Mouse ups and downs from MouseController
         if (Input.GetMouseButton(0))
         {
-            RaycastHit hit;
-            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            Physics.Raycast(ray, out hit, 100f);
             selectionProjector.enabled = true;
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                MouseDownPoint = _currentMousePosition;
-                userIsDragging = true;
-                dragStartPosition = hit.point;
-                box.baseMin = dragStartPosition;
-            }
-            dragCurrentPosition = hit.point;
-            box.baseMax = dragCurrentPosition;
-
-            selectionProjector.aspectRatio = box.Size.x / box.Size.z;
-            selectionProjector.orthographicSize = box.Size.z * 0.5f;
-            selectionProjector.transform.position = box.Center;
         }
         else if (Input.GetMouseButtonUp(0))
         {
             selectionProjector.enabled = false;
-            userIsDragging = false;
-            unitSelections = Physics.OverlapBox(box.Center, box.Extents, Quaternion.identity);
         }
     }
 
-    void OnGUI()
+    /// <summary>
+    /// Update selection projector and units selections based on mouse input
+    /// </summary>
+    /// <param name="box">Box containing world coordinates for selection through mouse input</param>
+    public void UpdateSelectionBox(SelectionBox box)
     {
-        if (!userIsDragging)
+        UpdateSelectionProjector(box);
+        UpdateUnitSelections(box);
+    }
+
+    /// <summary>
+    /// Select colliders inside provided box
+    /// </summary>
+    /// <param name="box">Box provides attributes for Physics OverlapBox to determine overlapping colliders</param>
+    private void UpdateUnitSelections(SelectionBox box)
+    {
+        Collider[] overlappingObjects = Physics.OverlapBox(box.Center, box.Extents, Quaternion.identity);
+        foreach (Collider overlappingObject in overlappingObjects)
         {
-            UnitSelectionBox.gameObject.SetActive(false);
-            return;
+            Select(overlappingObject.gameObject);
         }
-
-        UnitSelectionBox.gameObject.SetActive(true);
-        Vector2 draggingDifference = _currentMousePosition - MouseDownPoint;
-        UnitSelectionBox.localPosition = MouseDownPoint;
-        UnitSelectionBox.sizeDelta = absoluteDraggingDifference();
-        updatePivotsBasedOn(draggingDifference);
     }
 
-    private void updatePivotsBasedOn(Vector2 draggingDifference)
+    /// <summary>
+    /// Update selection projector position, aspect ratio and ortographic size based on box provided
+    /// </summary>
+    /// <param name="box">Box provides projector position, aspect ratio and ortographic size</param>
+    private void UpdateSelectionProjector(SelectionBox box)
     {
-        UnitSelectionBox.pivot = new Vector2(pivotFor(draggingDifference.x), pivotFor(draggingDifference.y));
+        selectionProjector.aspectRatio = box.Size.x / box.Size.z;
+        selectionProjector.orthographicSize = box.Size.z * 0.5f;
+        selectionProjector.transform.position = box.Center;
     }
 
-    private float pivotFor(float value)
+    /// <summary>
+    /// Unselects all selections and tries to select provided gameobjct
+    /// </summary>
+    /// <param name="clickedGO">Check if gameobject is selectable and select if possible</param>
+    public void TrySelect(GameObject clickedGO)
     {
-        return value >= 0 ? 0 : 1;
+        UnselectAll();
+        Select(clickedGO);
     }
 
-    private Vector2 absoluteDraggingDifference()
+    /// <summary>
+    /// Make sure unitSelections exists and iterate through all selectables
+    /// Set all selectables to false
+    /// Clear unitSelections
+    /// </summary>
+    private void UnselectAll()
     {
-        return new Vector2(Mathf.Abs(_currentMousePosition.x - MouseDownPoint.x), Mathf.Abs(_currentMousePosition.y - MouseDownPoint.y));
+        // Unselect selected objects
+        if (unitSelections != null)
+        {
+            foreach (Selectable _selectable in unitSelections)
+            {
+                _selectable.IsSelected = false;
+            }
+        }
+        unitSelections.Clear();
+    }
+
+    /// <summary>
+    /// Add gameobject to selections and highlight it, only if it is selectable
+    /// </summary>
+    /// <param name="GO">Gameobject is supposed to contain Selectable and not exist in unitSelections</param>
+    private void Select(GameObject GO)
+    {
+        // Add selectable object to be selected 
+        Selectable selectable = GO.GetComponent<Selectable>();
+
+        // Guard for selectable and make sure we dont add same object twice
+        if (selectable == null) return;
+        if (unitSelections.Contains(selectable)) return;
+
+        unitSelections.Add(selectable);
+        selectable.IsSelected = true;
+    }
+
+    /// <summary>
+    /// Make sure gameobject is selectable and check is it selected
+    /// </summary>
+    /// <param name="_gameObject">Gameobject containing Selectable</param>
+    /// <returns>Return false if not selectable and if gameobject is not selected.</returns>
+    public static bool IsSelected(GameObject _gameObject)
+    {
+        Selectable selectable = _gameObject.GetComponent<Selectable>();
+        if (selectable != null)
+        {
+            return IsSelected(selectable);
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// Check whether selectable object is selected
+    /// </summary>
+    /// <param name="_selectable">A selectable object</param>
+    /// <returns>Return false if not selected, true if it is selected</returns>
+    public static bool IsSelected(Selectable _selectable)
+    {
+        return _selectable.IsSelected;
     }
 
     /*
@@ -93,12 +143,4 @@ public class UnitSelection : MonoBehaviour
         Gizmos.DrawWireCube(box.Center, box.Size);
     }
     */
-
-    private Vector2 _currentMousePosition
-    {
-        get
-        {
-            return new Vector2(Input.mousePosition.x - (Screen.width / 2), Input.mousePosition.y - (Screen.height / 2));
-        }
-    }
 }
