@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class UnitSelection : MonoBehaviour
 {
-    private List<Selectable> selectedUnits;
+    [SerializeField] Collider[] unitSelections;
 
     [SerializeField]
     private bool userIsDragging;
@@ -15,14 +15,37 @@ public class UnitSelection : MonoBehaviour
 
     private Vector2 MouseDownPoint;
 
+    [SerializeField]
+    private SelectionBox box;
+
+    private Ray ray;
+    private Vector3 dragStartPosition;
+    private Vector3 dragCurrentPosition;
+
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
-            MouseDownPoint = _currentMousePosition;
-            userIsDragging = true;
+            RaycastHit hit;
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Physics.Raycast(ray, out hit, 100f);
+
+            if (Input.GetMouseButtonDown(0))
+            {
+
+                MouseDownPoint = _currentMousePosition;
+                userIsDragging = true;
+                dragStartPosition = hit.point;
+                box.baseMin = dragStartPosition;
+            }
+            dragCurrentPosition = hit.point;
+            box.baseMax = dragCurrentPosition;
         }
-        else if (Input.GetMouseButtonUp(0)) userIsDragging = false;
+        else if (Input.GetMouseButtonUp(0))
+        {
+            userIsDragging = false;
+            unitSelections = Physics.OverlapBox(box.Center, box.Extents, Quaternion.identity);
+        }
     }
 
     void OnGUI()
@@ -54,6 +77,14 @@ public class UnitSelection : MonoBehaviour
     {
         return new Vector2(Mathf.Abs(_currentMousePosition.x - MouseDownPoint.x), Mathf.Abs(_currentMousePosition.y - MouseDownPoint.y));
     }
+
+    /*
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(box.Center, box.Size);
+    }
+    */
 
     private Vector2 _currentMousePosition
     {
