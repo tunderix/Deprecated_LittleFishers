@@ -9,10 +9,13 @@ public class InputController : MonoBehaviour
     private FishingController fishingController;
     [SerializeField]
     private LittleFishersUI littleFishersUI;
+    private List<Selectable> selectedObjects;
+
     void Awake()
     {
         this.mouseControls = this.gameObject.GetComponent<MouseControls>();
         this.fishingController = this.gameObject.GetComponent<FishingController>();
+        selectedObjects = new List<Selectable>();
     }
     void Start()
     {
@@ -38,9 +41,21 @@ public class InputController : MonoBehaviour
         }
     }
 
+    [SerializeField]
+    private Selectable sel;
+
     private void LeftMouseClick(GameObject clickedGO)
     {
+        if (sel != null) sel.IsSelected = false;
+        sel = null;
 
+        // Add selectable object to be selected 
+        Selectable selectable = clickedGO.GetComponent<Selectable>();
+        if (selectable != null)
+        {
+            sel = selectable;
+            sel.IsSelected = true;
+        }
     }
 
     private void RightMouseClick(GameObject clickedGO, Vector3 hitpoint)

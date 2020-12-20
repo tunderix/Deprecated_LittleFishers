@@ -25,8 +25,7 @@ public class MouseControls : MonoBehaviour
     private float boxLeft;
     private Vector2 boxStart;
     private Vector2 boxFinish;
-    public GUIStyle mouseDragSkin;
-
+    public GUIStyle skin;
 
     public delegate void OnMouseLeftButtonClick(GameObject go);
     public delegate void OnMouseRightButtonClick(GameObject go, Vector3 hitpoint);
@@ -43,14 +42,6 @@ public class MouseControls : MonoBehaviour
     {
         DetectClicksAndUpdateMousePoints();
         DetectDragging();
-    }
-
-    void OnGUI()
-    {
-        if (userIsDragging)
-        {
-            GUI.Box(new Rect(boxLeft, boxTop, boxWidth, boxHeight), "", mouseDragSkin);
-        }
     }
 
     private void DetectClicksAndUpdateMousePoints()

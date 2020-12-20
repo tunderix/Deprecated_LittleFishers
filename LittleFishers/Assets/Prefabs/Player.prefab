@@ -1,5 +1,55 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &189141023913858293
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3916024707438010879}
+  - component: {fileID: 5704416497086704888}
+  m_Layer: 9
+  m_Name: SelectionIndicator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3916024707438010879
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 189141023913858293}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -0.009, y: -0, z: 0.057}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6482223387987102295}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!119 &5704416497086704888
+Projector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 189141023913858293}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_NearClipPlane: 0.8
+  m_FarClipPlane: 2
+  m_FieldOfView: 90
+  m_AspectRatio: 1
+  m_Orthographic: 0
+  m_OrthographicSize: 10.42
+  m_Material: {fileID: 2100000, guid: d5f284f3ed19a2e458580aeb8d734106, type: 2}
+  m_IgnoreLayers:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &233848763909918178
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +61,7 @@ GameObject:
   - component: {fileID: 4750194935847783322}
   - component: {fileID: 1169568601191061322}
   - component: {fileID: 1663448607542826258}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,14 +142,15 @@ GameObject:
   - component: {fileID: 6482223387987102295}
   - component: {fileID: 6632534477899238739}
   - component: {fileID: 8750164314174703773}
-  - component: {fileID: 6869671381412067989}
   - component: {fileID: 7168047715337552825}
   - component: {fileID: 4455858308708305339}
   - component: {fileID: 4605498018608888643}
   - component: {fileID: 735813008055318308}
   - component: {fileID: 2961698994597891912}
   - component: {fileID: 6625081019186392746}
-  m_Layer: 0
+  - component: {fileID: 6644950361189916363}
+  - component: {fileID: -5217533451834274955}
+  m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,11 +164,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3907484736468198198}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -18.951584, y: 1.13, z: -21.81}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4750194935847783322}
+  - {fileID: 3916024707438010879}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -170,20 +222,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &6869671381412067989
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3907484736468198198}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 0
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!195 &7168047715337552825
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -269,10 +307,112 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   playerId: 0
-  playerInventory: {fileID: 11400000, guid: c6824b49ba7e2284cb5217e4b1ac05cd, type: 2}
+  playerInventory:
+    inventoryName: Default Inventory
+    inventorySize: 16
+    inventorySlots:
+    - _inventoryObject:
+        itemName: 
+        description: 
+        goldValue: 0
+        amount: 0
+        inventoryIcon: {fileID: 0}
+    - _inventoryObject:
+        itemName: 
+        description: 
+        goldValue: 0
+        amount: 0
+        inventoryIcon: {fileID: 0}
+    - _inventoryObject:
+        itemName: 
+        description: 
+        goldValue: 0
+        amount: 0
+        inventoryIcon: {fileID: 0}
+    - _inventoryObject:
+        itemName: 
+        description: 
+        goldValue: 0
+        amount: 0
+        inventoryIcon: {fileID: 0}
+    - _inventoryObject:
+        itemName: 
+        description: 
+        goldValue: 0
+        amount: 0
+        inventoryIcon: {fileID: 0}
+    - _inventoryObject:
+        itemName: 
+        description: 
+        goldValue: 0
+        amount: 0
+        inventoryIcon: {fileID: 0}
+    - _inventoryObject:
+        itemName: 
+        description: 
+        goldValue: 0
+        amount: 0
+        inventoryIcon: {fileID: 0}
+    - _inventoryObject:
+        itemName: 
+        description: 
+        goldValue: 0
+        amount: 0
+        inventoryIcon: {fileID: 0}
+    - _inventoryObject:
+        itemName: 
+        description: 
+        goldValue: 0
+        amount: 0
+        inventoryIcon: {fileID: 0}
+    - _inventoryObject:
+        itemName: 
+        description: 
+        goldValue: 0
+        amount: 0
+        inventoryIcon: {fileID: 0}
+    - _inventoryObject:
+        itemName: 
+        description: 
+        goldValue: 0
+        amount: 0
+        inventoryIcon: {fileID: 0}
+    - _inventoryObject:
+        itemName: 
+        description: 
+        goldValue: 0
+        amount: 0
+        inventoryIcon: {fileID: 0}
+    - _inventoryObject:
+        itemName: 
+        description: 
+        goldValue: 0
+        amount: 0
+        inventoryIcon: {fileID: 0}
+    - _inventoryObject:
+        itemName: 
+        description: 
+        goldValue: 0
+        amount: 0
+        inventoryIcon: {fileID: 0}
+    - _inventoryObject:
+        itemName: 
+        description: 
+        goldValue: 0
+        amount: 0
+        inventoryIcon: {fileID: 0}
+    - _inventoryObject:
+        itemName: 
+        description: 
+        goldValue: 0
+        amount: 0
+        inventoryIcon: {fileID: 0}
+    gold: 0
   playerStats:
     strength: 1
-    experience: 1
+    experience:
+      _experience: 0
+      _level: 0
   defaultPlayerStrength: 1
   defaultPlayerExperience: 1
 --- !u!54 &6625081019186392746
@@ -290,4 +430,32 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
+--- !u!114 &6644950361189916363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3907484736468198198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7826c75367a12554e915df2099c703e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectionIndicator: {fileID: 189141023913858293}
+  isSelected: 1
+--- !u!64 &-5217533451834274955
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3907484736468198198}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
