@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public abstract class ItemObject : ScriptableObject
 {
+    [Header("Global Variables")]
     public GameObject onWorldPrefab;
     public Sprite backpackIcon;
     public ItemType itemType;

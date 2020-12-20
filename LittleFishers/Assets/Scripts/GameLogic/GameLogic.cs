@@ -6,16 +6,16 @@ public class GameLogic : MonoBehaviour
 {
     private List<PlayerGameState> playerStatusList;
 
-    [SerializeField]
-    private InventorySystem inventorySystem;
-    [SerializeField]
-    private InventoryTemplate defaultPlayerInventoryTemplate;
+    [SerializeField] private InventorySystem inventorySystem;
+    [SerializeField] private InventoryTemplate defaultPlayerInventoryTemplate;
+    [SerializeField] private RodTemplate startFishingRod;
+    [SerializeField] private BaitTemplate startFishingBait;
 
     [Header("UI Bindings")]
-    [SerializeField]
-    private PlayerList playerListComponent;
-    [SerializeField]
-    private Backpack UIBackPackComponent;
+    [SerializeField] private PlayerList playerListComponent;
+    [SerializeField] private Backpack UIBackPackComponent;
+    [SerializeField] private UIBaitSlot UIBaitSlotComponent;
+    [SerializeField] private UIFishingRodSlot UIRodSlotComponent;
 
     private void Awake()
     {
@@ -42,6 +42,10 @@ public class GameLogic : MonoBehaviour
     public Inventory CreatePlayerInventory()
     {
         Inventory newInventory = InventorySystem.CreateNewInventoryBasedOn(defaultPlayerInventoryTemplate, InventoryItemWasChanged);
+        newInventory.RegisterUISlot(UIRodSlotComponent);
+        newInventory.RegisterUISlot(UIBaitSlotComponent);
+        newInventory.EquipRod(new FishingRod(startFishingRod));
+        newInventory.EquipBait(new FishingBait(startFishingBait));
         UIBackPackComponent.SetLocalPlayerInventory(newInventory);
         return newInventory;
     }
@@ -49,6 +53,8 @@ public class GameLogic : MonoBehaviour
     private void InventoryItemWasChanged()
     {
         UIBackPackComponent.UpdateBackpack();
+        UIBaitSlotComponent.UpdateContents();
+        UIRodSlotComponent.UpdateContents();
     }
 
     public static PlayerGameState CreatePlayerGameState(int playerId, string name, Color color, int startGold)

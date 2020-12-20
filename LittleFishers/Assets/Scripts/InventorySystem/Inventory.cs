@@ -6,17 +6,13 @@ using UnityEditor;
 [System.Serializable]
 public class Inventory
 {
-    [SerializeField]
-    private string inventoryName;
+    [SerializeField] private string inventoryName;
+    [SerializeField] private int inventorySize;
+    [SerializeField] private int gold;
+    [SerializeField] public List<InventorySlot> inventorySlots;
 
-    [SerializeField]
-    private int inventorySize;
-
-    [SerializeField]
-    public List<InventorySlot> inventorySlots;
-
-    [SerializeField]
-    private int gold;
+    private BaitSlot _baitSlot;
+    private FishingRodSlot _rodSlot;
 
     public Inventory()
     {
@@ -38,6 +34,13 @@ public class Inventory
         this.inventoryName = _inventoryName;
         this.inventorySize = _inventorySize;
         this.gold = _startGoldAmount;
+        this._baitSlot = new BaitSlot();
+        this._rodSlot = new FishingRodSlot();
+        if (onInventoryItemChanged != null)
+        {
+            this._baitSlot.RegisterOnBaitChanged(onInventoryItemChanged);
+            this._rodSlot.RegisterOnRodChanged(onInventoryItemChanged);
+        }
         initializeInventorySlots(_inventorySize, onInventoryItemChanged);
     }
 
@@ -138,5 +141,35 @@ public class Inventory
         {
             return this.gold;
         }
+    }
+
+    public void EquipRod(FishingRod rod)
+    {
+        FishingRod oldRod = _rodSlot.EquipRod(rod);
+        if (oldRod != null)
+        {
+            //TODO - What happens if cannot add bait to inventory
+            // bool success = AddItem(rod);
+        }
+    }
+
+    public void EquipBait(FishingBait bait)
+    {
+        FishingBait oldBait = _baitSlot.EquipBait(bait);
+        if (oldBait != null)
+        {
+            //TODO - What happens if cannot add bait to inventory
+            // bool success = AddItem(oldBait);
+        }
+    }
+
+    public void RegisterUISlot(UIBaitSlot slot)
+    {
+        this._baitSlot.RegisterUISlot(slot);
+    }
+
+    public void RegisterUISlot(UIFishingRodSlot slot)
+    {
+        this._rodSlot.RegisterUISlot(slot);
     }
 }

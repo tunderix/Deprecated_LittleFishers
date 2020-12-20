@@ -2125,8 +2125,8 @@ MonoBehaviour:
   localPlayerInventory:
     inventoryName: Default Inventory
     inventorySize: 16
-    inventorySlots: []
     gold: 0
+    inventorySlots: []
   goldLabel: {fileID: 1667857425}
   slotCountLabel: {fileID: 387974755}
 --- !u!1001 &215289526
@@ -2616,7 +2616,7 @@ MonoBehaviour:
   OnServerDisconnected:
     m_PersistentCalls:
       m_Calls: []
-  Port: 7778
+  Port: 7777
   NoDelay: 1
   Interval: 10
   FastResend: 0
@@ -2688,81 +2688,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 470159527}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &297321085
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 297321086}
-  - component: {fileID: 297321088}
-  - component: {fileID: 297321087}
-  m_Layer: 5
-  m_Name: UnitSelectionBox
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &297321086
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 297321085}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1149882718}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 770.85, y: -255.90002}
-  m_SizeDelta: {x: 161.2, y: 130.03}
-  m_Pivot: {x: 0, y: 0}
---- !u!114 &297321087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 297321085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.40782997, b: 0, a: 0.392}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 50921789173149945be373a87e39e3ce, type: 3}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 5.59
---- !u!222 &297321088
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 297321085}
-  m_CullTransparentMesh: 1
 --- !u!1 &306480189
 GameObject:
   m_ObjectHideFlags: 0
@@ -5373,6 +5298,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 648667249}
   m_CullTransparentMesh: 1
+--- !u!1 &654171912
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 654171914}
+  - component: {fileID: 654171913}
+  m_Layer: 0
+  m_Name: SelectionProjector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!119 &654171913
+Projector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654171912}
+  m_Enabled: 0
+  serializedVersion: 2
+  m_NearClipPlane: 0.1
+  m_FarClipPlane: 50
+  m_FieldOfView: 30
+  m_AspectRatio: 1
+  m_Orthographic: 1
+  m_OrthographicSize: 1
+  m_Material: {fileID: 2100000, guid: 5689655f4d7ec0645b2fd9b6d6c45a38, type: 2}
+  m_IgnoreLayers:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!4 &654171914
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654171912}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -17.378744, y: 16.44, z: -31.94558}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1001 &658276652
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5534,73 +5509,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f81c5d1983a635429653befcc4187c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skin:
-    m_Name: 
-    m_Normal:
-      m_Background: {fileID: 2800000, guid: 50921789173149945be373a87e39e3ce, type: 3}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Hover:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Active:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Focused:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnNormal:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnHover:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnActive:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_OnFocused:
-      m_Background: {fileID: 0}
-      m_ScaledBackgrounds: []
-      m_TextColor: {r: 0, g: 0, b: 0, a: 1}
-    m_Border:
-      m_Left: 30
-      m_Right: 30
-      m_Top: 30
-      m_Bottom: 30
-    m_Margin:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Padding:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Overflow:
-      m_Left: 0
-      m_Right: 0
-      m_Top: 0
-      m_Bottom: 0
-    m_Font: {fileID: 0}
-    m_FontSize: 0
-    m_FontStyle: 0
-    m_Alignment: 0
-    m_WordWrap: 0
-    m_RichText: 1
-    m_TextClipping: 0
-    m_ImagePosition: 0
-    m_ContentOffset: {x: 0, y: 0}
-    m_FixedWidth: 0
-    m_FixedHeight: 0
-    m_StretchWidth: 1
-    m_StretchHeight: 0
+  box:
+    baseMin: {x: 0, y: 0, z: 0}
+    baseMax: {x: 0, y: 0, z: 0}
+  _userIsDragging: 0
 --- !u!114 &662964716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5632,8 +5544,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c140bc016bd28bf4bb4e411d1ecbe438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mouseControls: {fileID: 662964715}
+  fishingController: {fileID: 662964716}
+  unitSelection: {fileID: 662964722}
   littleFishersUI: {fileID: 1149882719}
-  sel: {fileID: 0}
 --- !u!4 &662964718
 Transform:
   m_ObjectHideFlags: 0
@@ -5663,8 +5577,12 @@ MonoBehaviour:
   inventorySystem: {fileID: 662964721}
   defaultPlayerInventoryTemplate: {fileID: 11400000, guid: 58cfe8758c6171f4f89ade3bc08b49c9,
     type: 2}
+  startFishingRod: {fileID: 11400000, guid: 9ea3477913326e040b83fb0bf2f3c5f4, type: 2}
+  startFishingBait: {fileID: 11400000, guid: 7609729808b113340bff87d8354ea86e, type: 2}
   playerListComponent: {fileID: 1537352027}
   UIBackPackComponent: {fileID: 212719462}
+  UIBaitSlotComponent: {fileID: 1706721364}
+  UIRodSlotComponent: {fileID: 1223821190}
 --- !u!114 &662964720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5709,8 +5627,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdd739c461ce8a3469ae3f3068e92ada, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitSelections: []
   userIsDragging: 0
-  UnitSelectionBox: {fileID: 297321086}
+  selectionProjector: {fileID: 654171913}
 --- !u!1 &682327263
 GameObject:
   m_ObjectHideFlags: 0
@@ -9982,7 +9901,6 @@ RectTransform:
   - {fileID: 65522925}
   - {fileID: 357241910}
   - {fileID: 408606972}
-  - {fileID: 297321086}
   m_Father: {fileID: 971758222}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10126,8 +10044,9 @@ GameObject:
   - component: {fileID: 1223821187}
   - component: {fileID: 1223821189}
   - component: {fileID: 1223821188}
+  - component: {fileID: 1223821190}
   m_Layer: 5
-  m_Name: EquipmentSlot
+  m_Name: RodSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10193,6 +10112,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1223821186}
   m_CullTransparentMesh: 1
+--- !u!114 &1223821190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223821186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42dc62819ba08ca4986d5a2e27d8ffb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rodIcon: {fileID: 168598400}
 --- !u!1001 &1231337551
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13224,8 +13156,9 @@ GameObject:
   - component: {fileID: 1706721361}
   - component: {fileID: 1706721363}
   - component: {fileID: 1706721362}
+  - component: {fileID: 1706721364}
   m_Layer: 5
-  m_Name: EquipmentSlot (1)
+  m_Name: BaitSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13291,6 +13224,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1706721360}
   m_CullTransparentMesh: 1
+--- !u!114 &1706721364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1706721360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc3cc726141108a46a4275e1871ae343, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baitIcon: {fileID: 594596059}
 --- !u!1 &1706725599
 GameObject:
   m_ObjectHideFlags: 0
@@ -15374,6 +15320,7 @@ MonoBehaviour:
   _hutInventory:
     inventoryName: Default Inventory
     inventorySize: 16
+    gold: 0
     inventorySlots:
     - _inventoryObject:
         itemName: 
@@ -15471,7 +15418,6 @@ MonoBehaviour:
         goldValue: 0
         amount: 0
         inventoryIcon: {fileID: 0}
-    gold: 0
   ShopLayout: {fileID: 357241909}
   defaultHutInventory: {fileID: 11400000, guid: 241c5f3c3c89ba145ba2b26f771e28fa,
     type: 2}

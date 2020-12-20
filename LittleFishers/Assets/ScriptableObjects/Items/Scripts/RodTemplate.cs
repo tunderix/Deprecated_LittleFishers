@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Rod Object", menuName = "Inventory System/Items/Rod")]
-public class Rod : ItemObject
+public class RodTemplate : ItemObject
 {
-    void Awake()
-    {
-        itemType = ItemType.Equipment;
-    }
+    [Header("Fishing Attributes")]
+    public int strengthModifier;
+    public int range;
+    public int attractionModifier;
 }
+

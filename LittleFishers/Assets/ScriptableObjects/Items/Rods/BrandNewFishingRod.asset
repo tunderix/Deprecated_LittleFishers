@@ -9,15 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaee6ccb6eab13a4896f739e87665d92, type: 3}
-  m_Name: Worm
+  m_Script: {fileID: 11500000, guid: 67875a91d8278924587db164392b58c2, type: 3}
+  m_Name: BrandNewFishingRod
   m_EditorClassIdentifier: 
   onWorldPrefab: {fileID: 0}
-  backpackIcon: {fileID: 0}
-  itemType: 0
+  backpackIcon: {fileID: 21300000, guid: ef22777da57aaea48a24104df1fa0e47, type: 3}
+  itemType: 1
   itemName: 
   description: 
   minGoldValue: 0
   maxGoldValue: 0
   strengthModifier: 0
+  range: 0
   attractionModifier: 0

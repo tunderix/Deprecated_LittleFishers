@@ -7,16 +7,12 @@ public class Player : NetworkBehaviour
 {
     public int playerId;
 
-    [SerializeField]
-    private Inventory playerInventory;
-    [SerializeField]
-    private PlayerStats playerStats;
+    [SerializeField] private Inventory playerInventory;
+    [SerializeField] private PlayerStats playerStats;
 
     [Header("Player Default Stats")]
-    [SerializeField]
-    private int defaultPlayerStrength;
-    [SerializeField]
-    private int defaultPlayerExperience;
+    [SerializeField] private int defaultPlayerStrength;
+    [SerializeField] private int defaultPlayerExperience;
 
     private ExperienceTrack experienceTrack;
     private LevelTrack levelTracker;

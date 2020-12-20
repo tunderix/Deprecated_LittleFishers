@@ -11,6 +11,15 @@ public class InventoryObject
     public int amount;
     public Sprite inventoryIcon;
 
+    public InventoryObject()
+    {
+        this.itemName = "";
+        this.description = "";
+        this.goldValue = 0;
+        this.amount = 0;
+        this.inventoryIcon = null;
+    }
+
     public InventoryObject(string itemName, string description, int goldValue, int amount, Sprite inventoryIcon)
     {
         this.itemName = itemName;

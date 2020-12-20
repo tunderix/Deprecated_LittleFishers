@@ -9,9 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37878f4f18aa0e54daaabde9e7f2f587, type: 3}
-  m_Name: Old Fishing Pole
+  m_Script: {fileID: 11500000, guid: 67875a91d8278924587db164392b58c2, type: 3}
+  m_Name: WornFishingRod
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  onWorldPrefab: {fileID: 0}
+  backpackIcon: {fileID: 21300000, guid: 5fe802ff2e4261d46a9e200487e25eda, type: 3}
   itemType: 1
+  itemName: 
   description: 
+  minGoldValue: 0
+  maxGoldValue: 0
+  strengthModifier: 0
+  range: 0
+  attractionModifier: 0

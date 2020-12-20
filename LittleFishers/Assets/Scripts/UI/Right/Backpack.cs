@@ -9,26 +9,13 @@ public delegate void BackpackItemDroppedDelegate(BackpackSlot from, BackpackSlot
 
 public class Backpack : MonoBehaviour
 {
-    [SerializeField]
-    private GridLayoutGroup gridLayoutGroup;
-
-    [SerializeField]
-    private GameObject backpackSlotPrefab;
-
-    [SerializeField]
-    private GameObject draggableArea;
-
-    [SerializeField]
-    private GameObject backpackInventoryItemPrefab;
-
-    [SerializeField]
-    private Inventory localPlayerInventory;
-
-    [SerializeField]
-    private TextMeshProUGUI goldLabel;
-
-    [SerializeField]
-    private TextMeshProUGUI slotCountLabel;
+    [SerializeField] private GridLayoutGroup gridLayoutGroup;
+    [SerializeField] private GameObject backpackSlotPrefab;
+    [SerializeField] private GameObject draggableArea;
+    [SerializeField] private GameObject backpackInventoryItemPrefab;
+    [SerializeField] private Inventory localPlayerInventory;
+    [SerializeField] private TextMeshProUGUI goldLabel;
+    [SerializeField] private TextMeshProUGUI slotCountLabel;
 
     private void BackpackItemDroppedOn(BackpackSlot from, BackpackSlot to)
     {

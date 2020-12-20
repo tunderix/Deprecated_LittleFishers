@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public enum ItemType
 {
     Food,
-    Equipment,
+    Rod,
     Bait,
     Fish,
     Default

@@ -7,7 +7,6 @@ public delegate void OnVariableChangeDelegate();
 [System.Serializable]
 public class InventorySlot
 {
-
     public event OnVariableChangeDelegate OnInventoryItemChanged;
 
     [SerializeField]
