@@ -41,7 +41,7 @@ public class MouseControls : MonoBehaviour
     void Update()
     {
         DetectClicksAndUpdateMousePoints();
-        DetectDragging();
+        //DetectDragging();
     }
 
     private void DetectClicksAndUpdateMousePoints()

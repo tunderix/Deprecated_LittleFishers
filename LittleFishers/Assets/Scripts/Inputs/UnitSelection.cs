@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+
 public class UnitSelection : MonoBehaviour
 {
     [SerializeField] Collider[] unitSelections;
@@ -22,6 +23,8 @@ public class UnitSelection : MonoBehaviour
     private Vector3 dragStartPosition;
     private Vector3 dragCurrentPosition;
 
+    [SerializeField] Projector selectionProjector;
+
     void Update()
     {
         if (Input.GetMouseButton(0))
@@ -29,10 +32,10 @@ public class UnitSelection : MonoBehaviour
             RaycastHit hit;
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Physics.Raycast(ray, out hit, 100f);
+            selectionProjector.enabled = true;
 
             if (Input.GetMouseButtonDown(0))
             {
-
                 MouseDownPoint = _currentMousePosition;
                 userIsDragging = true;
                 dragStartPosition = hit.point;
@@ -40,9 +43,14 @@ public class UnitSelection : MonoBehaviour
             }
             dragCurrentPosition = hit.point;
             box.baseMax = dragCurrentPosition;
+
+            selectionProjector.aspectRatio = box.Size.x / box.Size.z;
+            selectionProjector.orthographicSize = box.Size.z * 0.5f;
+            selectionProjector.transform.position = box.Center;
         }
         else if (Input.GetMouseButtonUp(0))
         {
+            selectionProjector.enabled = false;
             userIsDragging = false;
             unitSelections = Physics.OverlapBox(box.Center, box.Extents, Quaternion.identity);
         }
