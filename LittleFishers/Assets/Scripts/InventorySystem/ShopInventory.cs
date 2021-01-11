@@ -14,6 +14,6 @@ public class ShopInventory : Inventory
 
     public void SelectItem(int at)
     {
-        this
+
     }
 }
