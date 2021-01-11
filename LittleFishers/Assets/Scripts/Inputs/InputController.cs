@@ -51,10 +51,15 @@ public class InputController : MonoBehaviour
     {
         GameObject player = GameObject.FindGameObjectWithTag("PlayerSelf");
         FishPool fishPool = clickedGO.GetComponent<FishPool>();
+        FishingTarget fishingTarget = clickedGO.GetComponent<FishingTarget>();
         if (FishingHelper.canStartFishing(fishingController.throwDistance, player.transform.position, point, clickedGO) && fishPool)
         {
             // TODO - Fix This
             fishingController.StartFishing(point, fishPool, player.GetComponent<Player>());
+        }
+        else if (fishingTarget != null)
+        {
+            fishingTarget.TriggerFishOn();
         }
         else if (UnitSelection.IsSelected(player))
         {

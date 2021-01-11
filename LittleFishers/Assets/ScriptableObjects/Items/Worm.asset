@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Worm
   m_EditorClassIdentifier: 
   onWorldPrefab: {fileID: 0}
-  backpackIcon: {fileID: 0}
+  backpackIcon: {fileID: 21300000, guid: bd578c481c23f61438c257a3842376c3, type: 3}
   itemType: 0
-  itemName: 
-  description: 
-  minGoldValue: 0
-  maxGoldValue: 0
+  itemName: Worm
+  description: These make for great bait for fishing
+  minGoldValue: 2
+  maxGoldValue: 4
   strengthModifier: 0
-  attractionModifier: 0
+  attractionModifier: 3

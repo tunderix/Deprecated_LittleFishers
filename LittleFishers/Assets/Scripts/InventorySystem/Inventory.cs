@@ -11,8 +11,8 @@ public class Inventory
     [SerializeField] private int gold;
     [SerializeField] public List<InventorySlot> inventorySlots;
 
-    private BaitSlot _baitSlot;
-    private FishingRodSlot _rodSlot;
+    [SerializeField] private BaitSlot _baitSlot;
+    [SerializeField] private FishingRodSlot _rodSlot;
 
     public Inventory()
     {
@@ -29,7 +29,7 @@ public class Inventory
         InitializeInventory(inventoryTemplate.GetInventoryName(), inventoryTemplate.GetInventorySize(), inventoryTemplate.GetGold(), onInventoryItemChanged);
     }
 
-    private void InitializeInventory(string _inventoryName, int _inventorySize, int _startGoldAmount, OnVariableChangeDelegate onInventoryItemChanged)
+    protected void InitializeInventory(string _inventoryName, int _inventorySize, int _startGoldAmount, OnVariableChangeDelegate onInventoryItemChanged)
     {
         this.inventoryName = _inventoryName;
         this.inventorySize = _inventorySize;

@@ -5,6 +5,8 @@ using Mirror;
 
 public class FishingController : MonoBehaviour
 {
+
+    public GameObject _fishingTargetPrefab;
     public float throwDistance;
 
     [Header("Fish Templates")]
@@ -34,6 +36,13 @@ public class FishingController : MonoBehaviour
         Fish fish = fishFactory.CreateFish(newFishSize, GetFishTemplate(newFishSize));
         PlayerStats stats = player.GetPlayerStats();
         Inventory inventory = player.GetPlayerInventory();
+
+        GameObject fishingTargetPrefab = GameObject.Instantiate(_fishingTargetPrefab, position, Quaternion.identity);
+        FishingTarget fishingTarget = fishingTargetPrefab.GetComponent<FishingTarget>();
+        if (fishingTarget != null)
+        {
+
+        }
 
         bool canPlayerCatchFish = CanPlayerCatchFish(fish, stats);
         Debug.Log("Start Fishing :: FishName: " + fish.Size + ", CaughtFish: " + canPlayerCatchFish);

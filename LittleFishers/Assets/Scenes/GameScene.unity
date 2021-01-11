@@ -2127,6 +2127,20 @@ MonoBehaviour:
     inventorySize: 16
     gold: 0
     inventorySlots: []
+    _baitSlot:
+      _equippedFishingBait:
+        itemName: 
+        description: 
+        goldValue: 0
+        amount: 0
+        inventoryIcon: {fileID: 0}
+    _rodSlot:
+      _equippedFishingRod:
+        itemName: 
+        description: 
+        goldValue: 0
+        amount: 0
+        inventoryIcon: {fileID: 0}
   goldLabel: {fileID: 1667857425}
   slotCountLabel: {fileID: 387974755}
 --- !u!1001 &215289526
@@ -5525,6 +5539,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0bdbbffb30d91240bd9ce07a04627b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _fishingTargetPrefab: {fileID: 1632434068832938824, guid: 71f9575b7d6f76e4d9821f62c7e0e8bf,
+    type: 3}
   throwDistance: 72.55
   tiny: {fileID: 11400000, guid: 006b37c04fc86fb498e5a3b9eb9a5061, type: 2}
   small: {fileID: 11400000, guid: 06fa9c309cd29cb48bb0c7517ee439d2, type: 2}
@@ -10125,6 +10141,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rodIcon: {fileID: 168598400}
+  Rod:
+    itemName: 
+    description: 
+    goldValue: 0
+    amount: 0
+    inventoryIcon: {fileID: 0}
 --- !u!1001 &1231337551
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13237,6 +13259,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baitIcon: {fileID: 594596059}
+  Bait:
+    itemName: 
+    description: 
+    goldValue: 0
+    amount: 0
+    inventoryIcon: {fileID: 0}
 --- !u!1 &1706725599
 GameObject:
   m_ObjectHideFlags: 0
@@ -15413,6 +15441,20 @@ MonoBehaviour:
         amount: 0
         inventoryIcon: {fileID: 0}
     - _inventoryObject:
+        itemName: 
+        description: 
+        goldValue: 0
+        amount: 0
+        inventoryIcon: {fileID: 0}
+    _baitSlot:
+      _equippedFishingBait:
+        itemName: 
+        description: 
+        goldValue: 0
+        amount: 0
+        inventoryIcon: {fileID: 0}
+    _rodSlot:
+      _equippedFishingRod:
         itemName: 
         description: 
         goldValue: 0

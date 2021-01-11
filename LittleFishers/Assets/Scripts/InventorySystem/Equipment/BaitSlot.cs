@@ -1,7 +1,9 @@
+using UnityEngine;
 
+[System.Serializable]
 public class BaitSlot
 {
-    private FishingBait _equippedFishingBait;
+    [SerializeField] private FishingBait _equippedFishingBait;
     public OnVariableChangeDelegate OnInventoryItemChanged;
     private UIBaitSlot UISlot;
 
