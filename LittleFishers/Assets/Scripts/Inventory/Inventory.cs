@@ -20,19 +20,86 @@ namespace LittleFishers.LFInventory
             _inventoryName = template.InventoryName;
             _inventorySize = template.InventoryCapacity;
             _gold = template.Gold;
+
+            InititializeInventorySlots(template.InventoryCapacity);
         }
-        
+
+        private void InititializeInventorySlots(int capacity)
         {
-        After:
-            public bool AddItem(InventoryItem 
+            for (int i = 0; i < capacity; i++)
             {
-                */
-            }
-                {
-
-                }
-
-                }
-                {
+                _inventoryItems.Add(new InventorySlot(i), new InventoryItemStack());
             }
         }
+
+        private InventorySlot FirstFreeSlot
+        {
+            get
+            {
+                foreach (KeyValuePair<InventorySlot, InventoryItemStack> pair in _inventoryItems)
+                {
+                    if (pair.Value.ItemCount < 1)
+                    {
+                        return pair.Key;
+                    }
+                }
+                return null;
+            }
+        }
+
+       public bool AddItem(InventoryItem item)
+        {
+            return false;
+        }
+
+        public bool RemoveItem(InventoryItem item)
+        {
+
+        /* Unmerged change from project 'LFInventory'
+  
+    /   Before:
+* Unmerge       d change from project 'LFInventory'
+ Before:
+   
+            /* Ureturndfalse; e from project 'LFInventory'
+        Befo}        {
+    }After:
+}   {
+*/
+        After:
+        After:
+        After:
+            /* U/* Ureturndfalse; e from project 'LFInventory'e from project 'LFInventory'
+BefoBefo}        {        {
+    }
+*/
+            /* U/* Ureturndfalse; e from project 'LFInventory'e from project 'LFInventory'After:After:
+BefoBefo}        {        {
+   }After:After:
+}   {
+}   {
+        */
+            /* U/* Ureturndfalse; e from project 'LFInventory'e from project 'LFInventory'
+BefoBefo}        {        {
+   }After:After:
+}   {
+*/
+            {
+                {
+                    {
+                        {
+                            {
+                                {
+                                    {
+                                        {
+                                            {
+                                                {
+                                                    {
+                                                        {
+                                                            {
+                                                                {
+                                                                    {
+                                                                        {
+                                                                            {
+                                                                                {
+                                                                                     
