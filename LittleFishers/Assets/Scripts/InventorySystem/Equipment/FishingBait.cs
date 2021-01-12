@@ -13,6 +13,7 @@ public class FishingBait : InventoryObject
         this.description = baitTemplate.description;
         this.inventoryIcon = baitTemplate.backpackIcon;
         this.goldValue = decideGoldValue(baitTemplate.minGoldValue, baitTemplate.maxGoldValue);
+        this.MaxStackSize = 10;
     }
 
     private int decideGoldValue(int min, int max)

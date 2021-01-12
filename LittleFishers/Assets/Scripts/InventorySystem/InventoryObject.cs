@@ -10,6 +10,7 @@ public class InventoryObject
     public int goldValue;
     public int amount;
     public Sprite inventoryIcon;
+    public int MaxStackSize;
 
     public InventoryObject()
     {
@@ -18,6 +19,7 @@ public class InventoryObject
         this.goldValue = 0;
         this.amount = 0;
         this.inventoryIcon = null;
+        this.MaxStackSize = 1;
     }
 
     public InventoryObject(string itemName, string description, int goldValue, int amount, Sprite inventoryIcon)
