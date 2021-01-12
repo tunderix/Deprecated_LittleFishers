@@ -14,7 +14,6 @@ namespace LittleFishers.LFInventory
         public int InventorySize { get => _inventorySize; set => _inventorySize = value; }
         public int Gold { get => _gold; set => _gold = value; }
 
-
         public Inventory(InventoryTemplate template)
         {
             _inventoryName = template.InventoryName;
@@ -32,7 +31,7 @@ namespace LittleFishers.LFInventory
             }
         }
 
-        private InventorySlot FirstFreeSlot
+        private InventorySlot firstFreeSlot
         {
             get
             {
@@ -49,11 +48,22 @@ namespace LittleFishers.LFInventory
 
         public bool AddItem(InventoryItem item)
         {
-            return false;
+            InventorySlot to = firstFreeSlot;
+            if (to == null) return false;
+            this._inventoryItems.Add(to, new InventoryItemStack(item, 1));
+            return true;
         }
 
         public bool RemoveItem(InventoryItem item)
         {
+            foreach (KeyValuePair<InventorySlot, InventoryItemStack> pair in _inventoryItems)
+            {
+                if (pair.Value.Item == item)
+                {
+                    pair.Value.RemoveOneItem();
+                    return true;
+                }
+            }
             return false;
         }
     }
