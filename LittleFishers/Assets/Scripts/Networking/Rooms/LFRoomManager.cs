@@ -19,7 +19,7 @@ public class LFRoomManager : NetworkRoomManager
     public void JoinByIP()
     {
         string ipAddress = ipAddressEditText.text;
-        this.StartClient();
+        //StartClient();
     }
 
     public override void OnRoomStartClient()
@@ -34,10 +34,12 @@ public class LFRoomManager : NetworkRoomManager
 
     }
 
+    /*
     public override void OnRoomClientConnect(NetworkConnection conn)
     {
         base.OnRoomClientConnect(conn);
     }
+    */
 
     private void UpdateRoomPlayerPanel()
     {

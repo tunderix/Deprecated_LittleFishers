@@ -15,6 +15,7 @@ public class FishingRod : InventoryObject
         this.description = rodTemplate.description;
         this.inventoryIcon = rodTemplate.backpackIcon;
         this.goldValue = decideGoldValue(rodTemplate.minGoldValue, rodTemplate.maxGoldValue);
+        this.MaxStackSize = 1;
     }
 
     private int decideGoldValue(int min, int max)
