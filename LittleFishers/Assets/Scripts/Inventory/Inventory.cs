@@ -47,59 +47,14 @@ namespace LittleFishers.LFInventory
             }
         }
 
-       public bool AddItem(InventoryItem item)
+        public bool AddItem(InventoryItem item)
         {
             return false;
         }
 
         public bool RemoveItem(InventoryItem item)
         {
-
-        /* Unmerged change from project 'LFInventory'
-  
-    /   Before:
-* Unmerge       d change from project 'LFInventory'
- Before:
-   
-            /* Ureturndfalse; e from project 'LFInventory'
-        Befo}        {
-    }After:
-}   {
-*/
-        After:
-        After:
-        After:
-            /* U/* Ureturndfalse; e from project 'LFInventory'e from project 'LFInventory'
-BefoBefo}        {        {
+            return false;
+        }
     }
-*/
-            /* U/* Ureturndfalse; e from project 'LFInventory'e from project 'LFInventory'After:After:
-BefoBefo}        {        {
-   }After:After:
-}   {
-}   {
-        */
-            /* U/* Ureturndfalse; e from project 'LFInventory'e from project 'LFInventory'
-BefoBefo}        {        {
-   }After:After:
-}   {
-*/
-            {
-                {
-                    {
-                        {
-                            {
-                                {
-                                    {
-                                        {
-                                            {
-                                                {
-                                                    {
-                                                        {
-                                                            {
-                                                                {
-                                                                    {
-                                                                        {
-                                                                            {
-                                                                                {
-                                                                                     
+}
