@@ -7,7 +7,7 @@ namespace LittleFishers.LFInventory
 
         public InventoryItemStack()
         {
-            _count = 0;
+            _count = -1;
             _item = null;
         }
 
@@ -24,6 +24,11 @@ namespace LittleFishers.LFInventory
         {
             _count--;
             if (_count < 1) _item = null;
+        }
+
+        public bool IsEmpty
+        {
+            get => (_count < 1) || _item.IsDefault;
         }
     }
 }

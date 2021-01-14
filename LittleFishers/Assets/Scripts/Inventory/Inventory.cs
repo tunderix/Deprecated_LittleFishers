@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LittleFishers.LFInventory
 {
@@ -14,21 +15,32 @@ namespace LittleFishers.LFInventory
         public int InventorySize { get => _inventorySize; set => _inventorySize = value; }
         public int Gold { get => _gold; set => _gold = value; }
 
+        public Inventory()
+        {
+            _inventoryName = "";
+            _inventorySize = 16;
+            _gold = 0;
+
+            CreateInventory();
+        }
+
         public Inventory(InventoryTemplate template)
         {
             _inventoryName = template.InventoryName;
             _inventorySize = template.InventoryCapacity;
             _gold = template.Gold;
 
-            InititializeInventorySlots(template.InventoryCapacity);
+            CreateInventory();
         }
 
-        private void InititializeInventorySlots(int capacity)
+        private void CreateInventory()
         {
-            for (int i = 0; i < capacity; i++)
+            Dictionary<InventorySlot, InventoryItemStack> newInventoryItems = new Dictionary<InventorySlot, InventoryItemStack>(_inventorySize);
+            for (int i = 0; i < _inventorySize; i++)
             {
-                _inventoryItems.Add(new InventorySlot(i), new InventoryItemStack());
+                newInventoryItems.Add(new InventorySlot(i), new InventoryItemStack(new InventoryItem(), 0));
             }
+            _inventoryItems = newInventoryItems;
         }
 
         private InventorySlot firstFreeSlot
@@ -37,7 +49,7 @@ namespace LittleFishers.LFInventory
             {
                 foreach (KeyValuePair<InventorySlot, InventoryItemStack> pair in _inventoryItems)
                 {
-                    if (pair.Value.ItemCount < 1)
+                    if (pair.Value.ItemCount < 1 || pair.Value.IsEmpty)
                     {
                         return pair.Key;
                     }
@@ -46,11 +58,32 @@ namespace LittleFishers.LFInventory
             }
         }
 
-        public bool AddItem(InventoryItem item)
+        public Dictionary<InventorySlot, InventoryItemStack> GetInventoryItems()
+        {
+            return _inventoryItems;
+        }
+
+        public InventorySlot Slot(int at)
+        {
+            return _inventoryItems.Keys.ElementAt(at);
+        }
+
+        public InventoryItemStack GetItemStackAtSlot(InventorySlot slot)
+        {
+            InventoryItemStack itemStack = null;
+            _inventoryItems.TryGetValue(slot, out itemStack);
+            return itemStack;
+        }
+
+        public bool AddItem(InventoryItem item) // TODO - Return int / slotId instead of bool
         {
             InventorySlot to = firstFreeSlot;
             if (to == null) return false;
-            this._inventoryItems.Add(to, new InventoryItemStack(item, 1));
+            InventoryItemStack _iStack = null;
+            this._inventoryItems.TryGetValue(to, out _iStack);
+            if (_iStack.IsEmpty) this._inventoryItems[to] = new InventoryItemStack(item, 1);
+            else if (_iStack.Item == item) _iStack.ItemCount++;
+
             return true;
         }
 
@@ -58,7 +91,7 @@ namespace LittleFishers.LFInventory
         {
             foreach (KeyValuePair<InventorySlot, InventoryItemStack> pair in _inventoryItems)
             {
-                if (pair.Value.Item == item)
+                if (InventoryItem.IsEqual(pair.Value.Item, item))
                 {
                     pair.Value.RemoveOneItem();
                     return true;
