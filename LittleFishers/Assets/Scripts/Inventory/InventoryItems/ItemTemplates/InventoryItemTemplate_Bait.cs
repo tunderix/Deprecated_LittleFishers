@@ -8,6 +8,7 @@ namespace LittleFishers.LFInventory
     [CreateAssetMenu(fileName = "New Bait", menuName = "Inventory System v2/Inventory Items/Bait")]
     public class InventoryItemTemplate_Bait : InventoryItemTemplate
     {
+        [Header("Bait Attributes")]
         public int UseCount;
         public int AttractionModifier;
         public int StrengthModifier;

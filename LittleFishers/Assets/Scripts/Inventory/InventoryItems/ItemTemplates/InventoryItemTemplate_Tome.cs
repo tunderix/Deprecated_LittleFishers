@@ -8,6 +8,7 @@ namespace LittleFishers.LFInventory
     [CreateAssetMenu(fileName = "New Tome", menuName = "Inventory System v2/Inventory Items/Tome")]
     public class InventoryItemTemplate_Tome : InventoryItemTemplate
     {
+        [Header("Tome Attributes")]
         public TomeType TomeModifier;
 
         public override InventoryItemType GetItemType()

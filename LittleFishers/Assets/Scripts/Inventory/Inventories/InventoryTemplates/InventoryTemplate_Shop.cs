@@ -8,9 +8,8 @@ namespace LittleFishers.LFInventory
     [CreateAssetMenu(fileName = "New Shop Inventory", menuName = "Inventory System v2/Inventories/Shop Inventory")]
     public class InventoryTemplate_Shop : InventoryTemplate
     {
-        public override List<InventoryItem> DefaultItems()
-        {
-            return new List<InventoryItem>();
-        }
+        [Header("Shop Inventory Attributes")]
+        [SerializeField] List<InventoryItemTemplate> defaultItemTemplates;
+        public override List<InventoryItemTemplate> DefaultItemTemplates => defaultItemTemplates;
     }
 }

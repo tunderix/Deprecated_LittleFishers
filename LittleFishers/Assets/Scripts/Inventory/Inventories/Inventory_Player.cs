@@ -8,7 +8,6 @@ namespace LittleFishers.LFInventory
     {
         public Inventory_Player(InventoryTemplate_Player template) : base(template)
         {
-            AddItems(template.DefaultItems());
         }
     }
 }

@@ -8,7 +8,9 @@ namespace LittleFishers.LFInventory
     [CreateAssetMenu(fileName = "New Fish", menuName = "Inventory System v2/Inventory Items/Fish")]
     public class InventoryItemTemplate_Fish : InventoryItemTemplate
     {
-        public int Weight;
+        [Header("Fish Specific Attributes")]
+        public int MinWeight;
+        public int MaxWeight;
         public override InventoryItemType GetItemType()
         {
             return InventoryItemType.Fish;

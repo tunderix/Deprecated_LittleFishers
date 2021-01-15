@@ -8,6 +8,7 @@ namespace LittleFishers.LFInventory
     [CreateAssetMenu(fileName = "New Rod", menuName = "Inventory System v2/Inventory Items/Rod")]
     public class InventoryItemTemplate_Rod : InventoryItemTemplate
     {
+        [Header("Rod Specific Attributes")]
         public int StrengthModifier;
         public int AttractionModifier;
         public override InventoryItemType GetItemType()

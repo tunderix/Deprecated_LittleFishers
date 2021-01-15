@@ -6,9 +6,12 @@ namespace LittleFishers.LFInventory
     [CreateAssetMenu(fileName = "New Inventory", menuName = "Inventory System v2/Inventory Items/Default Item")]
     public class InventoryItemTemplate : ScriptableObject
     {
+        [Header("Global Attributes")]
         public string ItemName;
+        [TextArea(15, 20)]
         public string Description;
-        public int GoldValue;
+        public int MinGoldValue;
+        public int MaxGoldValue;
         public Sprite InventoryIcon;
         public int MaxStackSize;
 

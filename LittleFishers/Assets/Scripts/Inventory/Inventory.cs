@@ -31,7 +31,12 @@ namespace LittleFishers.LFInventory
             _gold = template.Gold;
 
             CreateInventory();
-            AddItems(template.DefaultItems());
+
+            foreach (InventoryItemTemplate iTemplate in template.DefaultItemTemplates)
+            {
+                InventoryItem item = new InventoryItem(iTemplate);
+                AddItem(item);
+            }
         }
 
         private void CreateInventory()

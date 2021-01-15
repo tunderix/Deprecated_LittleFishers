@@ -5,7 +5,7 @@ using UnityEngine;
 namespace LittleFishers.LFInventory
 {
     [System.Serializable]
-    [CreateAssetMenu(fileName = "New Junk", menuName = "Inventory System v2/Inventory Items/Fish")]
+    [CreateAssetMenu(fileName = "New Junk", menuName = "Inventory System v2/Inventory Items/Junk")]
     public class InventoryItemTemplate_Junk : InventoryItemTemplate
     {
         public override InventoryItemType GetItemType()

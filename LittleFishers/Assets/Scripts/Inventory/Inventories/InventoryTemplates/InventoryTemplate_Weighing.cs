@@ -8,9 +8,8 @@ namespace LittleFishers.LFInventory
     [CreateAssetMenu(fileName = "New Weighing Inventory", menuName = "Inventory System v2/Inventories/Weighing Inventory")]
     public class InventoryTemplate_Weighing : InventoryTemplate
     {
-        public override List<InventoryItem> DefaultItems()
-        {
-            return new List<InventoryItem>();
-        }
+        [Header("Weighing Inventory Attributes")]
+        [SerializeField] List<InventoryItemTemplate> defaultItemTemplates;
+        public override List<InventoryItemTemplate> DefaultItemTemplates => defaultItemTemplates;
     }
 }

@@ -10,7 +10,7 @@ namespace LittleFishers.LFInventory
 
         public InventoryItem_Fish(InventoryItemTemplate_Fish template) : base(template)
         {
-            _weight = template.Weight;
+            _weight = template.MinWeight; // TODO -> Comes from fishing righT?
         }
 
         public override InventoryItemType GetItemType()

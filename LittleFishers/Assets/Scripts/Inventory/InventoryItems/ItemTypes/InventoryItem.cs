@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace LittleFishers.LFInventory
 {
+    [System.Serializable]
     public class InventoryItem : IInventoryItem
     {
         private string _itemName;
@@ -26,7 +27,7 @@ namespace LittleFishers.LFInventory
         {
             _itemName = template.ItemName;
             _description = template.Description;
-            _goldValue = template.GoldValue;
+            _goldValue = template.MinGoldValue; // Instead generate the gold value somehow
             _inventoryIcon = template.InventoryIcon;
             _maxStackSize = template.MaxStackSize;
             _itemType = template.GetItemType();
