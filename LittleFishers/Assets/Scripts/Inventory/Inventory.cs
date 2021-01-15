@@ -31,6 +31,7 @@ namespace LittleFishers.LFInventory
             _gold = template.Gold;
 
             CreateInventory();
+            AddItems(template.DefaultItems());
         }
 
         private void CreateInventory()
@@ -85,6 +86,17 @@ namespace LittleFishers.LFInventory
             else if (_iStack.IsEmpty) this._inventoryItems[to] = new InventoryItemStack(item, 1);
 
             return true;
+        }
+
+        public bool AddItems(List<InventoryItem> items)
+        {
+            bool allItemsAdded = true;
+            foreach (InventoryItem item in items)
+            {
+                bool success = AddItem(item);
+                if (!success) allItemsAdded = false;
+            }
+            return allItemsAdded;
         }
 
         public bool RemoveItem(InventoryItem item)
