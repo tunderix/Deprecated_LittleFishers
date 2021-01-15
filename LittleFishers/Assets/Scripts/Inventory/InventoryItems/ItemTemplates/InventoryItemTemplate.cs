@@ -3,7 +3,7 @@ using UnityEngine;
 namespace LittleFishers.LFInventory
 {
     [System.Serializable]
-    [CreateAssetMenu(fileName = "New Inventory", menuName = "Inventory System v2/Inventory Items/Item")]
+    [CreateAssetMenu(fileName = "New Inventory", menuName = "Inventory System v2/Inventory Items/Default Item")]
     public class InventoryItemTemplate : ScriptableObject
     {
         public string ItemName;
@@ -11,5 +11,10 @@ namespace LittleFishers.LFInventory
         public int GoldValue;
         public Sprite InventoryIcon;
         public int MaxStackSize;
+
+        public virtual InventoryItemType GetItemType()
+        {
+            return InventoryItemType.Default;
+        }
     }
 }

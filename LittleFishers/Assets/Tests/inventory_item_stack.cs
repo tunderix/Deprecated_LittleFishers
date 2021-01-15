@@ -11,7 +11,7 @@ namespace LittleFishers.LFInventory
         {
             InventoryItemStack stack = new InventoryItemStack();
 
-            Assert.AreEqual(stack.Item, null);
+            //Assert.AreEqual(stack.Item, null);
             Assert.AreEqual(stack.ItemCount, -1);
         }
 
@@ -20,7 +20,7 @@ namespace LittleFishers.LFInventory
         {
             InventoryItemStack stack = new InventoryItemStack(new InventoryItem(), 4);
 
-            Assert.AreEqual(stack.Item.ItemName, "Empty Inventory");
+            Assert.AreEqual(stack.FirstItem.ItemName, "Empty Inventory");
         }
     }
 }

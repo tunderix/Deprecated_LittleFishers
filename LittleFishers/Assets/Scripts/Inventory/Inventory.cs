@@ -81,8 +81,8 @@ namespace LittleFishers.LFInventory
             if (to == null) return false;
             InventoryItemStack _iStack = null;
             this._inventoryItems.TryGetValue(to, out _iStack);
-            if (_iStack.IsEmpty) this._inventoryItems[to] = new InventoryItemStack(item, 1);
-            else if (_iStack.Item == item) _iStack.ItemCount++;
+            if (item.StacksWith(_iStack.FirstItem)) _iStack.AddItem(item);
+            else if (_iStack.IsEmpty) this._inventoryItems[to] = new InventoryItemStack(item, 1);
 
             return true;
         }
@@ -91,9 +91,9 @@ namespace LittleFishers.LFInventory
         {
             foreach (KeyValuePair<InventorySlot, InventoryItemStack> pair in _inventoryItems)
             {
-                if (InventoryItem.IsEqual(pair.Value.Item, item))
+                if (pair.Value.Contains(item))
                 {
-                    pair.Value.RemoveOneItem();
+                    pair.Value.RemoveItem(item);
                     return true;
                 }
             }

@@ -10,6 +10,7 @@ namespace LittleFishers.LFInventory
         private int _goldValue;
         private Sprite _inventoryIcon;
         private int _maxStackSize;
+        private InventoryItemType _itemType;
 
         public InventoryItem()
         {
@@ -18,6 +19,7 @@ namespace LittleFishers.LFInventory
             _goldValue = -1;
             _inventoryIcon = null;
             _maxStackSize = 1;
+            _itemType = InventoryItemType.Default;
         }
 
         public InventoryItem(InventoryItemTemplate template)
@@ -27,6 +29,7 @@ namespace LittleFishers.LFInventory
             _goldValue = template.GoldValue;
             _inventoryIcon = template.InventoryIcon;
             _maxStackSize = template.MaxStackSize;
+            _itemType = template.GetItemType();
         }
 
         public bool IsDefault
@@ -34,9 +37,19 @@ namespace LittleFishers.LFInventory
             get => _itemName == "Empty Inventory Item";
         }
 
+        public bool StacksWith(InventoryItem item)
+        {
+            return _itemName == item._itemName; //TODO - Stacking by item subtype instead of name.... 
+        }
+
         public static bool IsEqual(InventoryItem item1, InventoryItem item2)
         {
             return item1._itemName == item2._itemName && item1._goldValue == item2._goldValue; // TODO fix this with better
+        }
+
+        public virtual InventoryItemType GetItemType()
+        {
+            return InventoryItemType.Default;
         }
 
         public string ItemName { get => _itemName; set => _itemName = value; }

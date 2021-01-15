@@ -47,7 +47,7 @@ namespace LittleFishers.LFInventory
             InventorySlot slot = new InventorySlot(0);
             _inventory.GetItemStackAtSlot(slot).Returns(new InventoryItemStack(new InventoryItem(), 3));
 
-            Assert.AreEqual("Empty Inventory Item", _inventory.GetItemStackAtSlot(slot).Item.ItemName);
+            Assert.AreEqual("Empty Inventory Item", _inventory.GetItemStackAtSlot(slot).FirstItem.ItemName);
         }
 
         [Test]

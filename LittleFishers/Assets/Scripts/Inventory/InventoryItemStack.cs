@@ -1,34 +1,66 @@
+using System.Collections.Generic;
+using System.Linq;
+
 namespace LittleFishers.LFInventory
 {
     public class InventoryItemStack : IInventoryItemStack
     {
-        private int _count;
-        private InventoryItem _item;
+        private List<InventoryItem> _items;
 
         public InventoryItemStack()
         {
-            _count = -1;
-            _item = null;
+            _items = new List<InventoryItem>();
         }
 
         public InventoryItemStack(InventoryItem item, int count)
         {
-            _count = count;
-            _item = item;
+            _items = new List<InventoryItem>();
+            _items.Add(item);
         }
 
-        public int ItemCount { get => _count; set => _count = value; }
-        public InventoryItem Item { get => _item; set => _item = value; }
-
-        public void RemoveOneItem()
+        public InventoryItemStack(List<InventoryItem> items, int count)
         {
-            _count--;
-            if (_count < 1) _item = null;
+            _items = items;
         }
+
+        public int ItemCount { get => _items.Count; }
+        public InventoryItem FirstItem { get => _items.First(); }
+        public InventoryItem Item(int at)
+        {
+            return _items.ElementAtOrDefault(at);
+        }
+
+        public bool Contains(InventoryItem item)
+        {
+            return _items.Contains(item);
+        }
+
+        public bool AddItem(InventoryItem item)
+        {
+            if (_items.Count < StackSize)
+            {
+                _items.Add(item);
+                return true;
+            }
+            return false;
+        }
+
+        public bool RemoveItem(InventoryItem item)
+        {
+            InventoryItem toBeRemoved = _items.Find(_item => _item.Equals(item));
+            if (toBeRemoved != null)
+            {
+                _items.Remove(toBeRemoved);
+                return true;
+            }
+            return false;
+        }
+
+        public int StackSize { get => FirstItem.MaxStackSize; }
 
         public bool IsEmpty
         {
-            get => (_count < 1) || _item.IsDefault;
+            get => _items.Count < 1;
         }
     }
 }

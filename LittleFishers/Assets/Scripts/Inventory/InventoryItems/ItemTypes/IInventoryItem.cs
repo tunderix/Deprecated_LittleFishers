@@ -8,5 +8,6 @@ namespace LittleFishers.LFInventory
         int GoldValue { get; set; }
         Sprite InventoryIcon { get; set; }
         int MaxStackSize { get; set; }
+        public bool StacksWith(InventoryItem item);
     }
 }
