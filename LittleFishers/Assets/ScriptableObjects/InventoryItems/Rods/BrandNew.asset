@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd61059fef682046bbdfc879a911974, type: 3}
   m_Name: BrandNew
   m_EditorClassIdentifier: 
-  ItemName: 
-  Description: 
-  MinGoldValue: 0
-  MaxGoldValue: 0
-  InventoryIcon: {fileID: 0}
+  ItemName: Brand New Fishing Rod
+  Description: What a fine fishing rod it is.
+  MinGoldValue: 50
+  MaxGoldValue: 50
+  InventoryIcon: {fileID: 21300000, guid: ef22777da57aaea48a24104df1fa0e47, type: 3}
   MaxStackSize: 0
-  StrengthModifier: 0
-  AttractionModifier: 0
+  StrengthModifier: 4
+  AttractionModifier: 4

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd61059fef682046bbdfc879a911974, type: 3}
   m_Name: Hooker
   m_EditorClassIdentifier: 
-  ItemName: 
-  Description: 
-  MinGoldValue: 0
-  MaxGoldValue: 0
-  InventoryIcon: {fileID: 0}
-  MaxStackSize: 0
-  StrengthModifier: 0
-  AttractionModifier: 0
+  ItemName: The Hooker
+  Description: 'The best normal fishing rod there is. '
+  MinGoldValue: 200
+  MaxGoldValue: 200
+  InventoryIcon: {fileID: 21300000, guid: 794116907afc12048a5f59d555ad255a, type: 3}
+  MaxStackSize: 1
+  StrengthModifier: 10
+  AttractionModifier: 10

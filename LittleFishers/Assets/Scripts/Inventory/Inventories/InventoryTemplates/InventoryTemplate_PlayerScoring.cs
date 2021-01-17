@@ -9,7 +9,7 @@ namespace LittleFishers.LFInventory
     public class InventoryTemplate_PlayerScoring : InventoryTemplate
     {
         [Header("Player Scoring Inventory Attributes")]
-        [SerializeField] List<InventoryItemTemplate> defaultItemTemplates;
+        [SerializeField] private List<InventoryItemTemplate> defaultItemTemplates;
         public override List<InventoryItemTemplate> DefaultItemTemplates => defaultItemTemplates;
     }
 }

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bee95ba677054b45bbfe441bdaeb290, type: 3}
   m_Name: Gigantic
   m_EditorClassIdentifier: 
-  ItemName: 
-  Description: 
-  MinGoldValue: 0
-  MaxGoldValue: 0
-  InventoryIcon: {fileID: 0}
-  MaxStackSize: 0
-  MinWeight: 0
-  MaxWeight: 0
+  ItemName: Gigantic Fish
+  Description: This monster-fish is a rare sight even at the seas.
+  MinGoldValue: 20
+  MaxGoldValue: 60
+  InventoryIcon: {fileID: 21300000, guid: a526e9433c5ef0d44853c4bb29cc5023, type: 3}
+  MaxStackSize: 3
+  MinWeight: 1000
+  MaxWeight: 2000

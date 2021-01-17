@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bee95ba677054b45bbfe441bdaeb290, type: 3}
   m_Name: Medium
   m_EditorClassIdentifier: 
-  ItemName: 
-  Description: 
-  MinGoldValue: 0
-  MaxGoldValue: 0
-  InventoryIcon: {fileID: 0}
-  MaxStackSize: 0
-  MinWeight: 0
-  MaxWeight: 0
+  ItemName: Medium Fish
+  Description: These can be found usually from small lakes or streams.
+  MinGoldValue: 4
+  MaxGoldValue: 8
+  InventoryIcon: {fileID: 21300000, guid: 91e1f9631e6428047b8686cc87e850a0, type: 3}
+  MaxStackSize: 5
+  MinWeight: 60
+  MaxWeight: 120

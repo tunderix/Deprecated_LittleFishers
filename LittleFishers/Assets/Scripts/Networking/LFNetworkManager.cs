@@ -8,8 +8,6 @@ public class LFNetworkManager : NetworkManager
     int clientIndex;
 
     [SerializeField]
-    private Hut hut;
-    [SerializeField]
     private InventorySystem inventorySystem;
 
     public override void OnServerAddPlayer(NetworkConnection conn)
@@ -25,6 +23,6 @@ public class LFNetworkManager : NetworkManager
     public override void OnStartHost()
     {
         base.OnStartHost();
-        hut.InitializeHut(this.inventorySystem);
+        //hut.InitializeHut(this.inventorySystem);
     }
 }

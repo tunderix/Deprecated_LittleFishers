@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace LittleFishers.LFInventory
 {
@@ -15,38 +16,31 @@ namespace LittleFishers.LFInventory
         public int InventorySize { get => _inventorySize; set => _inventorySize = value; }
         public int Gold { get => _gold; set => _gold = value; }
 
-        public Inventory()
-        {
-            _inventoryName = "";
-            _inventorySize = 16;
-            _gold = 0;
-
-            CreateInventory();
-        }
-
         public Inventory(InventoryTemplate template)
         {
             _inventoryName = template.InventoryName;
             _inventorySize = template.InventoryCapacity;
             _gold = template.Gold;
+            InitializeInventoryItems();
+            CreateInventory(template.DefaultItemTemplates);
+        }
 
-            CreateInventory();
+        private void InitializeInventoryItems()
+        {
+            _inventoryItems = new Dictionary<InventorySlot, InventoryItemStack>(_inventorySize);
+            for (int i = 0; i < _inventorySize; i++)
+            {
+                _inventoryItems.Add(new InventorySlot(i), new InventoryItemStack());
+            }
+        }
 
-            foreach (InventoryItemTemplate iTemplate in template.DefaultItemTemplates)
+        private void CreateInventory(List<InventoryItemTemplate> templates)
+        {
+            foreach (InventoryItemTemplate iTemplate in templates)
             {
                 InventoryItem item = new InventoryItem(iTemplate);
                 AddItem(item);
             }
-        }
-
-        private void CreateInventory()
-        {
-            Dictionary<InventorySlot, InventoryItemStack> newInventoryItems = new Dictionary<InventorySlot, InventoryItemStack>(_inventorySize);
-            for (int i = 0; i < _inventorySize; i++)
-            {
-                newInventoryItems.Add(new InventorySlot(i), new InventoryItemStack(new InventoryItem(), 0));
-            }
-            _inventoryItems = newInventoryItems;
         }
 
         private InventorySlot firstFreeSlot
@@ -81,12 +75,13 @@ namespace LittleFishers.LFInventory
             return itemStack;
         }
 
-        public bool AddItem(InventoryItem item) // TODO - Return int / slotId instead of bool
+        public bool AddItem(InventoryItem item)
         {
             InventorySlot to = firstFreeSlot;
             if (to == null) return false;
             InventoryItemStack _iStack = null;
             this._inventoryItems.TryGetValue(to, out _iStack);
+            if (_iStack.FirstItem == null) return false;
             if (item.StacksWith(_iStack.FirstItem)) _iStack.AddItem(item);
             else if (_iStack.IsEmpty) this._inventoryItems[to] = new InventoryItemStack(item, 1);
 

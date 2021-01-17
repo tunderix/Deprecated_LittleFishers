@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94e922d6671f3d543bf0228726a35f1f, type: 3}
   m_Name: Rusty Bike Wheel
   m_EditorClassIdentifier: 
-  ItemName: 
-  Description: 
+  ItemName: Rusty Bike Wheel
+  Description: 'Rusty old piece of bike. '
   MinGoldValue: 0
-  MaxGoldValue: 0
+  MaxGoldValue: 2
   InventoryIcon: {fileID: 0}
-  MaxStackSize: 0
+  MaxStackSize: 1

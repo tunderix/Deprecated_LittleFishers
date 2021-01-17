@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using LittleFishers.LFInventory;
 
 public class Shop : MonoBehaviour
 {
-    ShopInventory shopInventory; 
-    WeighingInventory weighingInventory; 
+    [SerializeField] private GameObject shopLayout;
+    [SerializeField] private GameObject weighingLayout;
+
 }

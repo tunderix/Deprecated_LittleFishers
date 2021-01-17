@@ -9,7 +9,7 @@ namespace LittleFishers.LFInventory
     public class InventoryTemplate_Shop : InventoryTemplate
     {
         [Header("Shop Inventory Attributes")]
-        [SerializeField] List<InventoryItemTemplate> defaultItemTemplates;
+        [SerializeField] private List<InventoryItemTemplate> defaultItemTemplates;
         public override List<InventoryItemTemplate> DefaultItemTemplates => defaultItemTemplates;
     }
 }

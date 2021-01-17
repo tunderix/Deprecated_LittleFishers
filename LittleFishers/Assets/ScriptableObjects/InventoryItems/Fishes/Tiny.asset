@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0bee95ba677054b45bbfe441bdaeb290, type: 3}
-  m_Name: Tiny 1
+  m_Name: Tiny
   m_EditorClassIdentifier: 
-  ItemName: 
-  Description: 
-  GoldValue: 0
-  InventoryIcon: {fileID: 0}
-  MaxStackSize: 0
-  Weight: 0
+  ItemName: Tiny Fish
+  Description: 'This tiny fish is only found from starting areas and small ponds. '
+  MinGoldValue: 2
+  MaxGoldValue: 4
+  InventoryIcon: {fileID: 21300000, guid: 82df2cc1ef53e7948806be407ede22e6, type: 3}
+  MaxStackSize: 5
+  MinWeight: 20
+  MaxWeight: 50

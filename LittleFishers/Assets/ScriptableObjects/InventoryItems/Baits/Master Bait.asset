@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e6b002d5ae29cf44bf5f1c1f6fd0a7b, type: 3}
   m_Name: Master Bait
   m_EditorClassIdentifier: 
-  ItemName: 
-  Description: 
-  GoldValue: 0
-  InventoryIcon: {fileID: 0}
-  MaxStackSize: 0
-  UseCount: 0
-  AttractionModifier: 0
-  StrengthModifier: 0
+  ItemName: Master Bait
+  Description: A bait used by masters of fishing
+  MinGoldValue: 0
+  MaxGoldValue: 0
+  InventoryIcon: {fileID: 21300000, guid: d370cfba968038749bdac66b2a50a3fd, type: 3}
+  MaxStackSize: 10
+  UseCount: 5
+  AttractionModifier: 10
+  StrengthModifier: 4

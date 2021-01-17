@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bee95ba677054b45bbfe441bdaeb290, type: 3}
   m_Name: Huge
   m_EditorClassIdentifier: 
-  ItemName: 
-  Description: 
-  MinGoldValue: 0
-  MaxGoldValue: 0
-  InventoryIcon: {fileID: 0}
-  MaxStackSize: 0
-  MinWeight: 0
-  MaxWeight: 0
+  ItemName: Huge Fish
+  Description: This fish can be found from only sea.
+  MinGoldValue: 10
+  MaxGoldValue: 30
+  InventoryIcon: {fileID: 21300000, guid: e1368d500c60ff942b42f4932b804634, type: 3}
+  MaxStackSize: 4
+  MinWeight: 250
+  MaxWeight: 1000

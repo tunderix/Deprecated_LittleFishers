@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bee95ba677054b45bbfe441bdaeb290, type: 3}
   m_Name: Small
   m_EditorClassIdentifier: 
-  ItemName: 
-  Description: 
-  MinGoldValue: 0
-  MaxGoldValue: 0
-  InventoryIcon: {fileID: 0}
-  MaxStackSize: 0
-  MinWeight: 0
-  MaxWeight: 0
+  ItemName: Small Fish
+  Description: These are usually found from small ponds and streams.
+  MinGoldValue: 2
+  MaxGoldValue: 6
+  InventoryIcon: {fileID: 21300000, guid: d2643c2f04d9deb41b626586bcb7e713, type: 3}
+  MaxStackSize: 5
+  MinWeight: 30
+  MaxWeight: 60

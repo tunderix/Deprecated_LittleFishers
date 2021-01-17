@@ -24,7 +24,7 @@ namespace LittleFishers.LFInventory
         }
 
         public int ItemCount { get => _items.Count; }
-        public InventoryItem FirstItem { get => _items.First(); }
+        public InventoryItem FirstItem { get => _items.Count > 0 ? _items.First() : new InventoryItem(); }
         public InventoryItem Item(int at)
         {
             return _items.ElementAtOrDefault(at);

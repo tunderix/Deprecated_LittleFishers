@@ -1,108 +1,47 @@
 using UnityEngine;
+using LittleFishers.LFInventory;
+using LittleFishers.UI;
 
-public class Hut : MonoBehaviour
+namespace LittleFishers.Environment
 {
-    private Player _visitingPlayer;
-
-    [SerializeField]
-    private Inventory _hutInventory;
-
-    [SerializeField]
-    private GameObject ShopLayout;
-
-    private InventorySystem _inventorySystem;
-
-    [SerializeField]
-    private InventoryTemplate defaultHutInventory;
-
-    [SerializeField]
-    private WeighingInventory _weighingInventory;
-
-    [SerializeField]
-    private Backpack backpack;
-
-    void OnTriggerEnter(Collider other)
+    [RequireComponent(typeof(Visitable))]
+    public class Hut : MonoBehaviour
     {
-        Debug.Log("Player Approached Hut");
-        ShopLayout.SetActive(true);
 
-        Player player = other.GetComponent<Player>();
-        if (player != null)
+        [SerializeField] private UI_ShopLayout shopLayout;
+        [SerializeField] private InventoryTemplate_Shop shopInventoryTemplate;
+        [SerializeField] private InventoryTemplate_Weighing weighingInventoryTemplate;
+        [SerializeField] private Backpack backpack;
+
+        [SerializeField] private Inventory_Shop _shopInventory;
+        [SerializeField] private Inventory_Weighing _weighingInventory;
+
+        private Visitable visitable;
+
+        private void Start()
         {
-            _visitingPlayer = player;
-        }
-    }
+            visitable = this.GetComponent<Visitable>();
 
-    void OnTriggerStay(Collider other)
-    {
+            //Subscribe to event for player coming in or going out
+            visitable.OnVisitorArrived = VisitorCame;
+            visitable.OnVisitorLeft = VisitorWent;
 
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        Debug.Log("Player Left Hut");
-        ShopLayout.SetActive(false);
-        _visitingPlayer = null;
-    }
-
-    public void SetHutInventory(Inventory inventory)
-    {
-        this._hutInventory = inventory;
-    }
-
-    // Hooked in unity editor
-    public void SellItemsInInventory()
-    {
-        if (this._hutInventory == null) return;
-
-        int totalGoldAmount = 0;
-        for (int i = 0; i < this._hutInventory.inventorySlots.Count; i++)
-        {
-            totalGoldAmount += SellInventoryItem(i);
-        }
-        if (_visitingPlayer != null)
-        {
-            _visitingPlayer.GetPlayerInventory().GiveGold(totalGoldAmount);
-        }
-        this.backpack.UpdateBackpack();
-    }
-
-    private int SellInventoryItem(int atIndex)
-    {
-        int goldValue = 0;
-        InventorySlot slot = this._hutInventory.inventorySlots[atIndex];
-        if (slot != null && slot.InventoryItem != null)
-        {
-            goldValue += slot.InventoryItem.goldValue;
+            _shopInventory = new Inventory_Shop(shopInventoryTemplate);
+            _weighingInventory = new Inventory_Weighing(weighingInventoryTemplate);
         }
 
-        this._hutInventory.RemoveItemAt(atIndex);
-        this._weighingInventory.UpdateWeighingInventory();
-
-        return goldValue;
-    }
-
-    public void InitializeHut(InventorySystem inventorySystem)
-    {
-        this._inventorySystem = inventorySystem;
-        SetHutInventory(InventorySystem.CreateNewInventoryBasedOn(defaultHutInventory, InventoryItemWasChanged));
-        _weighingInventory.InstantiateWeighingSlots(_hutInventory, OnBackpackItemDroppedOn);
-    }
-
-    private void OnBackpackItemDroppedOn(BackpackSlot from, BackpackSlot to)
-    {
-        if (_visitingPlayer != null)
+        private void VisitorCame()
         {
-            _visitingPlayer.GetPlayerInventory().RemoveItemAt(from.backpackSlotId);
+            Debug.Log("Visitor visiting Hut");
+            shopLayout.gameObject.SetActive(true);
+            shopLayout.UpdateContents(_shopInventory, _weighingInventory);
         }
 
-        _hutInventory.AddItem(from.item);
-        this._weighingInventory.UpdateWeighingInventory();
-    }
+        private void VisitorWent()
+        {
+            Debug.Log("Visitor left from Hut");
+            shopLayout.gameObject.SetActive(false);
+        }
 
-    private void InventoryItemWasChanged()
-    {
-        this._weighingInventory.UpdateWeighingInventory();
-        backpack.UpdateBackpack();
     }
 }

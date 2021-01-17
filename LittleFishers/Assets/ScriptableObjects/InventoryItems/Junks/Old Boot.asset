@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94e922d6671f3d543bf0228726a35f1f, type: 3}
   m_Name: Old Boot
   m_EditorClassIdentifier: 
-  ItemName: 
-  Description: 
+  ItemName: Old Boot
+  Description: Smelly boot... Someone is probably walking with only one boot somewhere.
   MinGoldValue: 0
-  MaxGoldValue: 0
-  InventoryIcon: {fileID: 0}
-  MaxStackSize: 0
+  MaxGoldValue: 2
+  InventoryIcon: {fileID: 21300000, guid: 1f3c6cf165e4459438efc58ba5f6f49e, type: 3}
+  MaxStackSize: 1

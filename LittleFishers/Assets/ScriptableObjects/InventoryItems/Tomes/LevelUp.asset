@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 198e1d18c950e444189bb4fa4f015cd0, type: 3}
   m_Name: LevelUp
   m_EditorClassIdentifier: 
-  ItemName: 
-  Description: 
+  ItemName: Level Up Tome
+  Description: You feel more experienced fisher after reading fishing manual
   MinGoldValue: 0
   MaxGoldValue: 0
-  InventoryIcon: {fileID: 0}
-  MaxStackSize: 0
-  TomeModifier: 0
+  InventoryIcon: {fileID: 21300000, guid: 03bf2fa5abf005349b1c26272a32758c, type: 3}
+  MaxStackSize: 1
+  TomeModifier: 2

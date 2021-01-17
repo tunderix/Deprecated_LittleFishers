@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4e8ed929e929ef4d866e01b03fc239f, type: 3}
   m_Name: DefaultWeighing
   m_EditorClassIdentifier: 
-  _inventoryName: 
-  _inventoryCapacity: 0
+  _inventoryName: Weighing Inventory
+  _inventoryCapacity: 14
   _defaultGold: 0
+  defaultItemTemplates: []

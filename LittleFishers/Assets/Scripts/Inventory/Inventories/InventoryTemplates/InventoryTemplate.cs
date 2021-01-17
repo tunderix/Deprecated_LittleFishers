@@ -11,7 +11,6 @@ namespace LittleFishers.LFInventory
         [Header("Global Inventory Attributes")]
         [SerializeField] private string _inventoryName;
         [SerializeField] private int _inventoryCapacity;
-        [SerializeField] private List<InventoryItemStack> _defaultItems;
         [SerializeField] private int _defaultGold;
 
 

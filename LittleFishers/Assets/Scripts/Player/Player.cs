@@ -51,7 +51,7 @@ public class Player : NetworkBehaviour
         Color playerColor = LittleFishersHelpers.PlayerColor(isLocalPlayer);
         string playerName = isLocalPlayer ? "Me" : "Unknown";
         PlayerGameState gameState = GameLogic.CreatePlayerGameState(playerId, playerName, playerColor, 0);
-        this.playerInventory = gameLogic.CreatePlayerInventory();
+        //this.playerInventory = gameLogic.CreatePlayerInventory();
         gameLogic.AddPlayerToStateListing(gameState);
     }
 

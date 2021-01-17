@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 913c66b300f2a24488f17a53dfc4fcbb, type: 3}
   m_Name: StarterShop
   m_EditorClassIdentifier: 
-  _inventoryName: 
-  _inventoryCapacity: 0
-  _defaultGold: 0
+  _inventoryName: Blackbeard's Market
+  _inventoryCapacity: 10
+  _defaultGold: 999
+  defaultItemTemplates:
+  - {fileID: 11400000, guid: 4540f9bc09e27f44aad6a0273c2fb05d, type: 2}
+  - {fileID: 11400000, guid: 4540f9bc09e27f44aad6a0273c2fb05d, type: 2}
+  - {fileID: 11400000, guid: 451bc7f9030e1894fa054eb7e35c25c2, type: 2}
+  - {fileID: 11400000, guid: 55ff0cb6fa449fa468da03efd6f3823d, type: 2}
