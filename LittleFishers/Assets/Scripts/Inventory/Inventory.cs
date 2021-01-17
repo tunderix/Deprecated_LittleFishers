@@ -111,5 +111,20 @@ namespace LittleFishers.LFInventory
             }
             return false;
         }
+
+        public int ReservedSlotCount
+        {
+            get
+            {
+                int reservedSlotCount = 0;
+
+                foreach (KeyValuePair<InventorySlot, InventoryItemStack> pair in _inventoryItems)
+                {
+                    if (!pair.Value.IsEmpty) reservedSlotCount++;
+                }
+
+                return reservedSlotCount;
+            }
+        }
     }
 }

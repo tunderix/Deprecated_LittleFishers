@@ -20,6 +20,9 @@ namespace LittleFishers.UI
             // First clear all components under layoutgroup
             LittleFishersHelpers.DestroyAllChilds(layoutGroup.transform);
 
+            goldLabel.text = inventoryToShow.Gold.ToString();
+            slotsLabel.text = inventoryToShow.ReservedSlotCount.ToString() + "/" + inventoryToShow.InventorySize.ToString();
+
             // Detect inventory items and make a shopitem prefab for each while setting parent to layout
             foreach (KeyValuePair<LittleFishers.LFInventory.InventorySlot, InventoryItemStack> pair in inventoryToShow.GetInventoryItems())
             {

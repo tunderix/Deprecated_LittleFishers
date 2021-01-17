@@ -45,7 +45,7 @@ public class Player : NetworkBehaviour
         this.tag = "PlayerSelf";
         playerStats.Experience.SubscribeToExperienceChange(experienceTrack.playerExperienceAmountChanged);
         playerStats.Experience.SubscribeToLevelChange(levelTracker.OnLevelChanged);
-        GameObject.Find("LittleFishersUI").GetComponent<LittleFishersUI>().ReferenceLocalPlayer(this);
+        GameObject.Find("LittleFishersUI").GetComponent<LittleFishersUI>().ReferenceLocalPlayer(this); //TODO replace find later. Crashing atm. 
     }
 
     public override void OnStartClient()
@@ -89,5 +89,6 @@ public class Player : NetworkBehaviour
     public void OnInventoryItemCollected(InventoryItem inventoryItem)
     {
         playerInventory.AddItem(inventoryItem);
+        GameObject.Find("LittleFishersUI").GetComponent<LittleFishersUI>().UpdateBackpack();
     }
 }

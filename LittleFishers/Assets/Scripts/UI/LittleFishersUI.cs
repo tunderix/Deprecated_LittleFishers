@@ -42,7 +42,7 @@ public class LittleFishersUI : MonoBehaviour
     {
         backpackHidden = !backpackHidden;
         backpack.gameObject.SetActive(!backpackHidden);
-        if (!backpackHidden) backpack.ShowInventory(_localPlayer.PlayerInventory);
+        UpdateBackpack();
     }
 
     public void ToggleMainMenu()
@@ -66,8 +66,8 @@ public class LittleFishersUI : MonoBehaviour
         _localPlayer = player;
     }
 
-    public void UpdateUI()
+    public void UpdateBackpack()
     {
-
+        if (!backpackHidden) backpack.ShowInventory(_localPlayer.PlayerInventory);
     }
 }
