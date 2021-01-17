@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 7015288893444428974}
   - component: {fileID: 7015288893444428973}
   - component: {fileID: 7015288893444428972}
+  - component: {fileID: 4866831370479738334}
   m_Layer: 5
   m_Name: BackpackSlot
   m_TagString: Untagged
@@ -232,3 +233,15 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 2.08
+--- !u!114 &4866831370479738334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7015288893444428970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e33081b2c11f23b46ac3e86641e7536f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

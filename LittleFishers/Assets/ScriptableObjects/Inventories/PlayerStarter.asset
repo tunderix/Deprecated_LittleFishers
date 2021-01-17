@@ -15,4 +15,6 @@ MonoBehaviour:
   _inventoryName: Player Inventory
   _inventoryCapacity: 16
   _defaultGold: 12
-  defaultItemTemplates: []
+  defaultItemTemplates:
+  - {fileID: 11400000, guid: edda85ea388ddda41ba75cb6d1aa80c5, type: 2}
+  - {fileID: 11400000, guid: 4540f9bc09e27f44aad6a0273c2fb05d, type: 2}

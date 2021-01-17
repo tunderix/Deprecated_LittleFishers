@@ -84,7 +84,7 @@ namespace LittleFishers.LFInventory
             if (_iStack.FirstItem == null) return false;
             if (item.StacksWith(_iStack.FirstItem)) _iStack.AddItem(item);
             else if (_iStack.IsEmpty) this._inventoryItems[to] = new InventoryItemStack(item, 1);
-
+            Debug.Log("Added item to inventory: " + item.ItemName);
             return true;
         }
 

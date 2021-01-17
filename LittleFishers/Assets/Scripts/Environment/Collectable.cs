@@ -1,13 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using LittleFishers.LFInventory;
 
-public class Collectable : MonoBehaviour
+namespace LittleFishers.Environment
 {
-    [SerializeField] private int inventoryItemCount;
-
-    public void OnTriggerEnter(Collider other)
+    public class Collectable : MonoBehaviour
     {
+        [SerializeField] private InventoryItemTemplate inventoryItemTemplate;
 
+        public void OnTriggerEnter(Collider other)
+        {
+            Collector collector = other.GetComponent<Collector>();
+            if (collector != null)
+            {
+                collector.Collected(new InventoryItem(inventoryItemTemplate));
+                GameObject.Destroy(this.gameObject);
+            }
+        }
     }
 }

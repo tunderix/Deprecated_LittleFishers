@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using LittleFishers.Environment;
+using LittleFishers.LFInventory;
 
+[RequireComponent(typeof(Collector))]
 public class Player : NetworkBehaviour
 {
     public int playerId;
 
     [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private Inventory_Player playerInventory;
 
     [Header("Player Default Stats")]
     [SerializeField] private int defaultPlayerStrength;
@@ -17,6 +21,7 @@ public class Player : NetworkBehaviour
     private LevelTrack levelTracker;
 
     private GameLogic gameLogic;
+    public Inventory_Player PlayerInventory { get => playerInventory; }
 
     void Awake()
     {
@@ -24,6 +29,8 @@ public class Player : NetworkBehaviour
         levelTracker = GameObject.Find("LevelIndicator").GetComponent<LevelTrack>();
         playerStats = new PlayerStats(defaultPlayerExperience, defaultPlayerStrength);
         gameLogic = (GameLogic)GameObject.FindGameObjectWithTag("KrakenTheGod").GetComponent<GameLogic>();
+
+        SubscribeToCollectionOfItems();
     }
 
     public void MoveTo(Vector3 newPosition)
@@ -38,7 +45,7 @@ public class Player : NetworkBehaviour
         this.tag = "PlayerSelf";
         playerStats.Experience.SubscribeToExperienceChange(experienceTrack.playerExperienceAmountChanged);
         playerStats.Experience.SubscribeToLevelChange(levelTracker.OnLevelChanged);
-
+        GameObject.Find("LittleFishersUI").GetComponent<LittleFishersUI>().ReferenceLocalPlayer(this);
     }
 
     public override void OnStartClient()
@@ -67,5 +74,20 @@ public class Player : NetworkBehaviour
     public PlayerStats GetPlayerStats()
     {
         return playerStats;
+    }
+
+    public void CreateInventoryBasedOn(InventoryTemplate_Player playerInventoryTemplate)
+    {
+        playerInventory = new Inventory_Player(playerInventoryTemplate);
+    }
+
+    private void SubscribeToCollectionOfItems()
+    {
+        this.GetComponent<Collector>().OnCollected = OnInventoryItemCollected;
+    }
+
+    public void OnInventoryItemCollected(InventoryItem inventoryItem)
+    {
+        playerInventory.AddItem(inventoryItem);
     }
 }

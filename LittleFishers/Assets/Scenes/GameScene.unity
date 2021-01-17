@@ -572,8 +572,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f21f2db843a37054eba0ed568b3c9bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryItem: {fileID: 0}
-  inventoryItemCount: 4
+  inventoryItemTemplate: {fileID: 11400000, guid: 4540f9bc09e27f44aad6a0273c2fb05d,
+    type: 2}
 --- !u!65 &43405380
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1206,8 +1206,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f21f2db843a37054eba0ed568b3c9bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryItem: {fileID: 0}
-  inventoryItemCount: 4
+  inventoryItemTemplate: {fileID: 11400000, guid: 4540f9bc09e27f44aad6a0273c2fb05d,
+    type: 2}
 --- !u!65 &131672574
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2041,7 +2041,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &212719459
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2113,38 +2113,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 212719458}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fe7fe7ebdaad484bb7e1534e03fe500, type: 3}
+  m_Script: {fileID: 11500000, guid: 1498edf5476782345af7aa284213541e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridLayoutGroup: {fileID: 2107650302}
-  backpackSlotPrefab: {fileID: 7015288893444428970, guid: 332a3c599fca26f47b5d01e57bf875b0,
-    type: 3}
-  draggableArea: {fileID: 408606971}
-  backpackInventoryItemPrefab: {fileID: 7551226803952727211, guid: 67ca63c1936e98b438e21b1a8024f268,
-    type: 3}
-  localPlayerInventory:
-    inventoryName: Default Inventory
-    inventorySize: 16
-    gold: 0
-    inventorySlots: []
-    _baitSlot:
-      _equippedFishingBait:
-        itemName: 
-        description: 
-        goldValue: 0
-        amount: 0
-        inventoryIcon: {fileID: 0}
-        MaxStackSize: 0
-    _rodSlot:
-      _equippedFishingRod:
-        itemName: 
-        description: 
-        goldValue: 0
-        amount: 0
-        inventoryIcon: {fileID: 0}
-        MaxStackSize: 0
+  slotsLabel: {fileID: 387974755}
   goldLabel: {fileID: 1667857425}
-  slotCountLabel: {fileID: 387974755}
+  layoutGroup: {fileID: 2107650302}
+  backpackSlotPrefab: {fileID: 4866831370479738334, guid: 332a3c599fca26f47b5d01e57bf875b0,
+    type: 3}
+  backpackItemPrefab: {fileID: -4931214933684691054, guid: 67ca63c1936e98b438e21b1a8024f268,
+    type: 3}
 --- !u!1001 &215289526
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2593,7 +2571,8 @@ MonoBehaviour:
   autoCreatePlayer: 1
   playerSpawnMethod: 1
   spawnPrefabs: []
-  inventorySystem: {fileID: 662964721}
+  playerInventoryTemplate: {fileID: 11400000, guid: 91991ae1bc7686443bc8d1b99421f2c0,
+    type: 2}
 --- !u!4 &259470557
 Transform:
   m_ObjectHideFlags: 0
@@ -4965,8 +4944,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f21f2db843a37054eba0ed568b3c9bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryItem: {fileID: 0}
-  inventoryItemCount: 4
+  inventoryItemTemplate: {fileID: 11400000, guid: 4540f9bc09e27f44aad6a0273c2fb05d,
+    type: 2}
 --- !u!65 &612002156
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5458,7 +5437,6 @@ GameObject:
   - component: {fileID: 662964715}
   - component: {fileID: 662964720}
   - component: {fileID: 662964719}
-  - component: {fileID: 662964721}
   - component: {fileID: 662964722}
   m_Layer: 0
   m_Name: KrakenTheGod
@@ -5498,12 +5476,6 @@ MonoBehaviour:
   _fishingTargetPrefab: {fileID: 1632434068832938824, guid: 71f9575b7d6f76e4d9821f62c7e0e8bf,
     type: 3}
   throwDistance: 72.55
-  tiny: {fileID: 0}
-  small: {fileID: 0}
-  medium: {fileID: 0}
-  large: {fileID: 0}
-  huge: {fileID: 0}
-  gigantic: {fileID: 0}
 --- !u!114 &662964717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5546,14 +5518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4ceedfa4d3ef624995a6dcd8b7d1421, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventorySystem: {fileID: 662964721}
-  defaultPlayerInventoryTemplate: {fileID: 0}
-  startFishingRod: {fileID: 0}
-  startFishingBait: {fileID: 0}
   playerListComponent: {fileID: 1537352027}
-  UIBackPackComponent: {fileID: 212719462}
-  UIBaitSlotComponent: {fileID: 1706721364}
-  UIRodSlotComponent: {fileID: 1223821190}
 --- !u!114 &662964720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5570,20 +5535,6 @@ MonoBehaviour:
   serverOnly: 0
   m_AssetId: 
   hasSpawned: 0
---- !u!114 &662964721
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 662964714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc60d8b462456dc4dabbf9c9c6572b32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dafaultPlayerInventory: {fileID: 0}
-  dafaultHutInventory: {fileID: 0}
 --- !u!114 &662964722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9616,12 +9567,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6502cdca143b8bf4a90b113b3512d993, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backpack: {fileID: 212719462}
   playerList: {fileID: 1430401438}
   mainMenu: {fileID: 188600463}
   keybindLayout: {fileID: 65522928}
   shopLayout: {fileID: 357241909}
   experienceTrack: {fileID: 792827943}
+  backpack: {fileID: 212719462}
   playerListHidden: 1
   backpackHidden: 1
   mainMenuHidden: 1
@@ -9739,7 +9690,6 @@ GameObject:
   - component: {fileID: 1223821187}
   - component: {fileID: 1223821189}
   - component: {fileID: 1223821188}
-  - component: {fileID: 1223821190}
   m_Layer: 5
   m_Name: RodSlot
   m_TagString: Untagged
@@ -9807,26 +9757,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1223821186}
   m_CullTransparentMesh: 1
---- !u!114 &1223821190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1223821186}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42dc62819ba08ca4986d5a2e27d8ffb3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rodIcon: {fileID: 168598400}
-  Rod:
-    itemName: 
-    description: 
-    goldValue: 0
-    amount: 0
-    inventoryIcon: {fileID: 0}
-    MaxStackSize: 0
 --- !u!1001 &1231337551
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11944,7 +11874,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1621854939}
   - component: {fileID: 1621854940}
-  - component: {fileID: 1621854941}
   m_Layer: 5
   m_Name: WeighingInventory
   m_TagString: Untagged
@@ -11995,20 +11924,6 @@ MonoBehaviour:
   m_Spacing: {x: 4, y: 4}
   m_Constraint: 0
   m_ConstraintCount: 2
---- !u!114 &1621854941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1621854938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bda79f7aab40e5147a1d07f9d56c4d0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weighingSlotPrefab: {fileID: 5764688293094896932, guid: 3e971a9cc4490f34fb356e3835e25d6b,
-    type: 3}
 --- !u!1 &1629148720
 GameObject:
   m_ObjectHideFlags: 0
@@ -12708,7 +12623,6 @@ GameObject:
   - component: {fileID: 1706721361}
   - component: {fileID: 1706721363}
   - component: {fileID: 1706721362}
-  - component: {fileID: 1706721364}
   m_Layer: 5
   m_Name: BaitSlot
   m_TagString: Untagged
@@ -12776,26 +12690,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1706721360}
   m_CullTransparentMesh: 1
---- !u!114 &1706721364
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1706721360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc3cc726141108a46a4275e1871ae343, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baitIcon: {fileID: 594596059}
-  Bait:
-    itemName: 
-    description: 
-    goldValue: 0
-    amount: 0
-    inventoryIcon: {fileID: 0}
-    MaxStackSize: 0
 --- !u!1 &1706725599
 GameObject:
   m_ObjectHideFlags: 0
@@ -14099,8 +13993,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f21f2db843a37054eba0ed568b3c9bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryItem: {fileID: 0}
-  inventoryItemCount: 4
+  inventoryItemTemplate: {fileID: 11400000, guid: 4540f9bc09e27f44aad6a0273c2fb05d,
+    type: 2}
 --- !u!65 &1921131822
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14689,7 +14583,6 @@ MonoBehaviour:
     type: 2}
   weighingInventoryTemplate: {fileID: 11400000, guid: 4e1493c04ab6cbf4b97d00d42ee97903,
     type: 2}
-  backpack: {fileID: 212719462}
 --- !u!114 &2046608424
 MonoBehaviour:
   m_ObjectHideFlags: 0
