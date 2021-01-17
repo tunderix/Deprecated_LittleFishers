@@ -86,8 +86,6 @@ GameObject:
   - component: {fileID: 5764688293094896935}
   - component: {fileID: 5764688293094896937}
   - component: {fileID: 5764688293094896934}
-  - component: {fileID: -1303726243041951527}
-  - component: {fileID: 191117015319382897}
   m_Layer: 5
   m_Name: WeighingSlot
   m_TagString: Untagged
@@ -154,35 +152,3 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 2.2
---- !u!114 &-1303726243041951527
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5764688293094896932}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424ad99d117f69649b75d43f24e68d60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &191117015319382897
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5764688293094896932}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fc49b0fce71ab540abbfbd5da332fbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slotIndex: 0
-  item:
-    itemName: 
-    description: 
-    goldValue: 0
-    amount: 0
-    inventoryIcon: {fileID: 0}
-  image: {fileID: 204209287634246034}

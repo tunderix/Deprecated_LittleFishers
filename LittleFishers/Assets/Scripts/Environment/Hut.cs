@@ -11,7 +11,6 @@ namespace LittleFishers.Environment
         [SerializeField] private UI_ShopLayout shopLayout;
         [SerializeField] private InventoryTemplate_Shop shopInventoryTemplate;
         [SerializeField] private InventoryTemplate_Weighing weighingInventoryTemplate;
-        [SerializeField] private Backpack backpack;
 
         [SerializeField] private Inventory_Shop _shopInventory;
         [SerializeField] private Inventory_Weighing _weighingInventory;

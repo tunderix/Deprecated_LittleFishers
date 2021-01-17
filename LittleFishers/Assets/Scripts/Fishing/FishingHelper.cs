@@ -23,15 +23,6 @@ public class FishingHelper
         return (clickedGO.tag == "Water" && throwDistance < throwRange);
     }
 
-    public static CaughtFish fishObjectBySize(FishSize size)
-    {
-        switch (size)
-        {
-            default:
-                return (CaughtFish)ScriptableObject.CreateInstance(typeof(CaughtFish));
-        }
-    }
-
     public static string RandomFishName
     {
         get

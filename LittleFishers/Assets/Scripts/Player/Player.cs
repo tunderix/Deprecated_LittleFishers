@@ -7,7 +7,6 @@ public class Player : NetworkBehaviour
 {
     public int playerId;
 
-    [SerializeField] private Inventory playerInventory;
     [SerializeField] private PlayerStats playerStats;
 
     [Header("Player Default Stats")]
@@ -63,11 +62,6 @@ public class Player : NetworkBehaviour
         if (!gameLogic) return;
 
         gameLogic.RemovePlayerFromStateListing(playerId);
-    }
-
-    public Inventory GetPlayerInventory()
-    {
-        return playerInventory;
     }
 
     public PlayerStats GetPlayerStats()

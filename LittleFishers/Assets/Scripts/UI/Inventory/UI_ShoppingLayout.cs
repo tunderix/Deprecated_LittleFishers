@@ -20,7 +20,7 @@ namespace LittleFishers.UI
             {
                 if (pair.Value.FirstItem.IsDefault) continue;
                 ShopItem shopItem = (ShopItem)Instantiate(shopItemPrefab);
-                shopItem.transform.parent = layoutGroup.transform;
+                shopItem.transform.SetParent(layoutGroup.transform);
                 shopItem.SetContent(pair.Value);
             }
 

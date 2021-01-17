@@ -11,9 +11,9 @@ public class FishFactory
 
     }
 
-    public Fish CreateFish(FishSize newFishSize, CaughtFish fishTemplate)
+    public Fish CreateFish(FishSize newFishSize)
     {
-        Fish fish = new Fish(newFishSize, fishTemplate);
+        Fish fish = new Fish(newFishSize);
         return fish;
     }
 }

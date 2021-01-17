@@ -5,25 +5,15 @@ using Mirror;
 
 public class LittleFishersUI : MonoBehaviour
 {
-    [SerializeField]
-    private Backpack backpack;
-    [SerializeField]
-    private PlayerStatisticsPanel playerList;
-    [SerializeField]
-    private MainMenu mainMenu;
-    [SerializeField]
-    private KeybindLayout keybindLayout;
-    [SerializeField]
-    private GameObject shopLayout;
-    [SerializeField]
-    private ExperienceTrack experienceTrack;
+    [SerializeField] private PlayerStatisticsPanel playerList;
+    [SerializeField] private MainMenu mainMenu;
+    [SerializeField] private KeybindLayout keybindLayout;
+    [SerializeField] private GameObject shopLayout;
+    [SerializeField] private ExperienceTrack experienceTrack;
 
-    [SerializeField]
-    private bool playerListHidden;
-    [SerializeField]
-    private bool backpackHidden;
-    [SerializeField]
-    private bool mainMenuHidden;
+    [SerializeField] private bool playerListHidden;
+    [SerializeField] private bool backpackHidden;
+    [SerializeField] private bool mainMenuHidden;
 
     void Start()
     {
@@ -33,7 +23,6 @@ public class LittleFishersUI : MonoBehaviour
     private void HideInitialUIComponents()
     {
         playerList.gameObject.SetActive(!playerListHidden);
-        backpack.gameObject.SetActive(!backpackHidden);
         mainMenu.gameObject.SetActive(!mainMenuHidden);
         HideKeybindLayout();
     }
@@ -48,9 +37,6 @@ public class LittleFishersUI : MonoBehaviour
     public void ToggleBackpack()
     {
         backpackHidden = !backpackHidden;
-        backpack.gameObject.SetActive(!backpackHidden);
-        backpack.ClearBackpack();
-        if (!backpackHidden) backpack.UpdateBackpack();
     }
 
     public void ToggleMainMenu()
@@ -71,6 +57,6 @@ public class LittleFishersUI : MonoBehaviour
 
     public void UpdateUI()
     {
-        backpack.UpdateBackpack();
+
     }
 }

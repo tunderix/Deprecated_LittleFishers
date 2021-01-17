@@ -11,14 +11,12 @@ public class Fish
     private Sprite _icon;
     private int _goldValue;
 
-    public Fish(FishSize fishSize, CaughtFish caughtFish)
+    public Fish(FishSize fishSize)
     {
         this._fishSize = fishSize;
         this._fishName = FishingHelper.RandomFishName;
-        this._fishSizeName = caughtFish.name;
-        this._description = caughtFish.description;
-        this._icon = caughtFish.backpackIcon;
-        this._goldValue = decideGoldValue(caughtFish.minGoldValue, caughtFish.maxGoldValue);
+
+
     }
 
     private int decideGoldValue(int min, int max)

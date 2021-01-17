@@ -9,20 +9,6 @@ public class FishingController : MonoBehaviour
     public GameObject _fishingTargetPrefab;
     public float throwDistance;
 
-    [Header("Fish Templates")]
-    [SerializeField]
-    private CaughtFish tiny;
-    [SerializeField]
-    private CaughtFish small;
-    [SerializeField]
-    private CaughtFish medium;
-    [SerializeField]
-    private CaughtFish large;
-    [SerializeField]
-    private CaughtFish huge;
-    [SerializeField]
-    private CaughtFish gigantic;
-
     private FishFactory fishFactory;
 
     void Awake()
@@ -33,9 +19,8 @@ public class FishingController : MonoBehaviour
     public void StartFishing(Vector3 position, FishPool fishPool, Player player)
     {
         FishSize newFishSize = fishPool.RandomFishSize;
-        Fish fish = fishFactory.CreateFish(newFishSize, GetFishTemplate(newFishSize));
+        Fish fish = fishFactory.CreateFish(newFishSize);
         PlayerStats stats = player.GetPlayerStats();
-        Inventory inventory = player.GetPlayerInventory();
 
         GameObject fishingTargetPrefab = GameObject.Instantiate(_fishingTargetPrefab, position, Quaternion.identity);
         FishingTarget fishingTarget = fishingTargetPrefab.GetComponent<FishingTarget>();
@@ -49,36 +34,11 @@ public class FishingController : MonoBehaviour
         if (canPlayerCatchFish)
         {
             stats.AddExperience(FishingHelper.calculateFishExperience(fishPool, fish, stats));
-            InventoryObject fishInventoryObject = new InventoryObject(fish);
-            bool collectedCollectable = inventory.AddItem(fishInventoryObject);
-            Debug.Log(collectedCollectable ? "Success for inventoryplacement" : "Failure for inventoryplacement");
         }
     }
 
     private bool CanPlayerCatchFish(Fish fish, PlayerStats playerStats)
     {
         return fish.Strength <= playerStats.GetPlayerStrength();
-    }
-
-
-    private CaughtFish GetFishTemplate(FishSize bySize)
-    {
-        switch (bySize)
-        {
-            case FishSize.Tiny:
-                return tiny;
-            case FishSize.Small:
-                return small;
-            case FishSize.Medium:
-                return medium;
-            case FishSize.Large:
-                return large;
-            case FishSize.Huge:
-                return huge;
-            case FishSize.Gigantous:
-                return gigantic;
-            default:
-                return tiny;
-        }
     }
 }

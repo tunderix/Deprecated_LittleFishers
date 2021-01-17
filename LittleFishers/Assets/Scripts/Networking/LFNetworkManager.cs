@@ -7,9 +7,6 @@ public class LFNetworkManager : NetworkManager
 {
     int clientIndex;
 
-    [SerializeField]
-    private InventorySystem inventorySystem;
-
     public override void OnServerAddPlayer(NetworkConnection conn)
     {
         GameObject go = Instantiate(playerPrefab);
