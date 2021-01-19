@@ -11,7 +11,6 @@ namespace LittleFishers.UI
         public void SetContent(InventoryItemStack stack)
         {
             itemIcon.sprite = stack.FirstItem.InventoryIcon;
-
         }
     }
 }
