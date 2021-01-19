@@ -51,7 +51,7 @@ public class InputController : MonoBehaviour
     //TODO - awfull
     private void _onRightButtonClick(GameObject clickedGO, Vector3 point)
     {
-        unitSelection.userIsDragging = mouseControls._userIsDragging;
+        //unitSelection.userIsDragging = mouseControls._userIsDragging;
         GameObject player = GameObject.FindGameObjectWithTag("PlayerSelf");
         /*
         FishPool fishPool = clickedGO.GetComponent<FishPool>();
@@ -81,16 +81,20 @@ public class InputController : MonoBehaviour
 
     void Update()
     {
-        Player player = GameObject.FindGameObjectWithTag("PlayerSelf").GetComponent<Player>();
-        if (player != null)
+        GameObject localPlayer = GameObject.FindGameObjectWithTag("PlayerSelf");
+        if (localPlayer != null)
         {
-            if (Input.GetKeyDown(KeyCode.Q))
+            Player player = localPlayer.GetComponent<Player>();
+            if (player != null)
             {
-                fishingController.SetFishingIndicator(player, true);
-            }
-            if (Input.GetKeyUp(KeyCode.Q))
-            {
-                fishingController.SetFishingIndicator(player, false);
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    fishingController.SetFishingIndicator(player, true);
+                }
+                if (Input.GetKeyUp(KeyCode.Q))
+                {
+                    fishingController.SetFishingIndicator(player, false);
+                }
             }
         }
 

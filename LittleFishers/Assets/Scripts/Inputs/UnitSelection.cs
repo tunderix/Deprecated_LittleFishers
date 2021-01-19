@@ -44,7 +44,9 @@ public class UnitSelection : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(1))
         {
+            _temporaryDisabled = false;
             userIsDragging = false;
+            selectionProjector.enabled = false;
         }
     }
 
@@ -81,9 +83,15 @@ public class UnitSelection : MonoBehaviour
     private void RemoveSelectionsOutsideBox(SelectionBox box)
     {
         Collider[] overlappingObjects = Physics.OverlapBox(box.Center, box.Extents, Quaternion.identity);
+        List<Selectable> toBeRemoved = new List<Selectable>();
         foreach (Selectable _selectable in unitSelections)
         {
             if (overlappingObjects.Contains(_selectable.GetComponent<Collider>())) continue;
+            toBeRemoved.Add(_selectable);
+        }
+
+        foreach (Selectable _selectable in toBeRemoved)
+        {
             Deselect(_selectable);
         }
     }

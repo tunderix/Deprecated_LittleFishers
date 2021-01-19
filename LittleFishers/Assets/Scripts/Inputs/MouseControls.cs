@@ -19,7 +19,7 @@ public class MouseControls : MonoBehaviour, IMouseControls
     /// <value>A box used for check overlapping colliders</value>
     [SerializeField] private SelectionBox box;
 
-    private bool _temporaryDisabled;
+    private bool _uiClicksDisabled;
 
     // Dragging
     [SerializeField] private float dragStartRequirement;
@@ -28,7 +28,7 @@ public class MouseControls : MonoBehaviour, IMouseControls
 
     private void Awake()
     {
-        _temporaryDisabled = false;
+        _uiClicksDisabled = false;
     }
 
     void Update()
@@ -39,39 +39,52 @@ public class MouseControls : MonoBehaviour, IMouseControls
     private void DetectClicksAndUpdateMousePoints()
     {
         // Might need to filter UI CLICKs in future
-        if (EventSystem.current.IsPointerOverGameObject()) { _temporaryDisabled = true; return; }
-        if ((Input.GetMouseButton(0) || Input.GetMouseButton(1)) && !_temporaryDisabled)
+        if (EventSystem.current.IsPointerOverGameObject()) { _uiClicksDisabled = true; return; }
+        _userIsDragging = false;
+
+        RaycastHit hit;
+        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Physics.Raycast(ray, out hit, 100f);
+
+        if (Input.GetMouseButtonDown(0) && !_uiClicksDisabled)
         {
-            RaycastHit hit;
-            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            Physics.Raycast(ray, out hit, 100f);
+            MouseDownPoint = hit.point;
+            mouseDragStart = MouseDownPoint;
+            box.baseMin = mouseDragStart;
+            leftClick(hit.collider.gameObject);
+        }
+        else if (Input.GetMouseButton(0) && !_uiClicksDisabled)
+        {
 
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                MouseDownPoint = hit.point;
-                mouseDragStart = MouseDownPoint;
-                box.baseMin = mouseDragStart;
-                leftClick(hit.collider.gameObject);
-            }
-            if (Input.GetMouseButtonDown(1))
-            {
-                rightClick(hit);
-            }
             CurrentMousePoint = hit.point;
             box.baseMax = CurrentMousePoint;
 
-            if (Vector3.Distance(mouseDragStart, CurrentMousePoint) > dragStartRequirement) { _userIsDragging = true; dragging(); }
+            if (Vector3.Distance(mouseDragStart, CurrentMousePoint) > dragStartRequirement)
+            {
+                _userIsDragging = true;
+            }
+
+            if (_userIsDragging) dragging();
         }
-        else if (Input.GetMouseButtonUp(0))
+
+        if (Input.GetMouseButtonDown(1))
         {
-            _temporaryDisabled = false;
-            _userIsDragging = false;
+            rightClick(hit);
         }
-        else
+        else if (Input.GetMouseButton(1) && !_uiClicksDisabled)
         {
-            _userIsDragging = false;
+
         }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            _uiClicksDisabled = false;
+        }
+        else if (Input.GetMouseButtonUp(1))
+        {
+            _uiClicksDisabled = false;
+        }
+
     }
 
     private void dragging()
