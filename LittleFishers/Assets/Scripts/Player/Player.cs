@@ -12,7 +12,7 @@ public class Player : NetworkBehaviour
 
     [SerializeField] private PlayerStats playerStats;
     [SerializeField] private Inventory_Player playerInventory;
-
+    public GameObject FishingIndicator;
     [Header("Player Default Stats")]
     [SerializeField] private int defaultPlayerStrength;
     [SerializeField] private int defaultPlayerExperience;
@@ -29,7 +29,7 @@ public class Player : NetworkBehaviour
         levelTracker = GameObject.Find("LevelIndicator").GetComponent<LevelTrack>();
         playerStats = new PlayerStats(defaultPlayerExperience, defaultPlayerStrength);
         gameLogic = (GameLogic)GameObject.FindGameObjectWithTag("KrakenTheGod").GetComponent<GameLogic>();
-
+        FishingIndicator.SetActive(false);
         SubscribeToCollectionOfItems();
     }
 

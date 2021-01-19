@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Mirror;
+﻿using UnityEngine;
+using LittleFishers.Fishing;
 
 public class FishingController : MonoBehaviour
 {
@@ -9,15 +7,27 @@ public class FishingController : MonoBehaviour
     public GameObject _fishingTargetPrefab;
     public float throwDistance;
 
-    private FishFactory fishFactory;
+    private Fishing _fishing;
+
 
     void Awake()
     {
-        fishFactory = new FishFactory();
+        _fishing = new Fishing();
+    }
+
+    private void Update()
+    {
+        _fishing.Tick();
+    }
+
+    public void SetFishingIndicator(Player player, bool visible)
+    {
+        player.FishingIndicator.SetActive(visible);
     }
 
     public void StartFishing(Vector3 position, FishPool fishPool, Player player)
     {
+        /*
         FishSize newFishSize = fishPool.RandomFishSize;
         Fish fish = fishFactory.CreateFish(newFishSize);
         PlayerStats stats = player.GetPlayerStats();
@@ -35,6 +45,7 @@ public class FishingController : MonoBehaviour
         {
             stats.AddExperience(FishingHelper.calculateFishExperience(fishPool, fish, stats));
         }
+        */
     }
 
     private bool CanPlayerCatchFish(Fish fish, PlayerStats playerStats)

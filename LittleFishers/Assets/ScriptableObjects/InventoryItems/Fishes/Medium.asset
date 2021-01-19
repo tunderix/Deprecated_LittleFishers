@@ -20,3 +20,7 @@ MonoBehaviour:
   MaxStackSize: 5
   MinWeight: 60
   MaxWeight: 120
+  MinStrength: 3
+  MaxStrength: 6
+  MinExperienceGain: 2
+  MaxExperienceGain: 10

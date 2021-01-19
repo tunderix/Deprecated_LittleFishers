@@ -1,9 +1,12 @@
-public enum FishSize
+namespace LittleFishers.Fishing
 {
-    Tiny,
-    Small,
-    Medium,
-    Large,
-    Huge,
-    Gigantous
+    public enum FishSize
+    {
+        Tiny,
+        Small,
+        Medium,
+        Large,
+        Huge,
+        Gigantous
+    }
 }

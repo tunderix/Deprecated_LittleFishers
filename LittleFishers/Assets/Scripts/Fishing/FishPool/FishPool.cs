@@ -1,30 +1,31 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
-public class FishPool : MonoBehaviour
+namespace LittleFishers.Fishing
 {
-    [SerializeField]
-    private FishPoolObject fishPoolObject;
-
-    [SerializeField]
-    private List<FishSize> possibleFishSizes;
-
-    [SerializeField]
-    private int recommendedMinimumLevel;
-
-    public int ExperiencePenaltyModifier(int playerLevel)
+    public class FishPool : MonoBehaviour
     {
-        int diff = playerLevel - recommendedMinimumLevel;
-        return diff;
-    }
+        [SerializeField]
+        private FishPoolObject fishPoolObject;
 
-    public FishSize RandomFishSize
-    {
-        get
+        [SerializeField]
+        private List<FishSize> possibleFishSizes;
+
+        [SerializeField]
+        private int recommendedMinimumLevel;
+
+        public int ExperiencePenaltyModifier(int playerLevel)
         {
-            return possibleFishSizes[UnityEngine.Random.Range(0, possibleFishSizes.Count)];
+            int diff = playerLevel - recommendedMinimumLevel;
+            return diff;
+        }
+
+        public FishSize RandomFishSize
+        {
+            get
+            {
+                return possibleFishSizes[UnityEngine.Random.Range(0, possibleFishSizes.Count)];
+            }
         }
     }
 }

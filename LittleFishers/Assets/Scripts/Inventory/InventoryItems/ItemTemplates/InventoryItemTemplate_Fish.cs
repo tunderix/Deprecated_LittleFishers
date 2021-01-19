@@ -11,6 +11,11 @@ namespace LittleFishers.LFInventory
         [Header("Fish Specific Attributes")]
         public int MinWeight;
         public int MaxWeight;
+        public int MinStrength;
+        public int MaxStrength;
+        public int MinExperienceGain;
+        public int MaxExperienceGain;
+
         public override InventoryItemType GetItemType()
         {
             return InventoryItemType.Fish;

@@ -1,33 +1,33 @@
 ﻿
 using UnityEngine;
-using UnityEditor;
-
-public class FishingHelper
+namespace LittleFishers.Fishing
 {
-    public static int calculateFishExperience(FishPool pool, Fish fish, PlayerStats stats)
+    public class FishingHelper
     {
-        int experienceGained = 0;
-        experienceGained += fish.ExperienceBySize;
-
-        // TODO Limit exprience by pool modifiers
-        //experienceGained -= pool.ExperiencePenaltyModifier(stats.Experience.PlayerLevel);
-
-        if (experienceGained < 1) experienceGained = 1;
-
-        return experienceGained;
-    }
-
-    public static bool canStartFishing(float throwRange, Vector3 playerPosition, Vector3 targetFishingPosition, GameObject clickedGO)
-    {
-        float throwDistance = Vector3.Distance(playerPosition, targetFishingPosition);
-        return (clickedGO.tag == "Water" && throwDistance < throwRange);
-    }
-
-    public static string RandomFishName
-    {
-        get
+        public static int calculateFishExperience(FishPool pool, Fish fish, PlayerStats stats)
         {
-            string[] names = new string[] {
+            int experienceGained = 0;
+            // experienceGained += fish.ExperienceBySize;
+
+            // TODO Limit exprience by pool modifiers
+            // experienceGained -= pool.ExperiencePenaltyModifier(stats.Experience.PlayerLevel);
+
+            if (experienceGained < 1) experienceGained = 1;
+
+            return experienceGained;
+        }
+
+        public static bool canStartFishing(float throwRange, Vector3 playerPosition, Vector3 targetFishingPosition, GameObject clickedGO)
+        {
+            float throwDistance = Vector3.Distance(playerPosition, targetFishingPosition);
+            return (clickedGO.tag == "Water" && throwDistance < throwRange);
+        }
+
+        public static string RandomFishName
+        {
+            get
+            {
+                string[] names = new string[] {
             "Angelfish",
             "JellyFish",
             "Anthias",
@@ -62,7 +62,8 @@ public class FishingHelper
             "Tilefish",
             "Triggerfish",
             "Wrasse" };
-            return names[UnityEngine.Random.Range(0, names.Length - 1)];
+                return names[UnityEngine.Random.Range(0, names.Length - 1)];
+            }
         }
     }
 }

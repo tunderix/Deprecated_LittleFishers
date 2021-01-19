@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using System.Linq;
 
 // UnitSelection
 /// <summary>
@@ -12,21 +14,37 @@ public class UnitSelection : MonoBehaviour
     [SerializeField] List<Selectable> unitSelections;
 
     /// <value>Is user dragging the mouse</value>
-    [SerializeField] private bool userIsDragging;
+    public bool userIsDragging;
 
     /// <value>Projector for showing which units are selected</value>
     [SerializeField] Projector selectionProjector;
 
+    private bool _temporaryDisabled;
+
+    private void Awake()
+    {
+        _temporaryDisabled = false;
+        userIsDragging = false;
+    }
+
     void Update()
     {
         // TODO - Get Mouse ups and downs from MouseController
-        if (Input.GetMouseButton(0))
+        if (EventSystem.current.IsPointerOverGameObject()) { _temporaryDisabled = true; return; }
+
+        if (Input.GetMouseButton(0) && !_temporaryDisabled && userIsDragging)
         {
             selectionProjector.enabled = true;
         }
         else if (Input.GetMouseButtonUp(0))
         {
+            _temporaryDisabled = false;
+            userIsDragging = false;
             selectionProjector.enabled = false;
+        }
+        else if (Input.GetMouseButtonUp(1))
+        {
+            userIsDragging = false;
         }
     }
 
@@ -36,8 +54,11 @@ public class UnitSelection : MonoBehaviour
     /// <param name="box">Box containing world coordinates for selection through mouse input</param>
     public void UpdateSelectionBox(SelectionBox box)
     {
+        if (!userIsDragging) return;
+
         UpdateSelectionProjector(box);
         UpdateUnitSelections(box);
+        RemoveSelectionsOutsideBox(box);
     }
 
     /// <summary>
@@ -50,6 +71,20 @@ public class UnitSelection : MonoBehaviour
         foreach (Collider overlappingObject in overlappingObjects)
         {
             Select(overlappingObject.gameObject);
+        }
+    }
+
+    /// <summary>
+    /// Remove objects from Selections when user is not hovering them anymore
+    /// </summary>
+    /// <param name="box">Box provides attributes for Physics OverlapBox to determine overlapping colliders</param>
+    private void RemoveSelectionsOutsideBox(SelectionBox box)
+    {
+        Collider[] overlappingObjects = Physics.OverlapBox(box.Center, box.Extents, Quaternion.identity);
+        foreach (Selectable _selectable in unitSelections)
+        {
+            if (overlappingObjects.Contains(_selectable.GetComponent<Collider>())) continue;
+            Deselect(_selectable);
         }
     }
 
@@ -107,6 +142,24 @@ public class UnitSelection : MonoBehaviour
 
         unitSelections.Add(selectable);
         selectable.IsSelected = true;
+    }
+
+    /// <summary>
+    /// Remove gameobject from selections and make sure it does NOT indicate selection
+    /// </summary>
+    /// <param name="GO">Gameobject is supposed to contain Selectable and not exist in unitSelections</param>
+    private void Deselect(Selectable selectable)
+    {
+        // Guard for selectable
+        if (selectable == null) return;
+
+        //Check if we can find it from unit selections
+        if (unitSelections.Contains(selectable))
+        {
+            // remove and disable selection
+            unitSelections.Remove(selectable);
+            selectable.IsSelected = false;
+        }
     }
 
     /// <summary>

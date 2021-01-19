@@ -19,9 +19,17 @@ public class MouseControls : MonoBehaviour, IMouseControls
     /// <value>A box used for check overlapping colliders</value>
     [SerializeField] private SelectionBox box;
 
+    private bool _temporaryDisabled;
+
     // Dragging
+    [SerializeField] private float dragStartRequirement;
     public bool _userIsDragging;
     private static Vector3 mouseDragStart;
+
+    private void Awake()
+    {
+        _temporaryDisabled = false;
+    }
 
     void Update()
     {
@@ -31,8 +39,8 @@ public class MouseControls : MonoBehaviour, IMouseControls
     private void DetectClicksAndUpdateMousePoints()
     {
         // Might need to filter UI CLICKs in future
-        // if (!EventSystem.current.IsPointerOverGameObject())
-        if (Input.GetMouseButton(0) || Input.GetMouseButton(1))
+        if (EventSystem.current.IsPointerOverGameObject()) { _temporaryDisabled = true; return; }
+        if ((Input.GetMouseButton(0) || Input.GetMouseButton(1)) && !_temporaryDisabled)
         {
             RaycastHit hit;
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -42,7 +50,6 @@ public class MouseControls : MonoBehaviour, IMouseControls
             if (Input.GetMouseButtonDown(0))
             {
                 MouseDownPoint = hit.point;
-                _userIsDragging = true;
                 mouseDragStart = MouseDownPoint;
                 box.baseMin = mouseDragStart;
                 leftClick(hit.collider.gameObject);
@@ -53,9 +60,15 @@ public class MouseControls : MonoBehaviour, IMouseControls
             }
             CurrentMousePoint = hit.point;
             box.baseMax = CurrentMousePoint;
-            dragging();
+
+            if (Vector3.Distance(mouseDragStart, CurrentMousePoint) > dragStartRequirement) { _userIsDragging = true; dragging(); }
         }
         else if (Input.GetMouseButtonUp(0))
+        {
+            _temporaryDisabled = false;
+            _userIsDragging = false;
+        }
+        else
         {
             _userIsDragging = false;
         }

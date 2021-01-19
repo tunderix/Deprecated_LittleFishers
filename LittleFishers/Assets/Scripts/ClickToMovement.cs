@@ -12,7 +12,7 @@ public class ClickToMovement : MonoBehaviour
 
     void Start()
     {
-        newPosition = this.transform.position;
+        //newPosition = this.transform.position;
     }
 
     public void MoveTo(Vector3 target)

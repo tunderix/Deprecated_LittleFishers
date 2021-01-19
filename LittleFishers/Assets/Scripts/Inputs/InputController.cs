@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.EventSystems;
-using UnityEngine;
+﻿using UnityEngine;
 using System;
+using LittleFishers.Fishing;
 
 public class InputController : MonoBehaviour
 {
@@ -27,7 +25,10 @@ public class InputController : MonoBehaviour
 
     public static void MouseDrag(SelectionBox box)
     {
-        if (OnMouseDrag != null) OnMouseDrag(box);
+        if (OnMouseDrag != null)
+        {
+            OnMouseDrag(box);
+        }
     }
 
     void Awake()
@@ -43,13 +44,16 @@ public class InputController : MonoBehaviour
 
     private void _onLeftButtonClick(GameObject clickedGO)
     {
+        unitSelection.userIsDragging = mouseControls._userIsDragging;
         unitSelection.TrySelect(clickedGO);
     }
 
     //TODO - awfull
     private void _onRightButtonClick(GameObject clickedGO, Vector3 point)
     {
+        unitSelection.userIsDragging = mouseControls._userIsDragging;
         GameObject player = GameObject.FindGameObjectWithTag("PlayerSelf");
+        /*
         FishPool fishPool = clickedGO.GetComponent<FishPool>();
         FishingTarget fishingTarget = clickedGO.GetComponent<FishingTarget>();
         if (FishingHelper.canStartFishing(fishingController.throwDistance, player.transform.position, point, clickedGO) && fishPool)
@@ -61,20 +65,36 @@ public class InputController : MonoBehaviour
         {
             fishingTarget.TriggerFishOn();
         }
-        else if (UnitSelection.IsSelected(player))
+        else*/
+        if (UnitSelection.IsSelected(player))
         {
             player.GetComponent<Player>().MoveTo(point);
         }
+
     }
 
     private void _onMouseDrag(SelectionBox box)
     {
+        unitSelection.userIsDragging = mouseControls._userIsDragging;
         unitSelection.UpdateSelectionBox(box);
     }
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Q))
+        Player player = GameObject.FindGameObjectWithTag("PlayerSelf").GetComponent<Player>();
+        if (player != null)
+        {
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                fishingController.SetFishingIndicator(player, true);
+            }
+            if (Input.GetKeyUp(KeyCode.Q))
+            {
+                fishingController.SetFishingIndicator(player, false);
+            }
+        }
+
+        if (Input.GetKeyUp(KeyCode.Tab))
         {
             littleFishersUI.TogglePlayerList();
         }
