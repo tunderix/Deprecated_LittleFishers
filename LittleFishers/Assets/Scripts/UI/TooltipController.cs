@@ -20,7 +20,8 @@ namespace LittleFishers.UI
         private void Update()
         {
             Vector2 localPoint;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(this.transform.parent.gameObject.GetComponent<RectTransform>(), Input.mousePosition, uiCamera, out localPoint);
+            Vector3 mousePos = new Vector3(); // TODO -Replace this one with new Input System. Input.mousePosition;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(this.transform.parent.gameObject.GetComponent<RectTransform>(), mousePos, uiCamera, out localPoint);
             localPoint.x += tooltipOffset.x;
             localPoint.y += tooltipOffset.y;
             instance.gameObject.GetComponent<RectTransform>().localPosition = localPoint;
