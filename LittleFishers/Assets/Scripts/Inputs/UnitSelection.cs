@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Linq;
+using UnityEngine.InputSystem;
 
 // UnitSelection
 /// <summary>
@@ -29,6 +30,8 @@ public class UnitSelection : MonoBehaviour
 
     void Update()
     {
+        /*
+        // TODO - Replace based on new input system
         // TODO - Get Mouse ups and downs from MouseController
         if (EventSystem.current.IsPointerOverGameObject()) { _temporaryDisabled = true; return; }
 
@@ -48,6 +51,7 @@ public class UnitSelection : MonoBehaviour
             userIsDragging = false;
             selectionProjector.enabled = false;
         }
+        */
     }
 
     /// <summary>

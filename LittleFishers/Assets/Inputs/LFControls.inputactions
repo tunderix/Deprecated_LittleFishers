@@ -1,0 +1,77 @@
+{
+    "name": "LFControls",
+    "maps": [
+        {
+            "name": "Movement",
+            "id": "46848823-28ca-419c-a3de-880b1a1f57e2",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "6e5f0d51-bf50-4a86-87d3-548b85e5d283",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "bcf1bc17-e2e0-494c-85ef-a780c4596484",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "LFControls",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "UI",
+            "id": "88b41a4a-ee22-4caf-b278-bfb609f32c09",
+            "actions": [
+                {
+                    "name": "MouseMove",
+                    "type": "PassThrough",
+                    "id": "4f401044-2f20-4222-8b14-d4f3f9c237b5",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "f2806d3c-0e24-4a96-a264-ff73eccd2085",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "LFControls",
+                    "action": "MouseMove",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "LFControls",
+            "bindingGroup": "LFControls",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}

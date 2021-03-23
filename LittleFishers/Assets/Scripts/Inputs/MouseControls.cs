@@ -42,10 +42,12 @@ public class MouseControls : MonoBehaviour, IMouseControls
         if (EventSystem.current.IsPointerOverGameObject()) { _uiClicksDisabled = true; return; }
         _userIsDragging = false;
 
+        /*
+        // TODO - Replace based on new input system
         RaycastHit hit;
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Physics.Raycast(ray, out hit, 100f);
-
+        
         if (Input.GetMouseButtonDown(0) && !_uiClicksDisabled)
         {
             MouseDownPoint = hit.point;
@@ -84,7 +86,7 @@ public class MouseControls : MonoBehaviour, IMouseControls
         {
             _uiClicksDisabled = false;
         }
-
+        */
     }
 
     private void dragging()

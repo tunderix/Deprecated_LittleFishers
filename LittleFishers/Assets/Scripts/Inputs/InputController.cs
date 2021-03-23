@@ -81,6 +81,8 @@ public class InputController : MonoBehaviour
 
     void Update()
     {
+        /*
+        // TODO - Replace based on new input system
         GameObject localPlayer = GameObject.FindGameObjectWithTag("PlayerSelf");
         if (localPlayer != null)
         {
@@ -112,5 +114,6 @@ public class InputController : MonoBehaviour
             littleFishersUI.HideKeybindLayout();
             littleFishersUI.HideShopLayout();
         }
+        */
     }
 }
